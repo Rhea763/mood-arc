@@ -10,9 +10,13 @@ export function neteaseTrackMobileUrl(songId: number | string): string {
   return `https://music.163.com/m/song?id=${songId}`;
 }
 
-/** 网页迷你播放器（部分曲目可自动开始播放） */
-export function neteaseTrackEmbedUrl(songId: number | string): string {
-  return `https://music.163.com/outchain/player?type=2&id=${songId}&auto=1&height=66`;
+/** 网页外链迷你播放器（iframe src） */
+export function neteaseTrackEmbedUrl(
+  songId: number | string,
+  autoPlay = false
+): string {
+  const auto = autoPlay ? 1 : 0;
+  return `https://music.163.com/outchain/player?type=2&id=${songId}&auto=${auto}&height=66`;
 }
 
 /** 演示版：优先直达单曲页，无 ID 时退回搜索 */

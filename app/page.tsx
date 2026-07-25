@@ -24,6 +24,7 @@ import {
   PLAYLIST_LENGTH_OPTIONS,
   DEFAULT_PLAYLIST_LENGTH,
 } from "@/lib/regulation-goals";
+import { NeteasePlayer } from "@/components/netease-player";
 
 const DEMO_KEY = "moodarc_demo";
 
@@ -551,7 +552,7 @@ export default function Home() {
                   </h3>
                   {result.mock && (
                     <p className="mb-2 text-xs text-stone-500">
-                      点击曲名打开网易云<strong>单曲页</strong>试听（需登录；未收录曲目会退回搜索页）。
+                      每首下方为网易云外链播放器，可直接试听；也可点曲名打开单曲页。
                     </p>
                   )}
                   {result.arcSlots && result.arcSlots.length > 0 ? (
@@ -572,43 +573,48 @@ export default function Home() {
                                 {slot.hint}
                               </span>
                             </p>
-                            <ol className="mt-2 space-y-1.5 text-sm text-stone-600">
+                            <ol className="mt-2 space-y-4 text-sm text-stone-600">
                               {phaseVideos.map((v) => {
                                 const i = result.videos.indexOf(v);
                                 return (
-                                  <li key={v.url + i}>
-                                    {i + 1}.{" "}
-                                    <a
-                                      href={v.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-stone-800 underline-offset-2 hover:underline"
-                                      title={
-                                        v.neteaseSongId
-                                          ? "在网易云打开单曲页试听"
-                                          : "在网易云搜索该曲"
-                                      }
-                                    >
-                                      {v.name}
-                                    </a>
-                                    <span className="text-stone-400">
-                                      {" "}
-                                      — {v.channel}
-                                    </span>
-                                    {v.energy != null && v.valence != null && (
-                                      <span className="ml-1 text-[10px] text-stone-400">
-                                        E{v.energy.toFixed(2)} V
-                                        {v.valence.toFixed(2)}
-                                        {v.lyricFocusLabel && (
-                                          <> · 词{v.lyricFocusLabel}</>
-                                        )}
-                                        {v.lyricDirectness != null && (
-                                          <> D{v.lyricDirectness.toFixed(2)}</>
-                                        )}
-                                        {v.vocalTimbreLabel && (
-                                          <> · 音{v.vocalTimbreLabel}</>
-                                        )}
+                                  <li key={v.url + i} className="list-none">
+                                    <p>
+                                      {i + 1}.{" "}
+                                      <a
+                                        href={v.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-stone-800 underline-offset-2 hover:underline"
+                                        title={
+                                          v.neteaseSongId
+                                            ? "在网易云打开单曲页"
+                                            : "在网易云搜索该曲"
+                                        }
+                                      >
+                                        {v.name}
+                                      </a>
+                                      <span className="text-stone-400">
+                                        {" "}
+                                        — {v.channel}
                                       </span>
+                                      {v.energy != null && v.valence != null && (
+                                        <span className="ml-1 text-[10px] text-stone-400">
+                                          E{v.energy.toFixed(2)} V
+                                          {v.valence.toFixed(2)}
+                                          {v.lyricFocusLabel && (
+                                            <> · 词{v.lyricFocusLabel}</>
+                                          )}
+                                          {v.lyricDirectness != null && (
+                                            <> D{v.lyricDirectness.toFixed(2)}</>
+                                          )}
+                                          {v.vocalTimbreLabel && (
+                                            <> · 音{v.vocalTimbreLabel}</>
+                                          )}
+                                        </span>
+                                      )}
+                                    </p>
+                                    {v.neteaseEmbedUrl && (
+                                      <NeteasePlayer embedUrl={v.neteaseEmbedUrl} />
                                     )}
                                   </li>
                                 );
@@ -619,19 +625,24 @@ export default function Home() {
                       })}
                     </div>
                   ) : (
-                    <ol className="space-y-1.5 text-sm text-stone-600">
+                    <ol className="space-y-4 text-sm text-stone-600">
                       {result.videos.map((v, i) => (
-                        <li key={v.url + i}>
-                          {i + 1}.{" "}
-                          <a
-                            href={v.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-stone-800 underline-offset-2 hover:underline"
-                          >
-                            {v.name}
-                          </a>
-                          <span className="text-stone-400"> — {v.channel}</span>
+                        <li key={v.url + i} className="list-none">
+                          <p>
+                            {i + 1}.{" "}
+                            <a
+                              href={v.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-stone-800 underline-offset-2 hover:underline"
+                            >
+                              {v.name}
+                            </a>
+                            <span className="text-stone-400"> — {v.channel}</span>
+                          </p>
+                          {v.neteaseEmbedUrl && (
+                            <NeteasePlayer embedUrl={v.neteaseEmbedUrl} />
+                          )}
                         </li>
                       ))}
                     </ol>
