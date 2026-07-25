@@ -1,0 +1,35 @@
+{
+  "伤心": {
+    "queries": ["sad heartbreak", "melancholic indie", "slow r&b sad"]
+  },
+  "焦虑": {
+    "queries": ["calm anxiety relief", "soft ambient chill", "gentle piano calm"]
+  },
+  "愤怒": {
+    "queries": ["angry rock", "rage hip hop", "intense alternative"]
+  },
+  "疲惫": {
+    "queries": ["tired soft songs", "lofi chill", "quiet evening"]
+  },
+  "孤独": {
+    "queries": ["lonely acoustic", "solitude indie", "alone at night"]
+  },
+  "失落": {
+    "queries": ["disappointed sad", "let down melancholy", "empty feeling"]
+  },
+  "开心": {
+    "queries": ["feel good pop", "upbeat happy", "sunny indie pop"]
+  },
+  "平静": {
+    "queries": ["peaceful acoustic", "calm ambient", "soft folk"]
+  },
+  "兴奋": {
+    "queries": ["excited hype pop", "energetic dance", "party banger"]
+  },
+  "满足": {
+    "queries": ["content grateful acoustic", "warm feel good", "cozy happy"]
+  },
+  "期待": {
+    "queries": ["anticipation hopeful", "looking forward upbeat", "bright future pop"]
+  }
+}
