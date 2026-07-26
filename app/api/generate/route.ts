@@ -10,20 +10,49 @@ import {
 } from "@/lib/context-catalog";
 import { isValidPlaylistLength } from "@/lib/regulation-goals";
 import {
-  buildSequencedPlaylist,
-  sequencedTracksToVideos,
-} from "@/lib/generate-playlist";
-import { resolveSequencedTracksToYouTube } from "@/lib/resolve-youtube-tracks";
-import {
-  createPlaylist,
-  addVideoToPlaylist,
-  YouTubeApiError,
-} from "@/lib/youtube";
-import type { GenerateRequest, GenerateResponse } from "@/types/music";
+  generateYouTubePlaylist,
+  shouldEmbedFallbackToNetease,
+  YouTubePlaylistEmptyError,
+  youtubeErrorMessage,
+} from "@/lib/youtube-playlist-generate";
+import { YouTubeApiError } from "@/lib/youtube";
+import type {
+  GenerateRequest,
+  GenerateResponse,
+  PlaylistLength,
+  RegulationGoalId,
+  ScenarioId,
+} from "@/types/music";
 import moodMap from "@/lib/mood-map.json";
 
 type MoodMap = Record<string, { queries: string[] }>;
 const MOODS = moodMap as MoodMap;
+
+type GenerateParams = {
+  mood: string;
+  causes?: string[];
+  selectedChannelNames: string[];
+  regulationGoal: RegulationGoalId;
+  playlistLength: PlaylistLength;
+  scenario?: ScenarioId;
+};
+
+function neteaseFallback(
+  params: GenerateParams,
+  reason: string
+): GenerateResponse {
+  return {
+    ...getMockGenerate(
+      params.mood,
+      params.causes,
+      params.selectedChannelNames,
+      params.regulationGoal,
+      params.playlistLength,
+      params.scenario
+    ),
+    fallbackReason: reason,
+  };
+}
 
 export async function POST(req: NextRequest) {
   let body: GenerateRequest;
@@ -66,83 +95,71 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "请至少选择一个频道" }, { status: 400 });
   }
 
-  const embedDemo = body.embed === true || isEmbedRequest(req);
-
-  if (isMockMode() || embedDemo) {
-    await new Promise((r) => setTimeout(r, 600));
-    return NextResponse.json(
-      getMockGenerate(
-        mood,
-        causes,
-        selectedChannelNames,
-        regulationGoal,
-        playlistLength,
-        scenario
-      )
-    );
-  }
-
-  const accessToken = await requireAccessToken();
-  if (!accessToken) {
-    return NextResponse.json({ error: "请先登录" }, { status: 401 });
-  }
-
-  const {
-    interpretation,
-    plan,
-    tracks,
-    playlistName,
-    playlistDescription,
-    summary,
-  } = buildSequencedPlaylist(
+  const embedMode = body.embed === true || isEmbedRequest(req);
+  const params: GenerateParams = {
     mood,
     causes,
     selectedChannelNames,
     regulationGoal,
     playlistLength,
-    scenario
-  );
+    scenario,
+  };
 
-  try {
-    const resolved = await resolveSequencedTracksToYouTube(accessToken, tracks);
+  if (isMockMode()) {
+    await new Promise((r) => setTimeout(r, 600));
+    return NextResponse.json(getMockGenerate(
+      mood,
+      causes,
+      selectedChannelNames,
+      regulationGoal,
+      playlistLength,
+      scenario
+    ));
+  }
 
-    if (resolved.length === 0) {
+  const accessToken = await requireAccessToken();
+
+  if (embedMode) {
+    if (!accessToken) {
+      await new Promise((r) => setTimeout(r, 400));
       return NextResponse.json(
-        { error: "无法在 YouTube 上找到对应曲目，请稍后重试" },
-        { status: 404 }
+        neteaseFallback(
+          params,
+          "未登录 Google，已改用网易云试听（弧线打分不变）"
+        )
       );
     }
 
-    const playlist = await createPlaylist(
-      accessToken,
-      playlistName,
-      playlistDescription
-    );
-
-    for (const { video } of resolved) {
-      await addVideoToPlaylist(accessToken, playlist.id, video.id);
+    try {
+      const response = await generateYouTubePlaylist(accessToken, params);
+      return NextResponse.json(response);
+    } catch (err) {
+      if (shouldEmbedFallbackToNetease(err)) {
+        const detail = youtubeErrorMessage(err) ?? "YouTube 生成失败";
+        console.warn("embed YouTube fallback:", detail, err);
+        await new Promise((r) => setTimeout(r, 400));
+        return NextResponse.json(
+          neteaseFallback(params, `${detail}，已改用网易云试听`)
+        );
+      }
+      console.error("embed generate error:", err);
+      return NextResponse.json(
+        neteaseFallback(params, "YouTube 异常，已改用网易云试听")
+      );
     }
+  }
 
-    const response: GenerateResponse = {
-      playlistUrl: playlist.url,
-      playlistId: playlist.id,
-      playlistName: playlist.title,
-      scenario,
-      regulationGoal,
-      playlistLength,
-      interpretation: interpretation.narrative,
-      summary,
-      mock: false,
-      arcSlots: plan.slots.map((s) => ({
-        id: s.id,
-        label: s.label,
-        hint: s.hint,
-      })),
-      videos: sequencedTracksToVideos(resolved),
-    };
+  if (!accessToken) {
+    return NextResponse.json({ error: "请先登录" }, { status: 401 });
+  }
 
+  try {
+    const response = await generateYouTubePlaylist(accessToken, params);
     return NextResponse.json(response);
   } catch (err) {
+    if (err instanceof YouTubePlaylistEmptyError) {
+      return NextResponse.json({ error: err.message }, { status: 404 });
+    }
     if (err instanceof YouTubeApiError) {
       if (err.status === 401) {
         return NextResponse.json(

@@ -33,7 +33,7 @@ export interface GenerateRequest {
   playlistLength: PlaylistLength;
   selectedChannelIds: string[];
   selectedChannelNames: string[];
-  /** Calendar iframe: arc demo without YouTube token */
+  /** Calendar iframe: prefer YouTube, fallback Netease on failure */
   embed?: boolean;
 }
 
@@ -73,4 +73,6 @@ export interface GenerateResponse {
   regulationGoal?: RegulationGoalId;
   playlistLength?: PlaylistLength;
   arcSlots?: PlaylistArcSlot[];
+  /** Embed: YouTube failed and Netease demo was used instead */
+  fallbackReason?: string;
 }

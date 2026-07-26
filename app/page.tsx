@@ -57,7 +57,7 @@ function MoodArcHome() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isEmbed = pathname === "/embed" || searchParams.get("embed") === "1";
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const buildTimeMock = isBuildTimeMockDemo();
   const [mockMode, setMockMode] = useState<boolean | null>(null);
   const [authReady, setAuthReady] = useState(true);
@@ -94,6 +94,22 @@ function MoodArcHome() {
       const goals = getGoalsForMood(m);
       return goals.some((g) => g.id === goal) ? goal : null;
     });
+  };
+
+  const embedLogin = () => {
+    const callbackUrl = `${window.location.pathname}${window.location.search}`;
+    signIn("google", { callbackUrl });
+  };
+
+  const embedLoginNewTab = () => {
+    const callbackUrl = encodeURIComponent(
+      `${window.location.origin}/embed${window.location.search}`
+    );
+    window.open(
+      `${window.location.origin}/api/auth/signin/google?callbackUrl=${callbackUrl}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   const inApp = mockMode
@@ -410,11 +426,45 @@ function MoodArcHome() {
           {(mockMode || isEmbed) && (
             <p className="mt-2 text-xs text-amber-700">
               {isEmbed && !mockMode
-                ? "心绪日历 · 弧线打分演示（无需 YouTube 登录）"
+                ? status === "authenticated"
+                  ? "心绪日历 · 优先生成 YouTube 歌单"
+                  : "心绪日历 · 登录后生成 YouTube 歌单，否则网易云试听"
                 : "演示模式 · 模拟数据"}
             </p>
           )}
         </div>
+        {isEmbed && !mockMode && (
+          <div className="flex shrink-0 flex-col items-end gap-1">
+            {status === "authenticated" ? (
+              <button
+                type="button"
+                onClick={() => signOut()}
+                className="text-sm text-stone-500 underline-offset-2 hover:underline"
+              >
+                退出 Google
+              </button>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={embedLoginNewTab}
+                  disabled={!authReady}
+                  className="text-sm text-[#B53C4A] underline-offset-2 hover:underline disabled:opacity-50"
+                >
+                  新窗口登录
+                </button>
+                <button
+                  type="button"
+                  onClick={embedLogin}
+                  disabled={!authReady}
+                  className="text-xs text-stone-400 underline-offset-2 hover:underline disabled:opacity-50"
+                >
+                  本页登录
+                </button>
+              </>
+            )}
+          </div>
+        )}
         {!isEmbed && (
           <button
             type="button"
@@ -425,6 +475,19 @@ function MoodArcHome() {
           </button>
         )}
       </header>
+
+      {session?.error === "RefreshAccessTokenError" && !mockMode && (
+        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+          Google 登录已失效，请重新登录后再生成 YouTube 歌单。
+          <button
+            type="button"
+            onClick={() => (isEmbed ? embedLoginNewTab() : signIn("google"))}
+            className="ml-2 underline"
+          >
+            重新登录
+          </button>
+        </div>
+      )}
 
       {tasteLoading && (
         <p className="text-sm text-stone-500">正在加载你的口味…</p>
@@ -690,6 +753,11 @@ function MoodArcHome() {
                 )}
                 {result.summary && (
                   <p className="mt-1 text-xs text-amber-700">{result.summary}</p>
+                )}
+                {result.fallbackReason && (
+                  <p className="mt-2 text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                    {result.fallbackReason}
+                  </p>
                 )}
               </div>
 
