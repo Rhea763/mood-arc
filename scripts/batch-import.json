@@ -1,1050 +1,698 @@
 [
   {
-    "title": "Terrence Loves You",
-    "artist": "Lana Del Rey",
-    "lyricFocus": "Existential Grief / Isolation",
-    "energy": 0.32,
-    "valence": 0.2,
-    "lyricDirectness": 0.5
-  },
-  {
-    "title": "Honeymoon",
-    "artist": "Lana Del Rey",
-    "lyricFocus": "Cinematic Obsession / Dark Romance",
-    "energy": 0.35,
-    "valence": 0.35,
-    "lyricDirectness": 0.45
-  },
-  {
-    "title": "High By The Beach",
-    "artist": "Lana Del Rey",
-    "lyricFocus": "Detached Exhaustion / Boundary Setting",
-    "energy": 0.55,
-    "valence": 0.4,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Art Deco",
-    "artist": "Lana Del Rey",
-    "lyricFocus": "Glamorous Alienation / Party Observation",
-    "energy": 0.48,
-    "valence": 0.45,
-    "lyricDirectness": 0.55
-  },
-  {
-    "title": "Salvatore",
-    "artist": "Lana Del Rey",
-    "lyricFocus": "Escapist Fantasy / Melancholic Luxury",
-    "energy": 0.4,
-    "valence": 0.5,
-    "lyricDirectness": 0.4
-  },
-  {
-    "title": "Cruel Summer",
+    "title": "right where you left me",
     "artist": "Taylor Swift",
-    "lyricFocus": "Anxious Infatuation / Desperate Passion",
-    "energy": 0.85,
-    "valence": 0.5,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Paper Rings",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Joyful Commitment / Playful Devotion",
-    "energy": 0.88,
-    "valence": 0.9,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Cornelia Street",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Fear of Loss / Nostalgic Anchor",
-    "energy": 0.62,
-    "valence": 0.45,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Death By A Thousand Cuts",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Lingering Heartbreak / Post-Breakup Disorientation",
-    "energy": 0.75,
-    "valence": 0.4,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "London Boy",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Carefree Affection / Upbeat Romance",
-    "energy": 0.8,
-    "valence": 0.85,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "False God",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Sensual Devotion / Fragile Faith",
-    "energy": 0.45,
-    "valence": 0.55,
-    "lyricDirectness": 0.65
-  },
-  {
-    "title": "Afterglow",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Apologetic Self-Awareness / Conflict Resolution",
-    "energy": 0.6,
-    "valence": 0.5,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Daylight",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Emotional Healing / Peaceful Redemption",
-    "energy": 0.52,
-    "valence": 0.75,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "The Archer",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Vulnerable Anxiety / Self-Doubt",
-    "energy": 0.42,
-    "valence": 0.3,
-    "lyricDirectness": 0.65
-  },
-  {
-    "title": "I Forget That You Existed",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Liberating Indifference / Upbeat Closure",
+    "lyricFocus": "Frozen Time / Stagnant Heartbreak",
     "energy": 0.65,
-    "valence": 0.75,
+    "valence": 0.3,
     "lyricDirectness": 0.85
   },
   {
-    "title": "My Boy Only Breaks His Favorite Toys",
+    "title": "it's time to go",
     "artist": "Taylor Swift",
-    "lyricFocus": "Discarded Affection / Resigned Cynicism",
-    "energy": 0.68,
-    "valence": 0.35,
+    "lyricFocus": "Quiet Departure / Self-Respecting Exit",
+    "energy": 0.45,
+    "valence": 0.5,
     "lyricDirectness": 0.8
   },
   {
-    "title": "But Daddy I Love Him",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Defiant Independence / Romantic Rebellion",
-    "energy": 0.78,
-    "valence": 0.65,
-    "lyricDirectness": 0.85
+    "title": "Team",
+    "artist": "Lorde",
+    "lyricFocus": "Youth Solidarity / Realistic Belonging",
+    "energy": 0.72,
+    "valence": 0.6,
+    "lyricDirectness": 0.7
   },
   {
-    "title": "Fresh Out The Slammer",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Post-Breakup Rebound / Impatient Relief",
+    "title": "Mood Ring",
+    "artist": "Lorde",
+    "lyricFocus": "Satirical Wellness / Superficial Healing",
     "energy": 0.58,
-    "valence": 0.5,
+    "valence": 0.6,
     "lyricDirectness": 0.75
   },
   {
-    "title": "I Can Fix Him (No Really I Can)",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Delusional Optimism / Savior Complex",
+    "title": "ICU",
+    "artist": "Phoebe Bridgers",
+    "lyricFocus": "Volatile Relational Drift / Fast-Paced Heartbreak",
+    "energy": 0.75,
+    "valence": 0.35,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Not Strong Enough",
+    "artist": "boygenius",
+    "lyricFocus": "Self-Loathing / Oscillating Self-Worth",
+    "energy": 0.82,
+    "valence": 0.4,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Cool About It",
+    "artist": "boygenius",
+    "lyricFocus": "Quiet Restraint / Masked Discomfort",
     "energy": 0.4,
-    "valence": 0.35,
+    "valence": 0.3,
     "lyricDirectness": 0.85
   },
   {
-    "title": "loml",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Devastating Loss / Shattered Promises",
-    "energy": 0.3,
-    "valence": 0.12,
+    "title": "True Blue",
+    "artist": "boygenius",
+    "lyricFocus": "Profound Understanding / Steadfast Devotion",
+    "energy": 0.58,
+    "valence": 0.65,
     "lyricDirectness": 0.8
   },
   {
-    "title": "I Can Do It With A Broken Heart",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Performance Mask / High-Energy Grief",
-    "energy": 0.85,
-    "valence": 0.35,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "The Smallest Man Who Ever Lived",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Cold Scorn / Post-Mortem Betrayal",
-    "energy": 0.65,
-    "valence": 0.15,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "The Manuscript",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Distanced Retrospective / Narrative Closure",
-    "energy": 0.28,
-    "valence": 0.4,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "I Hate It Here",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Escapist Imagination / Social Disconnection",
-    "energy": 0.45,
-    "valence": 0.25,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "thanK you aIMee",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Grudging Gratitude / Adversarial Resilience",
-    "energy": 0.68,
-    "valence": 0.55,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Sympathy is a knife",
-    "artist": "Charli XCX",
-    "lyricFocus": "Insecure Paranoia / Social Tension",
-    "energy": 0.85,
-    "valence": 0.35,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "I might say something stupid",
-    "artist": "Charli XCX",
-    "lyricFocus": "Vulnerable Isolation / Imposter Syndrome",
+    "title": "Emily I'm Sorry",
+    "artist": "boygenius",
+    "lyricFocus": "Plea for Forgiveness / Inevitable Disappointment",
     "energy": 0.35,
-    "valence": 0.25,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "Talk talk",
-    "artist": "Charli XCX",
-    "lyricFocus": "Frantic Anticipation / Party Crush",
-    "energy": 0.82,
-    "valence": 0.75,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Club classics",
-    "artist": "Charli XCX",
-    "lyricFocus": "Self-Referential Hype / Dancefloor Pride",
-    "energy": 0.9,
-    "valence": 0.8,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "B2b",
-    "artist": "Charli XCX",
-    "lyricFocus": "Relentless Relapse / Obsessive Loop",
-    "energy": 0.8,
-    "valence": 0.45,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Everything is romantic",
-    "artist": "Charli XCX",
-    "lyricFocus": "Sensory Overload / Summer Hedonism",
-    "energy": 0.75,
-    "valence": 0.7,
-    "lyricDirectness": 0.65
-  },
-  {
-    "title": "Rewind",
-    "artist": "Charli XCX",
-    "lyricFocus": "Nostalgic Ambition / Fear of Stagnation",
-    "energy": 0.72,
-    "valence": 0.4,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "So I",
-    "artist": "Charli XCX",
-    "lyricFocus": "Grief Regret / Tender Tribute",
-    "energy": 0.45,
-    "valence": 0.3,
+    "valence": 0.2,
     "lyricDirectness": 0.85
   },
   {
-    "title": "I think about it all the time",
-    "artist": "Charli XCX",
-    "lyricFocus": "Biological Clock Anxiety / Life Choices",
-    "energy": 0.6,
-    "valence": 0.45,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "365",
-    "artist": "Charli XCX",
-    "lyricFocus": "Manic Party Escalation / Unhinged Energy",
-    "energy": 0.92,
-    "valence": 0.6,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Slim Pickins",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Sarcastic Dating Despair / Country Humor",
-    "energy": 0.55,
-    "valence": 0.6,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Coincidence",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Suspicious Irony / Calling Out Lies",
-    "energy": 0.68,
-    "valence": 0.5,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Sharpest Tool",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Baffled Frustration / Mixed Signals",
-    "energy": 0.62,
-    "valence": 0.4,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Dumb & Poetic",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Exposing Pretentiousness / Bitter Disillusion",
-    "energy": 0.38,
-    "valence": 0.25,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "Lie To Girls",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Self-Deception / Empathetic Warning",
-    "energy": 0.48,
-    "valence": 0.3,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Don't Smile",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Miserable Separation / Petty Longing",
-    "energy": 0.42,
-    "valence": 0.25,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Bed Chem",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Flirtatious Anticipation / Sensual Humor",
-    "energy": 0.72,
-    "valence": 0.8,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Juno",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Ecstatic Infatuation / Bold Desire",
-    "energy": 0.8,
-    "valence": 0.88,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Good Graces",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Self-Respect Boundary / Upbeat Warning",
-    "energy": 0.75,
-    "valence": 0.7,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Subversive",
-    "artist": "Chappell Roan",
-    "lyricFocus": "Playful Provocation / Ecstatic Desire",
-    "energy": 0.82,
-    "valence": 0.8,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Super Graphic Ultra Modern Girl",
-    "artist": "Chappell Roan",
-    "lyricFocus": "Standard Raising / High-Fashion Camp",
-    "energy": 0.88,
-    "valence": 0.85,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Naked in Manhattan",
-    "artist": "Chappell Roan",
-    "lyricFocus": "Queer Awakening / Flirty Panic",
-    "energy": 0.78,
-    "valence": 0.8,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Kaleidoscope",
-    "artist": "Chappell Roan",
-    "lyricFocus": "Fragile Shift / Soft Heartbreak",
-    "energy": 0.3,
-    "valence": 0.35,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "Picture You",
-    "artist": "Chappell Roan",
-    "lyricFocus": "Private Yearning / Intimate Longing",
-    "energy": 0.45,
-    "valence": 0.5,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "Guilty Pleasure",
-    "artist": "Chappell Roan",
-    "lyricFocus": "Unapologetic Fantasy / Campy Release",
-    "energy": 0.72,
-    "valence": 0.75,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "MAKING THE BED",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Self-Doubt / Responsibility Regret",
-    "energy": 0.42,
-    "valence": 0.25,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "LOGICAL",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Emotional Manipulation / Irational Blindness",
+    "title": "The Record",
+    "artist": "boygenius",
+    "lyricFocus": "Shared Pain / Sisterhood Bond",
     "energy": 0.5,
-    "valence": 0.18,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "BALLAD OF A HOMESCHOOLED GIRL",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Social Awkwardness / Angsty Panic",
-    "energy": 0.88,
-    "valence": 0.35,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "THE GRUDGE",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Unforgivable Betrayal / Lingering Pain",
-    "energy": 0.55,
-    "valence": 0.15,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "PRETTY IS ITN'T PRETTY",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Body Insecurity / Societal Pressure",
-    "energy": 0.65,
-    "valence": 0.3,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "TEENAGE DREAM",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Fear of Aging / Growing Up Dread",
-    "energy": 0.52,
-    "valence": 0.2,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "GIRL I'VE ALWAYS BEEN",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Folk Sarcasm / Authentic Defense",
-    "energy": 0.6,
-    "valence": 0.6,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "SNOW ON THE BEACH",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Surreal Mutual Unfolding / Dreamy Awe",
-    "energy": 0.4,
-    "valence": 0.65,
-    "lyricDirectness": 0.55
-  },
-  {
-    "title": "QUESTION...?",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Rhetorical Confrontation / Awkward Regret",
-    "energy": 0.62,
     "valence": 0.45,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "LABYRINTH",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Fear of Falling Again / Delicate Vulnerability",
-    "energy": 0.35,
-    "valence": 0.4,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "SWEET NOTHING",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Peaceful Sanctuary / Domestic Comfort",
-    "energy": 0.28,
-    "valence": 0.75,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "WOULD'VE, COULD'VE, SHOULD'VE",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Innocence Theft / Traumatic Remorse",
-    "energy": 0.78,
-    "valence": 0.15,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "THE GREAT WAR",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Paranoia Survival / Relationship Truce",
-    "energy": 0.6,
-    "valence": 0.55,
-    "lyricDirectness": 0.65
-  },
-  {
-    "title": "BIGGER THAN THE WHOLE SKY",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Profound Grief / Unfulfilled Potential",
-    "energy": 0.25,
-    "valence": 0.1,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "HIGH INFIDELITY",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Emotional Neglect / Secret Betrayal",
-    "energy": 0.52,
-    "valence": 0.35,
     "lyricDirectness": 0.75
   },
   {
-    "title": "PARIS",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Silly Romance / Distraction Joy",
-    "energy": 0.75,
-    "valence": 0.85,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "DEAR READER",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Flawed Guide / Isolated Truth",
-    "energy": 0.42,
-    "valence": 0.25,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "HITS DIFFERENT",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Melodramatic Spiral / Upbeat Heartbreak",
-    "energy": 0.8,
-    "valence": 0.45,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "FOOLISH ONE",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Unrequited Daydream / Gentle Reality Check",
-    "energy": 0.58,
-    "valence": 0.4,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "TIMLESS",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Enduring Love / Antique Nostalgia",
-    "energy": 0.55,
-    "valence": 0.8,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "SUBURBAN LEGENDS",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Parallel Destinies / Mismatched Timing",
+    "title": "Bite The Hand",
+    "artist": "boygenius",
+    "lyricFocus": "Boundary Defense / Reluctant Rejection",
     "energy": 0.68,
+    "valence": 0.3,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Me & My Dog",
+    "artist": "boygenius",
+    "lyricFocus": "Overwhelming Anxiety / Desperate Escape",
+    "energy": 0.75,
+    "valence": 0.25,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Ketchum, ID",
+    "artist": "boygenius",
+    "lyricFocus": "Exhausted Solitude / Peaceful Retreat",
+    "energy": 0.22,
+    "valence": 0.35,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Satanist",
+    "artist": "boygenius",
+    "lyricFocus": "Playful Nihilism / Shared Rebellion",
+    "energy": 0.78,
     "valence": 0.5,
-    "lyricDirectness": 0.7
+    "lyricDirectness": 0.75
   },
   {
-    "title": "IS IT OVER NOW?",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Lingering Jealousy / Post-Breakup Interrogation",
-    "energy": 0.78,
-    "valence": 0.4,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "SAY DON'T GO",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Desperate Plea / One-Sided Devotion",
-    "energy": 0.72,
-    "valence": 0.3,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "NOW THAT WE DON'T TALK",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Awkward Distance / Reluctant Relief",
-    "energy": 0.7,
-    "valence": 0.55,
+    "title": "Letter To An Old Poet",
+    "artist": "boygenius",
+    "lyricFocus": "Reclaiming Autonomy / Exorcising Toxic Past",
+    "energy": 0.45,
+    "valence": 0.35,
     "lyricDirectness": 0.9
   },
   {
-    "title": "SLUT!",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Serene Indifference / Love Worth Public Judgment",
-    "energy": 0.48,
-    "valence": 0.65,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "Smoke Signals",
-    "artist": "Phoebe Bridgers",
-    "lyricFocus": "Melancholic Intimacy / Fragile Refuge",
-    "energy": 0.28,
-    "valence": 0.3,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "Funeral",
-    "artist": "Phoebe Bridgers",
-    "lyricFocus": "Depressive Self-Consciousness / Guilt",
-    "energy": 0.25,
-    "valence": 0.15,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Scott Street",
-    "artist": "Phoebe Bridgers",
-    "lyricFocus": "Awkward Estrangement / Soft Nostalgia",
-    "energy": 0.35,
-    "valence": 0.35,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "Killer",
-    "artist": "Phoebe Bridgers",
-    "lyricFocus": "Fatalistic Dependency / Love Paranoia",
-    "energy": 0.3,
-    "valence": 0.2,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Graceland Too",
-    "artist": "Phoebe Bridgers",
-    "lyricFocus": "Unconditional Friendship / Gentle Healing",
-    "energy": 0.45,
-    "valence": 0.6,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Moon Song",
-    "artist": "Phoebe Bridgers",
-    "lyricFocus": "Self-Sacrificing Unrequited Love",
-    "energy": 0.28,
-    "valence": 0.2,
-    "lyricDirectness": 0.65
-  },
-  {
-    "title": "Bags",
-    "artist": "Clairo",
-    "lyricFocus": "Vulnerable Hesitation / Fear of Rejection",
-    "energy": 0.45,
-    "valence": 0.4,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "Alewife",
-    "artist": "Clairo",
-    "lyricFocus": "Deep Gratitude / Rescue Memory",
-    "energy": 0.25,
-    "valence": 0.35,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Softly",
-    "artist": "Clairo",
-    "lyricFocus": "Tender Crush / Eager Anticipation",
-    "energy": 0.58,
-    "valence": 0.75,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Sinking",
-    "artist": "Clairo",
-    "lyricFocus": "Chronic Insecurity / Quiet Overwhelm",
-    "energy": 0.3,
+    "title": "Night Shift",
+    "artist": "Lucy Dacus",
+    "lyricFocus": "Painful Separation / Cathartic Healing",
+    "energy": 0.7,
     "valence": 0.25,
-    "lyricDirectness": 0.75
+    "lyricDirectness": 0.9
   },
   {
-    "title": "Zack and Codeine",
-    "artist": "Post Malone",
-    "lyricFocus": "Hedonistic Celebration / Flexing",
-    "energy": 0.78,
-    "valence": 0.65,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Sunflower",
-    "artist": "Post Malone",
-    "lyricFocus": "Sweet Attachment / Effortless Romance",
-    "energy": 0.75,
-    "valence": 0.85,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Circles",
-    "artist": "Post Malone",
-    "lyricFocus": "Cyclical Separation / Resigned Fatigue",
-    "energy": 0.68,
+    "title": "Brando",
+    "artist": "Lucy Dacus",
+    "lyricFocus": "Exposing Pretension / Assertive Closure",
+    "energy": 0.65,
     "valence": 0.45,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Chemical",
-    "artist": "Post Malone",
-    "lyricFocus": "Addictive Attraction / Reluctant Loop",
-    "energy": 0.82,
-    "valence": 0.6,
     "lyricDirectness": 0.85
   },
   {
-    "title": "I Like You (A Happier Song)",
-    "artist": "Post Malone",
-    "lyricFocus": "Playful Flirting / Easygoing Joy",
-    "energy": 0.78,
-    "valence": 0.88,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Golden Hour",
-    "artist": "JVKE",
-    "lyricFocus": "Cinematic Awe / Instant Infatuation",
-    "energy": 0.62,
-    "valence": 0.8,
-    "lyricDirectness": 0.65
-  },
-  {
-    "title": "Until I Found You",
-    "artist": "Stephen Sanchez",
-    "lyricFocus": "Retro Devotion / Salvation Romance",
-    "energy": 0.55,
-    "valence": 0.82,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "Glimpse of Us",
-    "artist": "Joji",
-    "lyricFocus": "Unresolved Past / Guilt-Ridden Comparison",
-    "energy": 0.35,
+    "title": "Thumbs",
+    "artist": "Lucy Dacus",
+    "lyricFocus": "Fierce Protection / Visceral Anger",
+    "energy": 0.2,
     "valence": 0.15,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Hot & Heavy",
+    "artist": "Lucy Dacus",
+    "lyricFocus": "Nostalgic Discomfort / Personal Evolution",
+    "energy": 0.72,
+    "valence": 0.5,
     "lyricDirectness": 0.8
   },
   {
-    "title": "SLOW DANCING IN THE DARK",
-    "artist": "Joji",
-    "lyricFocus": "Self-Sacrificing Defeat / Resigned Farewell",
-    "energy": 0.52,
-    "valence": 0.2,
+    "title": "First Time",
+    "artist": "Lucy Dacus",
+    "lyricFocus": "Uncertain Beginnings / Vulnerable Risk",
+    "energy": 0.6,
+    "valence": 0.55,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Kyoto (Acoustic)",
+    "artist": "Phoebe Bridgers",
+    "lyricFocus": "Stripped-Back Reflection / Quiet Melancholy",
+    "energy": 0.35,
+    "valence": 0.3,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Gold",
+    "artist": "Brockhampton",
+    "lyricFocus": "Upbeat Ambition / Collective Triumph",
+    "energy": 0.85,
+    "valence": 0.8,
     "lyricDirectness": 0.75
+  },
+  {
+    "title": "Bleach",
+    "artist": "Brockhampton",
+    "lyricFocus": "Vulnerable Aspiration / Melancholic Regret",
+    "energy": 0.55,
+    "valence": 0.35,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Sugar",
+    "artist": "Brockhampton",
+    "lyricFocus": "Longing Dependency / Late-Night Intimacy",
+    "energy": 0.68,
+    "valence": 0.6,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Face",
+    "artist": "Brockhampton",
+    "lyricFocus": "Gentle Vulnerability / Fear of Distance",
+    "energy": 0.45,
+    "valence": 0.5,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Waste",
+    "artist": "Brockhampton",
+    "lyricFocus": "Unrequited Devotion / Emotional Exhaustion",
+    "energy": 0.4,
+    "valence": 0.25,
+    "lyricDirectness": 0.7
+  },
+  {
+    "title": "Summer",
+    "artist": "Brockhampton",
+    "lyricFocus": "Bittersweet Attachment / Melting Romance",
+    "energy": 0.48,
+    "valence": 0.45,
+    "lyricDirectness": 0.7
+  },
+  {
+    "title": "Boyfriend",
+    "artist": "Tyler, The Creator",
+    "lyricFocus": "Yearning Commitment / Vulnerable Desire",
+    "energy": 0.6,
+    "valence": 0.55,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Earning It",
+    "artist": "The Weeknd",
+    "lyricFocus": "Sensual Control / Dark Temptation",
+    "energy": 0.65,
+    "valence": 0.4,
+    "lyricDirectness": 0.8
   },
   {
     "title": "Die For You",
-    "artist": "Joji",
-    "lyricFocus": "Lingering Devotion / Quiet Sacrifice",
-    "energy": 0.48,
+    "artist": "The Weeknd",
+    "lyricFocus": "Agonizing Devotion / Unconditional Love",
+    "energy": 0.7,
+    "valence": 0.45,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Is There Someone Else?",
+    "artist": "The Weeknd",
+    "lyricFocus": "Suspicious Paranoia / Guilt-Ridden Inquiry",
+    "energy": 0.75,
+    "valence": 0.5,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Out of Time",
+    "artist": "The Weeknd",
+    "lyricFocus": "Late Remorse / Bittersweet Nostalgia",
+    "energy": 0.62,
+    "valence": 0.55,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Less Than Zero",
+    "artist": "The Weeknd",
+    "lyricFocus": "Upbeat Self-Loathing / Inevitable Failure",
+    "energy": 0.82,
+    "valence": 0.4,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Save Your Tears",
+    "artist": "The Weeknd",
+    "lyricFocus": "Regretful Avoidance / Synth-Pop Heartbreak",
+    "energy": 0.8,
+    "valence": 0.5,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "lyricFocus": "Desperate Need / Nocturnal Rush",
+    "energy": 0.9,
+    "valence": 0.6,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "In Your Eyes",
+    "artist": "The Weeknd",
+    "lyricFocus": "Shared Deception / Sassy Regret",
+    "energy": 0.85,
+    "valence": 0.55,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "After Hours",
+    "artist": "The Weeknd",
+    "lyricFocus": "Desperate Loneliness / Dark Guilt",
+    "energy": 0.75,
     "valence": 0.25,
     "lyricDirectness": 0.8
   },
   {
-    "title": "Sanctuary",
-    "artist": "Joji",
-    "lyricFocus": "Safe Haven Longing / Tender Surrender",
-    "energy": 0.65,
-    "valence": 0.7,
-    "lyricDirectness": 0.7
+    "title": "Starboy",
+    "artist": "The Weeknd",
+    "lyricFocus": "Flamboyant Success / Unapologetic Swagger",
+    "energy": 0.82,
+    "valence": 0.65,
+    "lyricDirectness": 0.8
   },
   {
-    "title": "Like Crazy",
-    "artist": "Jimin",
-    "lyricFocus": "Escapist Numbness / Romantic Illusion",
-    "energy": 0.72,
-    "valence": 0.45,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "Seven",
-    "artist": "Jung Kook",
-    "lyricFocus": "Playful Devotion / Constant Passion",
-    "energy": 0.85,
-    "valence": 0.88,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "Standing Next to You",
-    "artist": "Jung Kook",
-    "lyricFocus": "Unshakable Commitment / High-Energy Love",
-    "energy": 0.88,
+    "title": "I Feel It Coming",
+    "artist": "The Weeknd",
+    "lyricFocus": "Reassuring Intimacy / Smooth Romance",
+    "energy": 0.75,
     "valence": 0.82,
     "lyricDirectness": 0.75
   },
   {
-    "title": "Super Shy",
-    "artist": "NewJeans",
-    "lyricFocus": "Flirty Hesitation / Youthful Crush",
-    "energy": 0.82,
-    "valence": 0.85,
-    "lyricDirectness": 0.8
+    "title": "Call Out My Name",
+    "artist": "The Weeknd",
+    "lyricFocus": "Agonizing Betrayal / One-Sided Sacrifice",
+    "energy": 0.68,
+    "valence": 0.2,
+    "lyricDirectness": 0.88
   },
   {
-    "title": "favorite crime",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Complicit Heartbreak / Bittersweet Sacrifice",
-    "energy": 0.45,
+    "title": "Wicked Games",
+    "artist": "The Weeknd",
+    "lyricFocus": "Escapist Numbness / Transactional Affection",
+    "energy": 0.52,
     "valence": 0.25,
     "lyricDirectness": 0.85
   },
   {
-    "title": "happier",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Selfish Wishes / Reluctant Goodwill",
-    "energy": 0.4,
-    "valence": 0.2,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "brutal",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Adolescent Frustration / Existential Angst",
-    "energy": 0.88,
+    "title": "The Hills",
+    "artist": "The Weeknd",
+    "lyricFocus": "Covert Indulgence / Dark Cynicism",
+    "energy": 0.8,
     "valence": 0.3,
-    "lyricDirectness": 0.9
-  },
-  {
-    "title": "jealousy, jealousy",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Social Media Comparison / Internalized Envy",
-    "energy": 0.75,
-    "valence": 0.35,
     "lyricDirectness": 0.85
   },
   {
-    "title": "enough for you",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Inadequacy Struggle / Reclaimed Self-Worth",
-    "energy": 0.38,
-    "valence": 0.22,
-    "lyricDirectness": 0.88
+    "title": "Can't Feel My Face",
+    "artist": "The Weeknd",
+    "lyricFocus": "Addictive Romance / High-Energy Danger",
+    "energy": 0.88,
+    "valence": 0.75,
+    "lyricDirectness": 0.7
   },
   {
-    "title": "1 step forward, 3 steps back",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Walking on Eggshells / Volatile Relationship",
+    "title": "Earned It",
+    "artist": "The Weeknd",
+    "lyricFocus": "Seductive Praise / Sensual Devotion",
+    "energy": 0.58,
+    "valence": 0.55,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Heartless",
+    "artist": "The Weeknd",
+    "lyricFocus": "Defensive Relapse / Hedonistic Armor",
+    "energy": 0.85,
+    "valence": 0.4,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Take My Breath",
+    "artist": "The Weeknd",
+    "lyricFocus": "Euphoric Danger / Synth-Pop Club Thrill",
+    "energy": 0.88,
+    "valence": 0.65,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Sacrifice",
+    "artist": "The Weeknd",
+    "lyricFocus": "Selfish Autonomy / Reluctant Commitment",
+    "energy": 0.86,
+    "valence": 0.6,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Watermelon Sugar",
+    "artist": "Harry Styles",
+    "lyricFocus": "Summer High / Sensual Delight",
+    "energy": 0.82,
+    "valence": 0.9,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Adore You",
+    "artist": "Harry Styles",
+    "lyricFocus": "Unconditional Affection / Easygoing Devotion",
+    "energy": 0.78,
+    "valence": 0.85,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Golden",
+    "artist": "Harry Styles",
+    "lyricFocus": "Radiant Vulnerability / Fear of Heartbreak",
+    "energy": 0.85,
+    "valence": 0.75,
+    "lyricDirectness": 0.7
+  },
+  {
+    "title": "Falling",
+    "artist": "Harry Styles",
+    "lyricFocus": "Self-Loathing Regret / Melancholic Breakdown",
     "energy": 0.35,
     "valence": 0.18,
     "lyricDirectness": 0.85
   },
   {
-    "title": "hope ur ok",
-    "artist": "Olivia Rodrigo",
-    "lyricFocus": "Distant Empathy / Quiet Solidarity",
-    "energy": 0.48,
-    "valence": 0.5,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "SKINNY",
-    "artist": "Billie Eilish",
-    "lyricFocus": "Public Scrutiny / Vulnerable Exposure",
-    "energy": 0.3,
-    "valence": 0.2,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "BITTERSUITE",
-    "artist": "Billie Eilish",
-    "lyricFocus": "Guarded Desires / Atmospheric Tension",
-    "energy": 0.5,
-    "valence": 0.3,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "The 30th",
-    "artist": "Billie Eilish",
-    "lyricFocus": "Traumatic Shock / Relief & Dread",
-    "energy": 0.45,
-    "valence": 0.25,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "when the party's over",
-    "artist": "Billie Eilish",
-    "lyricFocus": "Self-Imposed Isolation / Reluctant Departure",
-    "energy": 0.28,
-    "valence": 0.15,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "Read your Mind",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Mixed Signals / Exasperated Curiosity",
-    "energy": 0.75,
-    "valence": 0.7,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "Already Over",
-    "artist": "Sabrina Carpenter",
-    "lyricFocus": "Inevitable Relapse / Short-Term Temptation",
-    "energy": 0.7,
-    "valence": 0.6,
-    "lyricDirectness": 0.85
-  },
-  {
-    "title": "betty",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Juvenile Regret / Naive Apology",
-    "energy": 0.65,
-    "valence": 0.55,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "illicit affairs",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Secret Degeneration / Fractured Self",
-    "energy": 0.45,
-    "valence": 0.2,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "invisible string",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Serendipitous Fate / Peaceful Gratitude",
-    "energy": 0.45,
-    "valence": 0.8,
-    "lyricDirectness": 0.7
-  },
-  {
-    "title": "mad woman",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Righteous Indignation / Systemic Scorn",
-    "energy": 0.5,
-    "valence": 0.2,
-    "lyricDirectness": 0.8
-  },
-  {
-    "title": "epiphany",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Shared Trauma / Reverence and Peace",
-    "energy": 0.2,
-    "valence": 0.15,
-    "lyricDirectness": 0.45
-  },
-  {
-    "title": "peace",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Inherent Chaos / Devoted Sincerity",
-    "energy": 0.3,
-    "valence": 0.45,
-    "lyricDirectness": 0.75
-  },
-  {
-    "title": "hoax",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Devastating Loyalty / Toxic Grief",
-    "energy": 0.25,
-    "valence": 0.1,
+    "title": "Lights Up",
+    "artist": "Harry Styles",
+    "lyricFocus": "Identity Awakening / Liberation",
+    "energy": 0.72,
+    "valence": 0.65,
     "lyricDirectness": 0.65
   },
   {
-    "title": "willow",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Enchanted Intrigue / Flexible Devotion",
-    "energy": 0.55,
-    "valence": 0.7,
-    "lyricDirectness": 0.6
-  },
-  {
-    "title": "'tis the damn season",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Nostalgic Escapism / Temporary Relapse",
-    "energy": 0.52,
+    "title": "Cherry",
+    "artist": "Harry Styles",
+    "lyricFocus": "Lingering Jealousy / Bitter Reminiscing",
+    "energy": 0.45,
     "valence": 0.35,
     "lyricDirectness": 0.8
   },
   {
-    "title": "tolerate it",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Unappreciated Devotion / Silent Resentment",
-    "energy": 0.38,
-    "valence": 0.15,
+    "title": "To Be So Lonely",
+    "artist": "Harry Styles",
+    "lyricFocus": "Jealous Defensiveness / Awkward Apology",
+    "energy": 0.58,
+    "valence": 0.45,
     "lyricDirectness": 0.85
   },
   {
-    "title": "no body, no crime",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Vengeful Retribution / Country Mystery",
-    "energy": 0.68,
-    "valence": 0.4,
-    "lyricDirectness": 0.85
+    "title": "Sunflower, Vol. 6",
+    "artist": "Harry Styles",
+    "lyricFocus": "Warm Nostalgia / Playful Affection",
+    "energy": 0.65,
+    "valence": 0.8,
+    "lyricDirectness": 0.6
   },
   {
-    "title": "happiness",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Balanced Perspective / Bittersweet Healing",
-    "energy": 0.3,
-    "valence": 0.4,
-    "lyricDirectness": 0.75
+    "title": "Canyon Moon",
+    "artist": "Harry Styles",
+    "lyricFocus": "Homebound Nostalgia / Carefree Travel",
+    "energy": 0.75,
+    "valence": 0.85,
+    "lyricDirectness": 0.7
   },
   {
-    "title": "dorothea",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Warm Reminiscing / Unchanged Friendship",
+    "title": "Fine Line",
+    "artist": "Harry Styles",
+    "lyricFocus": "Bittersweet Acceptance / Healing Hope",
     "energy": 0.5,
+    "valence": 0.5,
+    "lyricDirectness": 0.6
+  },
+  {
+    "title": "Sign of the Times",
+    "artist": "Harry Styles",
+    "lyricFocus": "Apocalyptic Comfort / Grand Farewell",
+    "energy": 0.68,
+    "valence": 0.35,
+    "lyricDirectness": 0.55
+  },
+  {
+    "title": "Sweet Creature",
+    "artist": "Harry Styles",
+    "lyricFocus": "Tender Anchor / Domestic Warmth",
+    "energy": 0.38,
     "valence": 0.75,
     "lyricDirectness": 0.75
   },
   {
-    "title": "coney island",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Neglect Regret / Disconnected Nostalgia",
-    "energy": 0.35,
+    "title": "Kiwi",
+    "artist": "Harry Styles",
+    "lyricFocus": "Wild Glam-Rock Chaos / Playful Drama",
+    "energy": 0.92,
+    "valence": 0.7,
+    "lyricDirectness": 0.7
+  },
+  {
+    "title": "Two Ghosts",
+    "artist": "Harry Styles",
+    "lyricFocus": "Faded Connection / Strangers with Memories",
+    "energy": 0.42,
+    "valence": 0.3,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Woman",
+    "artist": "Harry Styles",
+    "lyricFocus": "Possessive Jealousy / Raw Frustration",
+    "energy": 0.62,
+    "valence": 0.4,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Ever Since New York",
+    "artist": "Harry Styles",
+    "lyricFocus": "Quiet Grief / Helpless Isolation",
+    "energy": 0.45,
+    "valence": 0.25,
+    "lyricDirectness": 0.6
+  },
+  {
+    "title": "Carolina",
+    "artist": "Harry Styles",
+    "lyricFocus": "Upbeat Admiration / Unpretentious Charm",
+    "energy": 0.78,
+    "valence": 0.82,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Only Angel",
+    "artist": "Harry Styles",
+    "lyricFocus": "High-Octane Infatuation / Rock Swagger",
+    "energy": 0.88,
+    "valence": 0.75,
+    "lyricDirectness": 0.7
+  },
+  {
+    "title": "Meet Me in the Hallway",
+    "artist": "Harry Styles",
+    "lyricFocus": "Desperate Withdrawal / Vulnerable Cry",
+    "energy": 0.4,
     "valence": 0.2,
     "lyricDirectness": 0.7
   },
   {
-    "title": "ivy",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Forbidden Passion",
-    "energy": 0.52,
-    "valence": 0.38,
-    "lyricDirectness": 0.65
+    "title": "From the Dining Table",
+    "artist": "Harry Styles",
+    "lyricFocus": "Post-Breakup Loneliness / Raw Vulnerability",
+    "energy": 0.25,
+    "valence": 0.15,
+    "lyricDirectness": 0.85
   },
   {
-    "title": "cowboy like me",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Cynical Affinity / Mutual Deception",
-    "energy": 0.4,
+    "title": "Amnesia",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Heartbroken Longing / Desperate Forgetfulness",
+    "energy": 0.52,
+    "valence": 0.25,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Youngblood",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Volatile Passion / Relentless Attachment",
+    "energy": 0.85,
+    "valence": 0.55,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Teeth",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Dangerous Attraction / High-Intensity Friction",
+    "energy": 0.88,
+    "valence": 0.45,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Easier",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Toxic Crossroad / Exhausting Loop",
+    "energy": 0.78,
+    "valence": 0.4,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Complete Mess",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Total Vulnerability / Helpless Attachment",
+    "energy": 0.75,
+    "valence": 0.65,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Me Myself & I",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Self-Inflicted Isolation / Rebuilding Independence",
+    "energy": 0.8,
+    "valence": 0.5,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Ghost of You",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Haunting Memory / Persistent Loss",
+    "energy": 0.45,
+    "valence": 0.2,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "She Looks So Perfect",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Youthful Rebellion / Upbeat Romance",
+    "energy": 0.9,
+    "valence": 0.85,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Lie To Me",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Desperate Comfort / Preferring Illusion",
+    "energy": 0.6,
+    "valence": 0.25,
+    "lyricDirectness": 0.85
+  },
+  {
+    "title": "Jet Black Heart",
+    "artist": "5 Seconds of Summer",
+    "lyricFocus": "Internal Darkness / Vulnerable Redemption",
+    "energy": 0.72,
+    "valence": 0.3,
+    "lyricDirectness": 0.8
+  },
+  {
+    "title": "Heat Waves",
+    "artist": "Glass Animals",
+    "lyricFocus": "Late-Night Regret / Resigned Nostalgia",
+    "energy": 0.78,
+    "valence": 0.55,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Gooey",
+    "artist": "Glass Animals",
+    "lyricFocus": "Sensory Comfort / Hypnotic Relaxation",
+    "energy": 0.48,
+    "valence": 0.7,
+    "lyricDirectness": 0.4
+  },
+  {
+    "title": "Youth",
+    "artist": "Glass Animals",
+    "lyricFocus": "Maternal Devotion / Bittersweet Hope",
+    "energy": 0.72,
+    "valence": 0.65,
+    "lyricDirectness": 0.6
+  },
+  {
+    "title": "Tangerine",
+    "artist": "Glass Animals",
+    "lyricFocus": "Losing Authenticity / Nostalgic Pining",
+    "energy": 0.8,
+    "valence": 0.75,
+    "lyricDirectness": 0.7
+  },
+  {
+    "title": "Deja Vu",
+    "artist": "Glass Animals",
+    "lyricFocus": "Repetitive Dynamics / Atmospheric Tension",
+    "energy": 0.7,
     "valence": 0.45,
     "lyricDirectness": 0.6
   },
   {
-    "title": "long story short",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Resilient Survival / Simplified Clarity",
-    "energy": 0.75,
-    "valence": 0.8,
-    "lyricDirectness": 0.85
+    "title": "Space Ghost Coast To Coast",
+    "artist": "Glass Animals",
+    "lyricFocus": "Childhood Betrayal / Angsty Nostalgia",
+    "energy": 0.82,
+    "valence": 0.4,
+    "lyricDirectness": 0.75
   },
   {
-    "title": "evermore",
-    "artist": "Taylor Swift",
-    "lyricFocus": "Enduring Pain / Sudden Hope",
-    "energy": 0.38,
-    "valence": 0.3,
+    "title": "I Don't Wanna Talk (I Just Wanna Dance)",
+    "artist": "Glass Animals",
+    "lyricFocus": "Escapist Release / Distraction Pining",
+    "energy": 0.85,
+    "valence": 0.8,
+    "lyricDirectness": 0.75
+  },
+  {
+    "title": "Creatures in Heaven",
+    "artist": "Glass Animals",
+    "lyricFocus": "Transient Perfection / Cherished Memory",
+    "energy": 0.75,
+    "valence": 0.7,
     "lyricDirectness": 0.65
+  },
+  {
+    "title": "Life Lomlem",
+    "artist": "Glass Animals",
+    "lyricFocus": "Eclectic Storytelling / Surreal Chaos",
+    "energy": 0.78,
+    "valence": 0.6,
+    "lyricDirectness": 0.5
+  },
+  {
+    "title": "Other Side of Paradise",
+    "artist": "Glass Animals",
+    "lyricFocus": "Abandonment Shock / Dramatic Downfall",
+    "energy": 0.85,
+    "valence": 0.3,
+    "lyricDirectness": 0.7
   }
 ]

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
 import type {
@@ -55,6 +55,11 @@ import {
   updateMoodRecordAfterMood,
 } from "@/lib/mood-journey-storage";
 import type { EmotionId, IntentionId, MoodSnapshot } from "@/types/emotion";
+import {
+  LANGUAGE_OPTIONS,
+  artistMatchesLanguages,
+  type ArtistLanguage,
+} from "@/lib/artist-catalog";
 
 const VALID_MOODS = new Set<string>(MOODS);
 
@@ -89,6 +94,9 @@ function MoodArcHome() {
   const [selectedChannelIds, setSelectedChannelIds] = useState<Set<string>>(
     new Set()
   );
+  const [selectedLanguages, setSelectedLanguages] = useState<
+    Set<ArtistLanguage>
+  >(new Set(["zh", "en", "ko"]));
   const [mood, setMood] = useState<string | null>(null);
   const [emotion, setEmotion] = useState<EmotionId | null>(null);
   const [intensity, setIntensity] = useState(5);
@@ -116,6 +124,28 @@ function MoodArcHome() {
 
   const availableGoals = mood ? getGoalsForMood(mood) : [];
   const availableIntentions = emotion ? intentionsForEmotion(emotion) : [];
+
+  const filteredChannels = useMemo(() => {
+    if (!taste) return [];
+    return taste.channels.filter((c) =>
+      artistMatchesLanguages(c.name, selectedLanguages)
+    );
+  }, [taste, selectedLanguages]);
+
+  useEffect(() => {
+    if (!taste) return;
+    setSelectedChannelIds((prev) => {
+      const next = new Set(
+        [...prev].filter((id) => {
+          const ch = taste.channels.find((c) => c.id === id);
+          return ch && artistMatchesLanguages(ch.name, selectedLanguages);
+        })
+      );
+      return next.size === prev.size && [...next].every((id) => prev.has(id))
+        ? prev
+        : next;
+    });
+  }, [selectedLanguages, taste]);
 
   const selectEmotion = (e: EmotionId) => {
     setEmotion(e);
@@ -180,12 +210,20 @@ function MoodArcHome() {
       setTaste(tasteData);
 
       const defaultIds = tasteData.channels
-        .filter((c) => c.source === "subscribed" || c.source === "both")
+        .filter(
+          (c) =>
+            (c.source === "subscribed" || c.source === "both") &&
+            artistMatchesLanguages(c.name, selectedLanguages)
+        )
         .slice(0, 3)
         .map((c) => c.id);
       if (defaultIds.length < 3) {
         for (const c of tasteData.channels) {
-          if (!defaultIds.includes(c.id) && defaultIds.length < 3) {
+          if (
+            !defaultIds.includes(c.id) &&
+            defaultIds.length < 3 &&
+            artistMatchesLanguages(c.name, selectedLanguages)
+          ) {
             defaultIds.push(c.id);
           }
         }
@@ -196,7 +234,7 @@ function MoodArcHome() {
     } finally {
       setTasteLoading(false);
     }
-  }, [isEmbed]);
+  }, [isEmbed, selectedLanguages]);
 
   useEffect(() => {
     queueMicrotask(() => setIsLocalDev(isLocalDevHost()));
@@ -375,6 +413,20 @@ function MoodArcHome() {
     setCauses(new Set());
     setRegulationGoal(null);
     setPlaylistLength(DEFAULT_PLAYLIST_LENGTH);
+  };
+
+  const toggleLanguage = (lang: ArtistLanguage) => {
+    setSelectedLanguages((prev) => {
+      const next = new Set(prev);
+      if (next.has(lang)) {
+        if (next.size <= 1) return prev;
+        next.delete(lang);
+      } else {
+        next.add(lang);
+      }
+      return next;
+    });
+    setResult(null);
   };
 
   const toggleChannel = (id: string) => {
@@ -666,36 +718,67 @@ function MoodArcHome() {
           )}
 
           <div ref={formRef}>
-          <section>
-            <h2 className="mb-3 text-sm font-medium text-stone-700">
-              选择艺人
-              <span className="ml-2 font-normal text-stone-400">
-                已选 {selectedChannelIds.size}
-              </span>
-            </h2>
-            {taste.channels.length === 0 ? (
-              <p className="text-sm text-stone-500">暂无口味数据</p>
-            ) : (
+          <section className="rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
+            <div className="mb-3 border-b border-stone-100 pb-3">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <h2 className="text-sm font-medium text-stone-800">语言</h2>
+                <span className="text-xs text-stone-400">可多选</span>
+              </div>
               <div className="flex flex-wrap gap-2">
-                {taste.channels.map((channel: TasteChannel) => {
-                  const selected = selectedChannelIds.has(channel.id);
+                {LANGUAGE_OPTIONS.map((opt) => {
+                  const active = selectedLanguages.has(opt.id);
                   return (
                     <button
-                      key={channel.id}
+                      key={opt.id}
                       type="button"
-                      onClick={() => toggleChannel(channel.id)}
-                      className={`rounded-full border px-3 py-1.5 text-sm transition ${
-                        selected
-                          ? "border-stone-900 bg-stone-900 text-white"
-                          : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
+                      onClick={() => toggleLanguage(opt.id)}
+                      className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+                        active
+                          ? "border-stone-800 bg-stone-800 text-white"
+                          : "border-stone-200 bg-stone-50 text-stone-600 hover:border-stone-300"
                       }`}
                     >
-                      {channel.name}
+                      {opt.label}
                     </button>
                   );
                 })}
               </div>
-            )}
+            </div>
+
+            <div>
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <h2 className="text-sm font-medium text-stone-800">选择艺人</h2>
+                <span className="text-xs text-stone-500">
+                  已选 {selectedChannelIds.size}
+                  {filteredChannels.length > 0 &&
+                    ` · ${filteredChannels.length} 位可选`}
+                </span>
+              </div>
+              {filteredChannels.length === 0 ? (
+                <p className="text-sm text-stone-500">请至少选择一种语言</p>
+              ) : (
+                <div className="grid max-h-36 grid-cols-2 gap-1.5 overflow-y-auto sm:grid-cols-3 lg:grid-cols-4">
+                  {filteredChannels.map((channel: TasteChannel) => {
+                    const selected = selectedChannelIds.has(channel.id);
+                    return (
+                      <button
+                        key={channel.id}
+                        type="button"
+                        onClick={() => toggleChannel(channel.id)}
+                        className={`truncate rounded-lg border px-2 py-1.5 text-left text-xs transition ${
+                          selected
+                            ? "border-stone-900 bg-stone-900 text-white"
+                            : "border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-300 hover:bg-white"
+                        }`}
+                        title={channel.name}
+                      >
+                        {channel.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </section>
 
           <section>
