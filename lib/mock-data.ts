@@ -37,6 +37,13 @@ export const MOCK_CHANNELS = [
   { id: "ch18", name: "Conan Gray", url: "#", source: "liked" as const },
   { id: "ch19", name: "Phoebe Bridgers", url: "#", source: "subscribed" as const },
   { id: "ch20", name: "Frank Ocean", url: "#", source: "subscribed" as const },
+  { id: "ch21", name: "JVKE", url: "#", source: "liked" as const },
+  { id: "ch22", name: "Jimin", url: "#", source: "liked" as const },
+  { id: "ch23", name: "Joji", url: "#", source: "liked" as const },
+  { id: "ch24", name: "Jung Kook", url: "#", source: "liked" as const },
+  { id: "ch25", name: "NewJeans", url: "#", source: "liked" as const },
+  { id: "ch26", name: "Post Malone", url: "#", source: "liked" as const },
+  { id: "ch27", name: "Stephen Sanchez", url: "#", source: "liked" as const },
 ];
 
 export function getMockTaste(): TasteResponse {

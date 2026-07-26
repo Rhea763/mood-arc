@@ -9522,5 +9522,5583 @@
       "underlyingNeed": "feel understood in complex emotional territory",
       "emotionalFunction": "reflection"
     }
+  },
+  {
+    "title": "Terrence Loves You",
+    "artist": "Lana Del Rey",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.32,
+    "valence": 0.2,
+    "emotionalIntensity": 0.86,
+    "lyricDirectness": 0.5,
+    "tags": [
+      "existential_grief",
+      "isolation",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.62,
+      "bridge": 0.54,
+      "lift": 0.22
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring existential grief feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Existential Grief  mixed with  Isolation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Honeymoon",
+    "artist": "Lana Del Rey",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.35,
+    "valence": 0.35,
+    "emotionalIntensity": 0.72,
+    "lyricDirectness": 0.45,
+    "tags": [
+      "cinematic_obsession",
+      "dark_romance",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.35
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring cinematic obsession feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Cinematic Obsession  mixed with  Dark Romance",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Art Deco",
+    "artist": "Lana Del Rey",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.48,
+    "valence": 0.45,
+    "emotionalIntensity": 0.65,
+    "lyricDirectness": 0.55,
+    "tags": [
+      "glamorous_alienation",
+      "party_observation",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.56,
+      "bridge": 0.62,
+      "lift": 0.45
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring glamorous alienation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Glamorous Alienation  mixed with  Party Observation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Salvatore",
+    "artist": "Lana Del Rey",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.4,
+    "valence": 0.5,
+    "emotionalIntensity": 0.58,
+    "lyricDirectness": 0.4,
+    "tags": [
+      "escapist_fantasy",
+      "melancholic_luxury",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.59,
+      "bridge": 0.58,
+      "lift": 0.48
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring escapist fantasy feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Escapist Fantasy  mixed with  Melancholic Luxury",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Paper Rings",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.88,
+    "valence": 0.9,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "joyful_commitment",
+      "playful_devotion",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.4,
+      "bridge": 0.8,
+      "lift": 0.9
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring joyful commitment feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Joyful Commitment  mixed with  Playful Devotion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Cornelia Street",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.62,
+    "valence": 0.45,
+    "emotionalIntensity": 0.67,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "fear_of_loss",
+      "nostalgic_anchor",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.5,
+      "bridge": 0.68,
+      "lift": 0.48
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring fear of loss feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Fear of Loss  mixed with  Nostalgic Anchor",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Death By A Thousand Cuts",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.75,
+    "valence": 0.4,
+    "emotionalIntensity": 0.75,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "lingering_heartbreak",
+      "post_breakup_disorientat",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.45
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring lingering heartbreak feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Lingering Heartbreak  mixed with  Post-Breakup Disorientation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "London Boy",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.8,
+    "valence": 0.85,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "carefree_affection",
+      "upbeat_romance",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.43,
+      "bridge": 0.76,
+      "lift": 0.84
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring carefree affection feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Carefree Affection  mixed with  Upbeat Romance",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "False God",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.45,
+    "valence": 0.55,
+    "emotionalIntensity": 0.64,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "sensual_devotion",
+      "fragile_faith",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.54
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring sensual devotion feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Sensual Devotion  mixed with  Fragile Faith",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Afterglow",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.6,
+    "valence": 0.5,
+    "emotionalIntensity": 0.62,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "apologetic_self_awarenes",
+      "conflict_resolution",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.51,
+      "bridge": 0.67,
+      "lift": 0.52
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring apologetic self-awareness feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Apologetic Self-Awareness  mixed with  Conflict Resolution",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Daylight",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.52,
+    "valence": 0.75,
+    "emotionalIntensity": 0.85,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "emotional_healing",
+      "peaceful_redemption",
+      "healing"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.54,
+      "bridge": 0.63,
+      "lift": 0.72
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring emotional healing feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Emotional Healing  mixed with  Peaceful Redemption",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "The Archer",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.42,
+    "valence": 0.3,
+    "emotionalIntensity": 0.78,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "vulnerable_anxiety",
+      "self_doubt",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.58,
+      "bridge": 0.59,
+      "lift": 0.32
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring vulnerable anxiety feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Vulnerable Anxiety  mixed with  Self-Doubt",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "I Forget That You Existed",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.65,
+    "valence": 0.75,
+    "emotionalIntensity": 0.88,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "liberating_indifference",
+      "upbeat_closure",
+      "healing"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.49,
+      "bridge": 0.69,
+      "lift": 0.73
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring liberating indifference feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Liberating Indifference  mixed with  Upbeat Closure",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "My Boy Only Breaks His Favorite Toys",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.68,
+    "valence": 0.35,
+    "emotionalIntensity": 0.79,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "discarded_affection",
+      "resigned_cynicism",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.48,
+      "bridge": 0.71,
+      "lift": 0.4
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring discarded affection feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Discarded Affection  mixed with  Resigned Cynicism",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "But Daddy I Love Him",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.78,
+    "valence": 0.65,
+    "emotionalIntensity": 0.81,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "defiant_independence",
+      "romantic_rebellion",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.44,
+      "bridge": 0.75,
+      "lift": 0.67
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring defiant independence feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Defiant Independence  mixed with  Romantic Rebellion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "Fresh Out The Slammer",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.58,
+    "valence": 0.5,
+    "emotionalIntensity": 0.62,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "post_breakup_rebound",
+      "impatient_relief",
+      "healing"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.52,
+      "bridge": 0.66,
+      "lift": 0.51
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring post-breakup rebound feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Post-Breakup Rebound  mixed with  Impatient Relief",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "I Can Fix Him (No Really I Can)",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.4,
+    "valence": 0.35,
+    "emotionalIntensity": 0.73,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "delusional_optimism",
+      "savior_complex",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.59,
+      "bridge": 0.58,
+      "lift": 0.36
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring delusional optimism feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Delusional Optimism  mixed with  Savior Complex",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "loml",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.3,
+    "valence": 0.12,
+    "emotionalIntensity": 0.94,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "devastating_loss",
+      "shattered_promises",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.15
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring devastating loss feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Devastating Loss  mixed with  Shattered Promises",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "The Manuscript",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.28,
+    "valence": 0.4,
+    "emotionalIntensity": 0.66,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "distanced_retrospective",
+      "narrative_closure",
+      "healing"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.64,
+      "bridge": 0.53,
+      "lift": 0.38
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring distanced retrospective feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Distanced Retrospective  mixed with  Narrative Closure",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "I Hate It Here",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.45,
+    "valence": 0.25,
+    "emotionalIntensity": 0.84,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "escapist_imagination",
+      "social_disconnection",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.28
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring escapist imagination feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Escapist Imagination  mixed with  Social Disconnection",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "thanK you aIMee",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.68,
+    "valence": 0.55,
+    "emotionalIntensity": 0.69,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "grudging_gratitude",
+      "adversarial_resilience",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.48,
+      "bridge": 0.71,
+      "lift": 0.57
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring grudging gratitude feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Grudging Gratitude  mixed with  Adversarial Resilience",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Sympathy is a knife",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.85,
+    "valence": 0.35,
+    "emotionalIntensity": 0.82,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "insecure_paranoia",
+      "social_tension",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.45,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.41,
+      "bridge": 0.78,
+      "lift": 0.42
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring insecure paranoia feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Insecure Paranoia  mixed with  Social Tension",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "I might say something stupid",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.35,
+    "valence": 0.25,
+    "emotionalIntensity": 0.82,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "vulnerable_isolation",
+      "imposter_syndrome",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.27
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring vulnerable isolation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Vulnerable Isolation  mixed with  Imposter Syndrome",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Talk talk",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.82,
+    "valence": 0.75,
+    "emotionalIntensity": 0.91,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "frantic_anticipation",
+      "party_crush",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.42,
+      "bridge": 0.77,
+      "lift": 0.76
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring frantic anticipation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Frantic Anticipation  mixed with  Party Crush",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Club classics",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "joy",
+    "secondaryEmotion": "confidence",
+    "energy": 0.9,
+    "valence": 0.8,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "self_referential_hype",
+      "dancefloor_pride",
+      "joy"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.39,
+      "bridge": 0.81,
+      "lift": 0.82
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring self-referential hype feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Self-Referential Hype  mixed with  Dancefloor Pride",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "B2b",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.8,
+    "valence": 0.45,
+    "emotionalIntensity": 0.71,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "relentless_relapse",
+      "obsessive_loop",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.43,
+      "bridge": 0.76,
+      "lift": 0.5
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring relentless relapse feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Relentless Relapse  mixed with  Obsessive Loop",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "Everything is romantic",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.75,
+    "valence": 0.7,
+    "emotionalIntensity": 0.85,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "sensory_overload",
+      "summer_hedonism",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.71
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring sensory overload feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Sensory Overload  mixed with  Summer Hedonism",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Rewind",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.72,
+    "valence": 0.4,
+    "emotionalIntensity": 0.74,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "nostalgic_ambition",
+      "fear_of_stagnation",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.46,
+      "bridge": 0.72,
+      "lift": 0.45
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring nostalgic ambition feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Nostalgic Ambition  mixed with  Fear of Stagnation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "So I",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.45,
+    "valence": 0.3,
+    "emotionalIntensity": 0.79,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "grief_regret",
+      "tender_tribute",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.32
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring grief regret feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Grief Regret  mixed with  Tender Tribute",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "I think about it all the time",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.6,
+    "valence": 0.45,
+    "emotionalIntensity": 0.67,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "biological_clock_anxiety",
+      "life_choices",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.51,
+      "bridge": 0.67,
+      "lift": 0.47
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring biological clock anxiety feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Biological Clock Anxiety  mixed with  Life Choices",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "365",
+    "artist": "Charli XCX",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.92,
+    "valence": 0.6,
+    "emotionalIntensity": 0.78,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "manic_party_escalation",
+      "unhinged_energy",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.38,
+      "bridge": 0.81,
+      "lift": 0.65
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring manic party escalation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Manic Party Escalation  mixed with  Unhinged Energy",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "Slim Pickins",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.55,
+    "valence": 0.6,
+    "emotionalIntensity": 0.71,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "sarcastic_dating_despair",
+      "country_humor",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.53,
+      "bridge": 0.65,
+      "lift": 0.59
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring sarcastic dating despair feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Sarcastic Dating Despair  mixed with  Country Humor",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Coincidence",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.68,
+    "valence": 0.5,
+    "emotionalIntensity": 0.64,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "suspicious_irony",
+      "calling_out_lies",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.48,
+      "bridge": 0.71,
+      "lift": 0.53
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring suspicious irony feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Suspicious Irony  mixed with  Calling Out Lies",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Sharpest Tool",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.62,
+    "valence": 0.4,
+    "emotionalIntensity": 0.72,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "baffled_frustration",
+      "mixed_signals",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.5,
+      "bridge": 0.68,
+      "lift": 0.43
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring baffled frustration feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Baffled Frustration  mixed with  Mixed Signals",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Dumb & Poetic",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.38,
+    "valence": 0.25,
+    "emotionalIntensity": 0.83,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "exposing_pretentiousness",
+      "bitter_disillusion",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.6,
+      "bridge": 0.57,
+      "lift": 0.27
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring exposing pretentiousness feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Exposing Pretentiousness  mixed with  Bitter Disillusion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Lie To Girls",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.48,
+    "valence": 0.3,
+    "emotionalIntensity": 0.8,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "self_deception",
+      "empathetic_warning",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.56,
+      "bridge": 0.62,
+      "lift": 0.33
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring self-deception feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Self-Deception  mixed with  Empathetic Warning",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Don't Smile",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.42,
+    "valence": 0.25,
+    "emotionalIntensity": 0.83,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "miserable_separation",
+      "petty_longing",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.58,
+      "bridge": 0.59,
+      "lift": 0.28
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring miserable separation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Miserable Separation  mixed with  Petty Longing",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Bed Chem",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.72,
+    "valence": 0.8,
+    "emotionalIntensity": 0.94,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "flirtatious_anticipation",
+      "sensual_humor",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.46,
+      "bridge": 0.72,
+      "lift": 0.79
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring flirtatious anticipation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Flirtatious Anticipation  mixed with  Sensual Humor",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Juno",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.8,
+    "valence": 0.88,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "ecstatic_infatuation",
+      "bold_desire",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.43,
+      "bridge": 0.76,
+      "lift": 0.87
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring ecstatic infatuation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Ecstatic Infatuation  mixed with  Bold Desire",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Good Graces",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.75,
+    "valence": 0.7,
+    "emotionalIntensity": 0.85,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "self_respect_boundary",
+      "upbeat_warning",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.71
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring self-respect boundary feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Self-Respect Boundary  mixed with  Upbeat Warning",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Subversive",
+    "artist": "Chappell Roan",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.82,
+    "valence": 0.8,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "playful_provocation",
+      "ecstatic_desire",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.42,
+      "bridge": 0.77,
+      "lift": 0.8
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring playful provocation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Playful Provocation  mixed with  Ecstatic Desire",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Super Graphic Ultra Modern Girl",
+    "artist": "Chappell Roan",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.88,
+    "valence": 0.85,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "standard_raising",
+      "high_fashion_camp",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.4,
+      "bridge": 0.8,
+      "lift": 0.85
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring standard raising feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Standard Raising  mixed with  High-Fashion Camp",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Naked in Manhattan",
+    "artist": "Chappell Roan",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.78,
+    "valence": 0.8,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "queer_awakening",
+      "flirty_panic",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.44,
+      "bridge": 0.75,
+      "lift": 0.8
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring queer awakening feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Queer Awakening  mixed with  Flirty Panic",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Kaleidoscope",
+    "artist": "Chappell Roan",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.3,
+    "valence": 0.35,
+    "emotionalIntensity": 0.71,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "fragile_shift",
+      "soft_heartbreak",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.34
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring fragile shift feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Fragile Shift  mixed with  Soft Heartbreak",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Picture You",
+    "artist": "Chappell Roan",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.45,
+    "valence": 0.5,
+    "emotionalIntensity": 0.59,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "private_yearning",
+      "intimate_longing",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.49
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring private yearning feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Private Yearning  mixed with  Intimate Longing",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Guilty Pleasure",
+    "artist": "Chappell Roan",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.72,
+    "valence": 0.75,
+    "emotionalIntensity": 0.89,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "unapologetic_fantasy",
+      "campy_release",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "catharsis",
+      "targetState": "emotional_release"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.46,
+      "bridge": 0.72,
+      "lift": 0.75
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unapologetic fantasy feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unapologetic Fantasy  mixed with  Campy Release",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "catharsis"
+    }
+  },
+  {
+    "title": "BALLAD OF A HOMESCHOOLED GIRL",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.88,
+    "valence": 0.35,
+    "emotionalIntensity": 0.83,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "social_awkwardness",
+      "angsty_panic",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.45,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.4,
+      "bridge": 0.8,
+      "lift": 0.43
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring social awkwardness feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Social Awkwardness  mixed with  Angsty Panic",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "THE GRUDGE",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "anger",
+    "secondaryEmotion": "resentment",
+    "energy": 0.55,
+    "valence": 0.15,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "unforgivable_betrayal",
+      "lingering_pain",
+      "anger"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.53,
+      "bridge": 0.65,
+      "lift": 0.21
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unforgivable betrayal feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unforgivable Betrayal  mixed with  Lingering Pain",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "PRETTY IS ITN'T PRETTY",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.65,
+    "valence": 0.3,
+    "emotionalIntensity": 0.83,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "body_insecurity",
+      "societal_pressure",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.49,
+      "bridge": 0.69,
+      "lift": 0.35
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring body insecurity feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Body Insecurity  mixed with  Societal Pressure",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "TEENAGE DREAM",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.52,
+    "valence": 0.2,
+    "emotionalIntensity": 0.9,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "fear_of_aging",
+      "growing_up_dread",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.54,
+      "bridge": 0.63,
+      "lift": 0.25
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring fear of aging feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Fear of Aging  mixed with  Growing Up Dread",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "GIRL I'VE ALWAYS BEEN",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.6,
+    "valence": 0.6,
+    "emotionalIntensity": 0.72,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "folk_sarcasm",
+      "authentic_defense",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.51,
+      "bridge": 0.67,
+      "lift": 0.6
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring folk sarcasm feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Folk Sarcasm  mixed with  Authentic Defense",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "SNOW ON THE BEACH",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.4,
+    "valence": 0.65,
+    "emotionalIntensity": 0.73,
+    "lyricDirectness": 0.55,
+    "tags": [
+      "surreal_mutual_unfolding",
+      "dreamy_awe",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.59,
+      "bridge": 0.58,
+      "lift": 0.61
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring surreal mutual unfolding feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Surreal Mutual Unfolding  mixed with  Dreamy Awe",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "QUESTION...?",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.62,
+    "valence": 0.45,
+    "emotionalIntensity": 0.67,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "rhetorical_confrontation",
+      "awkward_regret",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.5,
+      "bridge": 0.68,
+      "lift": 0.48
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring rhetorical confrontation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Rhetorical Confrontation  mixed with  Awkward Regret",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "LABYRINTH",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.35,
+    "valence": 0.4,
+    "emotionalIntensity": 0.67,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "fear_of_falling_again",
+      "delicate_vulnerability",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.39
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring fear of falling again feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Fear of Falling Again  mixed with  Delicate Vulnerability",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "SWEET NOTHING",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.28,
+    "valence": 0.75,
+    "emotionalIntensity": 0.81,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "peaceful_sanctuary",
+      "domestic_comfort",
+      "healing"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.64,
+      "bridge": 0.53,
+      "lift": 0.68
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring peaceful sanctuary feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Peaceful Sanctuary  mixed with  Domestic Comfort",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "WOULD'VE, COULD'VE, SHOULD'VE",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.78,
+    "valence": 0.15,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "innocence_theft",
+      "traumatic_remorse",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.45,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.44,
+      "bridge": 0.75,
+      "lift": 0.24
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring innocence theft feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Innocence Theft  mixed with  Traumatic Remorse",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "THE GREAT WAR",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.6,
+    "valence": 0.55,
+    "emotionalIntensity": 0.67,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "paranoia_survival",
+      "relationship_truce",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.51,
+      "bridge": 0.67,
+      "lift": 0.56
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring paranoia survival feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Paranoia Survival  mixed with  Relationship Truce",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "BIGGER THAN THE WHOLE SKY",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.25,
+    "valence": 0.1,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "profound_grief",
+      "unfulfilled_potential",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.65,
+      "bridge": 0.51,
+      "lift": 0.12
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring profound grief feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Profound Grief  mixed with  Unfulfilled Potential",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "HIGH INFIDELITY",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "anger",
+    "secondaryEmotion": "resentment",
+    "energy": 0.52,
+    "valence": 0.35,
+    "emotionalIntensity": 0.75,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "emotional_neglect",
+      "secret_betrayal",
+      "anger"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.54,
+      "bridge": 0.63,
+      "lift": 0.38
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring emotional neglect feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Emotional Neglect  mixed with  Secret Betrayal",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "PARIS",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.75,
+    "valence": 0.85,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "silly_romance",
+      "distraction_joy",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.83
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring silly romance feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Silly Romance  mixed with  Distraction Joy",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "DEAR READER",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.42,
+    "valence": 0.25,
+    "emotionalIntensity": 0.83,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "flawed_guide",
+      "isolated_truth",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.58,
+      "bridge": 0.59,
+      "lift": 0.28
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring flawed guide feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Flawed Guide  mixed with  Isolated Truth",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "HITS DIFFERENT",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.8,
+    "valence": 0.45,
+    "emotionalIntensity": 0.71,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "melodramatic_spiral",
+      "upbeat_heartbreak",
+      "grief"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.43,
+      "bridge": 0.76,
+      "lift": 0.5
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring melodramatic spiral feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Melodramatic Spiral  mixed with  Upbeat Heartbreak",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "FOOLISH ONE",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.58,
+    "valence": 0.4,
+    "emotionalIntensity": 0.72,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "unrequited_daydream",
+      "gentle_reality_check",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.52,
+      "bridge": 0.66,
+      "lift": 0.43
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unrequited daydream feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unrequited Daydream  mixed with  Gentle Reality Check",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "TIMLESS",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.55,
+    "valence": 0.8,
+    "emotionalIntensity": 0.91,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "enduring_love",
+      "antique_nostalgia",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.53,
+      "bridge": 0.65,
+      "lift": 0.76
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring enduring love feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Enduring Love  mixed with  Antique Nostalgia",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "SUBURBAN LEGENDS",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.68,
+    "valence": 0.5,
+    "emotionalIntensity": 0.64,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "parallel_destinies",
+      "mismatched_timing",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.48,
+      "bridge": 0.71,
+      "lift": 0.53
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring parallel destinies feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Parallel Destinies  mixed with  Mismatched Timing",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "IS IT OVER NOW?",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.78,
+    "valence": 0.4,
+    "emotionalIntensity": 0.76,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "lingering_jealousy",
+      "post_breakup_interrogati",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.44,
+      "bridge": 0.75,
+      "lift": 0.46
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring lingering jealousy feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Lingering Jealousy  mixed with  Post-Breakup Interrogation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "SAY DON'T GO",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.72,
+    "valence": 0.3,
+    "emotionalIntensity": 0.84,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "desperate_plea",
+      "one_sided_devotion",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.45,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.46,
+      "bridge": 0.72,
+      "lift": 0.36
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring desperate plea feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Desperate Plea  mixed with  One-Sided Devotion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "NOW THAT WE DON'T TALK",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.7,
+    "valence": 0.55,
+    "emotionalIntensity": 0.69,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "awkward_distance",
+      "reluctant_relief",
+      "healing"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.47,
+      "bridge": 0.72,
+      "lift": 0.57
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring awkward distance feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Awkward Distance  mixed with  Reluctant Relief",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "SLUT!",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.48,
+    "valence": 0.65,
+    "emotionalIntensity": 0.75,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "serene_indifference",
+      "love_worth_public_judgme",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.56,
+      "bridge": 0.62,
+      "lift": 0.62
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring serene indifference feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Serene Indifference  mixed with  Love Worth Public Judgment",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Smoke Signals",
+    "artist": "Phoebe Bridgers",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.28,
+    "valence": 0.3,
+    "emotionalIntensity": 0.76,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "melancholic_intimacy",
+      "fragile_refuge",
+      "love"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.64,
+      "bridge": 0.53,
+      "lift": 0.3
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring melancholic intimacy feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Melancholic Intimacy  mixed with  Fragile Refuge",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "Funeral",
+    "artist": "Phoebe Bridgers",
+    "language": "English",
+    "primaryEmotion": "existential",
+    "secondaryEmotion": "numbness",
+    "energy": 0.25,
+    "valence": 0.15,
+    "emotionalIntensity": 0.9,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "depressive_self_consciou",
+      "guilt",
+      "existential"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.65,
+      "bridge": 0.51,
+      "lift": 0.17
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring depressive self-consciousness feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Depressive Self-Consciousness  mixed with  Guilt",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Scott Street",
+    "artist": "Phoebe Bridgers",
+    "language": "English",
+    "primaryEmotion": "nostalgia",
+    "secondaryEmotion": "bittersweet",
+    "energy": 0.35,
+    "valence": 0.35,
+    "emotionalIntensity": 0.72,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "awkward_estrangement",
+      "soft_nostalgia",
+      "nostalgia"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.35
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring awkward estrangement feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Awkward Estrangement  mixed with  Soft Nostalgia",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Killer",
+    "artist": "Phoebe Bridgers",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.3,
+    "valence": 0.2,
+    "emotionalIntensity": 0.86,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "fatalistic_dependency",
+      "love_paranoia",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.22
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring fatalistic dependency feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Fatalistic Dependency  mixed with  Love Paranoia",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Graceland Too",
+    "artist": "Phoebe Bridgers",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.45,
+    "valence": 0.6,
+    "emotionalIntensity": 0.69,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "unconditional_friendship",
+      "gentle_healing",
+      "healing"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.58
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unconditional friendship feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unconditional Friendship  mixed with  Gentle Healing",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "Moon Song",
+    "artist": "Phoebe Bridgers",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.28,
+    "valence": 0.2,
+    "emotionalIntensity": 0.86,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "self_sacrificing_unrequi",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.64,
+      "bridge": 0.53,
+      "lift": 0.21
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring self-sacrificing unrequited love feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Self-Sacrificing Unrequited Love",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Alewife",
+    "artist": "Clairo",
+    "language": "English",
+    "primaryEmotion": "nostalgia",
+    "secondaryEmotion": "bittersweet",
+    "energy": 0.25,
+    "valence": 0.35,
+    "emotionalIntensity": 0.7,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "deep_gratitude",
+      "rescue_memory",
+      "nostalgia"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.65,
+      "bridge": 0.51,
+      "lift": 0.33
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring deep gratitude feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Deep Gratitude  mixed with  Rescue Memory",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Softly",
+    "artist": "Clairo",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.58,
+    "valence": 0.75,
+    "emotionalIntensity": 0.87,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "tender_crush",
+      "eager_anticipation",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.52,
+      "bridge": 0.66,
+      "lift": 0.72
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring tender crush feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Tender Crush  mixed with  Eager Anticipation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Sinking",
+    "artist": "Clairo",
+    "language": "English",
+    "primaryEmotion": "anxiety",
+    "secondaryEmotion": "vulnerability",
+    "energy": 0.3,
+    "valence": 0.25,
+    "emotionalIntensity": 0.81,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "chronic_insecurity",
+      "quiet_overwhelm",
+      "anxiety"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.26
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring chronic insecurity feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Chronic Insecurity  mixed with  Quiet Overwhelm",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Zack and Codeine",
+    "artist": "Post Malone",
+    "language": "English",
+    "primaryEmotion": "joy",
+    "secondaryEmotion": "confidence",
+    "energy": 0.78,
+    "valence": 0.65,
+    "emotionalIntensity": 0.81,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "hedonistic_celebration",
+      "flexing",
+      "joy"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.44,
+      "bridge": 0.75,
+      "lift": 0.67
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring hedonistic celebration feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Hedonistic Celebration  mixed with  Flexing",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "Sunflower",
+    "artist": "Post Malone",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.75,
+    "valence": 0.85,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "sweet_attachment",
+      "effortless_romance",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.83
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring sweet attachment feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Sweet Attachment  mixed with  Effortless Romance",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Circles",
+    "artist": "Post Malone",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.68,
+    "valence": 0.45,
+    "emotionalIntensity": 0.69,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "cyclical_separation",
+      "resigned_fatigue",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.48,
+      "bridge": 0.71,
+      "lift": 0.48
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring cyclical separation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Cyclical Separation  mixed with  Resigned Fatigue",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Chemical",
+    "artist": "Post Malone",
+    "language": "English",
+    "primaryEmotion": "excitement",
+    "secondaryEmotion": "energy",
+    "energy": 0.82,
+    "valence": 0.6,
+    "emotionalIntensity": 0.76,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "addictive_attraction",
+      "reluctant_loop",
+      "excitement"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.42,
+      "bridge": 0.77,
+      "lift": 0.63
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring addictive attraction feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Addictive Attraction  mixed with  Reluctant Loop",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "I Like You (A Happier Song)",
+    "artist": "Post Malone",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.78,
+    "valence": 0.88,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "playful_flirting",
+      "easygoing_joy",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.44,
+      "bridge": 0.75,
+      "lift": 0.86
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring playful flirting feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Playful Flirting  mixed with  Easygoing Joy",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Golden Hour",
+    "artist": "JVKE",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.62,
+    "valence": 0.8,
+    "emotionalIntensity": 0.92,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "cinematic_awe",
+      "instant_infatuation",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.5,
+      "bridge": 0.68,
+      "lift": 0.77
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring cinematic awe feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Cinematic Awe  mixed with  Instant Infatuation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Until I Found You",
+    "artist": "Stephen Sanchez",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.55,
+    "valence": 0.82,
+    "emotionalIntensity": 0.93,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "retro_devotion",
+      "salvation_romance",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.53,
+      "bridge": 0.65,
+      "lift": 0.78
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring retro devotion feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Retro Devotion  mixed with  Salvation Romance",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Glimpse of Us",
+    "artist": "Joji",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.35,
+    "valence": 0.15,
+    "emotionalIntensity": 0.92,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "unresolved_past",
+      "guilt_ridden_comparison",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.18
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unresolved past feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unresolved Past  mixed with  Guilt-Ridden Comparison",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "SLOW DANCING IN THE DARK",
+    "artist": "Joji",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.52,
+    "valence": 0.2,
+    "emotionalIntensity": 0.9,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "self_sacrificing_defeat",
+      "resigned_farewell",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.54,
+      "bridge": 0.63,
+      "lift": 0.25
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring self-sacrificing defeat feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Self-Sacrificing Defeat  mixed with  Resigned Farewell",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Die For You",
+    "artist": "Joji",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.48,
+    "valence": 0.25,
+    "emotionalIntensity": 0.85,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "lingering_devotion",
+      "quiet_sacrifice",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.56,
+      "bridge": 0.62,
+      "lift": 0.28
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring lingering devotion feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Lingering Devotion  mixed with  Quiet Sacrifice",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Sanctuary",
+    "artist": "Joji",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.65,
+    "valence": 0.7,
+    "emotionalIntensity": 0.83,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "safe_haven_longing",
+      "tender_surrender",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.49,
+      "bridge": 0.69,
+      "lift": 0.69
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring safe haven longing feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Safe Haven Longing  mixed with  Tender Surrender",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Like Crazy",
+    "artist": "Jimin",
+    "language": "English",
+    "primaryEmotion": "existential",
+    "secondaryEmotion": "numbness",
+    "energy": 0.72,
+    "valence": 0.45,
+    "emotionalIntensity": 0.69,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "escapist_numbness",
+      "romantic_illusion",
+      "existential"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.46,
+      "bridge": 0.72,
+      "lift": 0.49
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring escapist numbness feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Escapist Numbness  mixed with  Romantic Illusion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Seven",
+    "artist": "Jung Kook",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.85,
+    "valence": 0.88,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "playful_devotion",
+      "constant_passion",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.41,
+      "bridge": 0.78,
+      "lift": 0.88
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring playful devotion feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Playful Devotion  mixed with  Constant Passion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Standing Next to You",
+    "artist": "Jung Kook",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.88,
+    "valence": 0.82,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "unshakable_commitment",
+      "high_energy_love",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.4,
+      "bridge": 0.8,
+      "lift": 0.83
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unshakable commitment feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unshakable Commitment  mixed with  High-Energy Love",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "Super Shy",
+    "artist": "NewJeans",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.82,
+    "valence": 0.85,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "flirty_hesitation",
+      "youthful_crush",
+      "love"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.42,
+      "bridge": 0.77,
+      "lift": 0.85
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring flirty hesitation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Flirty Hesitation  mixed with  Youthful Crush",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "favorite crime",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.45,
+    "valence": 0.25,
+    "emotionalIntensity": 0.84,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "complicit_heartbreak",
+      "bittersweet_sacrifice",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.28
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring complicit heartbreak feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Complicit Heartbreak  mixed with  Bittersweet Sacrifice",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "happier",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.4,
+    "valence": 0.2,
+    "emotionalIntensity": 0.88,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "selfish_wishes",
+      "reluctant_goodwill",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.59,
+      "bridge": 0.58,
+      "lift": 0.23
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring selfish wishes feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Selfish Wishes  mixed with  Reluctant Goodwill",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "brutal",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "existential",
+    "secondaryEmotion": "numbness",
+    "energy": 0.88,
+    "valence": 0.3,
+    "emotionalIntensity": 0.88,
+    "lyricDirectness": 0.9,
+    "tags": [
+      "adolescent_frustration",
+      "existential_angst",
+      "existential"
+    ],
+    "regulation": {
+      "function": "energy",
+      "targetState": "activation"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.45,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.4,
+      "bridge": 0.8,
+      "lift": 0.39
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring adolescent frustration feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Adolescent Frustration  mixed with  Existential Angst",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "energy"
+    }
+  },
+  {
+    "title": "jealousy, jealousy",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.75,
+    "valence": 0.35,
+    "emotionalIntensity": 0.8,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "social_media_comparison",
+      "internalized_envy",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.45,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.41
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring social media comparison feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Social Media Comparison  mixed with  Internalized Envy",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "enough for you",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.38,
+    "valence": 0.22,
+    "emotionalIntensity": 0.86,
+    "lyricDirectness": 0.88,
+    "tags": [
+      "inadequacy_struggle",
+      "reclaimed_self_worth",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.6,
+      "bridge": 0.57,
+      "lift": 0.24
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring inadequacy struggle feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Inadequacy Struggle  mixed with  Reclaimed Self-Worth",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "1 step forward, 3 steps back",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.35,
+    "valence": 0.18,
+    "emotionalIntensity": 0.89,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "walking_on_eggshells",
+      "volatile_relationship",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.21
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring walking on eggshells feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Walking on Eggshells  mixed with  Volatile Relationship",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "hope ur ok",
+    "artist": "Olivia Rodrigo",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.48,
+    "valence": 0.5,
+    "emotionalIntensity": 0.6,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "distant_empathy",
+      "quiet_solidarity",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.56,
+      "bridge": 0.62,
+      "lift": 0.5
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring distant empathy feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Distant Empathy  mixed with  Quiet Solidarity",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "SKINNY",
+    "artist": "Billie Eilish",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.3,
+    "valence": 0.2,
+    "emotionalIntensity": 0.86,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "public_scrutiny",
+      "vulnerable_exposure",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.22
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring public scrutiny feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Public Scrutiny  mixed with  Vulnerable Exposure",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "BITTERSUITE",
+    "artist": "Billie Eilish",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.5,
+    "valence": 0.3,
+    "emotionalIntensity": 0.8,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "guarded_desires",
+      "atmospheric_tension",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.55,
+      "bridge": 0.62,
+      "lift": 0.33
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring guarded desires feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Guarded Desires  mixed with  Atmospheric Tension",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "The 30th",
+    "artist": "Billie Eilish",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.45,
+    "valence": 0.25,
+    "emotionalIntensity": 0.84,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "traumatic_shock",
+      "relief_dread",
+      "healing"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.28
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring traumatic shock feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Traumatic Shock  mixed with  Relief & Dread",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "when the party's over",
+    "artist": "Billie Eilish",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.28,
+    "valence": 0.15,
+    "emotionalIntensity": 0.91,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "self_imposed_isolation",
+      "reluctant_departure",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.64,
+      "bridge": 0.53,
+      "lift": 0.17
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring self-imposed isolation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Self-Imposed Isolation  mixed with  Reluctant Departure",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Read your Mind",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.75,
+    "valence": 0.7,
+    "emotionalIntensity": 0.85,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "mixed_signals",
+      "exasperated_curiosity",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.71
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring mixed signals feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Mixed Signals  mixed with  Exasperated Curiosity",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "Already Over",
+    "artist": "Sabrina Carpenter",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.7,
+    "valence": 0.6,
+    "emotionalIntensity": 0.74,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "inevitable_relapse",
+      "short_term_temptation",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.47,
+      "bridge": 0.72,
+      "lift": 0.61
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring inevitable relapse feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Inevitable Relapse  mixed with  Short-Term Temptation",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "betty",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.65,
+    "valence": 0.55,
+    "emotionalIntensity": 0.68,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "juvenile_regret",
+      "naive_apology",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.49,
+      "bridge": 0.69,
+      "lift": 0.57
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring juvenile regret feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Juvenile Regret  mixed with  Naive Apology",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "illicit affairs",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.45,
+    "valence": 0.2,
+    "emotionalIntensity": 0.89,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "secret_degeneration",
+      "fractured_self",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.24
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring secret degeneration feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Secret Degeneration  mixed with  Fractured Self",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "invisible string",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.45,
+    "valence": 0.8,
+    "emotionalIntensity": 0.89,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "serendipitous_fate",
+      "peaceful_gratitude",
+      "healing"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.57,
+      "bridge": 0.6,
+      "lift": 0.75
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring serendipitous fate feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Serendipitous Fate  mixed with  Peaceful Gratitude",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "mad woman",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "anger",
+    "secondaryEmotion": "resentment",
+    "energy": 0.5,
+    "valence": 0.2,
+    "emotionalIntensity": 0.9,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "righteous_indignation",
+      "systemic_scorn",
+      "anger"
+    ],
+    "regulation": {
+      "function": "catharsis",
+      "targetState": "emotional_release"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.55,
+      "bridge": 0.62,
+      "lift": 0.24
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring righteous indignation feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Righteous Indignation  mixed with  Systemic Scorn",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "catharsis"
+    }
+  },
+  {
+    "title": "epiphany",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.2,
+    "valence": 0.15,
+    "emotionalIntensity": 0.89,
+    "lyricDirectness": 0.45,
+    "tags": [
+      "shared_trauma",
+      "reverence_and_peace",
+      "healing"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.67,
+      "bridge": 0.49,
+      "lift": 0.16
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring shared trauma feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Shared Trauma  mixed with  Reverence and Peace",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "peace",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.3,
+    "valence": 0.45,
+    "emotionalIntensity": 0.61,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "inherent_chaos",
+      "devoted_sincerity",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.43
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring inherent chaos feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Inherent Chaos  mixed with  Devoted Sincerity",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "hoax",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "grief",
+    "secondaryEmotion": "longing",
+    "energy": 0.25,
+    "valence": 0.1,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "devastating_loyalty",
+      "toxic_grief",
+      "grief"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.65,
+      "bridge": 0.51,
+      "lift": 0.12
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring devastating loyalty feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Devastating Loyalty  mixed with  Toxic Grief",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "willow",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "love",
+    "secondaryEmotion": "longing",
+    "energy": 0.55,
+    "valence": 0.7,
+    "emotionalIntensity": 0.81,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "enchanted_intrigue",
+      "flexible_devotion",
+      "love"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.53,
+      "bridge": 0.65,
+      "lift": 0.68
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring enchanted intrigue feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Enchanted Intrigue  mixed with  Flexible Devotion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "'tis the damn season",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.52,
+    "valence": 0.35,
+    "emotionalIntensity": 0.75,
+    "lyricDirectness": 0.8,
+    "tags": [
+      "nostalgic_escapism",
+      "temporary_relapse",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.54,
+      "bridge": 0.63,
+      "lift": 0.38
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring nostalgic escapism feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Nostalgic Escapism  mixed with  Temporary Relapse",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "tolerate it",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "anger",
+    "secondaryEmotion": "resentment",
+    "energy": 0.38,
+    "valence": 0.15,
+    "emotionalIntensity": 0.93,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "unappreciated_devotion",
+      "silent_resentment",
+      "anger"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.6,
+      "bridge": 0.57,
+      "lift": 0.18
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring unappreciated devotion feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Unappreciated Devotion  mixed with  Silent Resentment",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "no body, no crime",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.68,
+    "valence": 0.4,
+    "emotionalIntensity": 0.74,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "vengeful_retribution",
+      "country_mystery",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.48,
+      "bridge": 0.71,
+      "lift": 0.44
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring vengeful retribution feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Vengeful Retribution  mixed with  Country Mystery",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "happiness",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "healing",
+    "secondaryEmotion": "acceptance",
+    "energy": 0.3,
+    "valence": 0.4,
+    "emotionalIntensity": 0.66,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "balanced_perspective",
+      "bittersweet_healing",
+      "healing"
+    ],
+    "regulation": {
+      "function": "comfort",
+      "targetState": "solace"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.63,
+      "bridge": 0.54,
+      "lift": 0.39
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring balanced perspective feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Balanced Perspective  mixed with  Bittersweet Healing",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "comfort"
+    }
+  },
+  {
+    "title": "dorothea",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.5,
+    "valence": 0.75,
+    "emotionalIntensity": 0.85,
+    "lyricDirectness": 0.75,
+    "tags": [
+      "warm_reminiscing",
+      "unchanged_friendship",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.55,
+      "bridge": 0.62,
+      "lift": 0.71
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring warm reminiscing feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Warm Reminiscing  mixed with  Unchanged Friendship",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "coney island",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "nostalgia",
+    "secondaryEmotion": "bittersweet",
+    "energy": 0.35,
+    "valence": 0.2,
+    "emotionalIntensity": 0.87,
+    "lyricDirectness": 0.7,
+    "tags": [
+      "neglect_regret",
+      "disconnected_nostalgia",
+      "nostalgia"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.61,
+      "bridge": 0.56,
+      "lift": 0.22
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring neglect regret feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Neglect Regret  mixed with  Disconnected Nostalgia",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "ivy",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.52,
+    "valence": 0.38,
+    "emotionalIntensity": 0.72,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "forbidden_passion",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.54,
+      "bridge": 0.63,
+      "lift": 0.4
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring forbidden passion feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Forbidden Passion",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "cowboy like me",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.4,
+    "valence": 0.45,
+    "emotionalIntensity": 0.63,
+    "lyricDirectness": 0.6,
+    "tags": [
+      "cynical_affinity",
+      "mutual_deception",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "emotional_awareness"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.4
+    },
+    "emotionArc": {
+      "hold": 0.59,
+      "bridge": 0.58,
+      "lift": 0.44
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring cynical affinity feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "high-focus work"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Cynical Affinity  mixed with  Mutual Deception",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
+  },
+  {
+    "title": "long story short",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "reflection",
+    "secondaryEmotion": "introspection",
+    "energy": 0.75,
+    "valence": 0.8,
+    "emotionalIntensity": 0.95,
+    "lyricDirectness": 0.85,
+    "tags": [
+      "resilient_survival",
+      "simplified_clarity",
+      "reflection"
+    ],
+    "regulation": {
+      "function": "celebration",
+      "targetState": "joyful_expression"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.25,
+      "reflectionSeeking": 0.55,
+      "energySeeking": 0.9,
+      "distractionSeeking": 0.75
+    },
+    "emotionArc": {
+      "hold": 0.45,
+      "bridge": 0.74,
+      "lift": 0.79
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring resilient survival feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "deep grief immersion"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Resilient Survival  mixed with  Simplified Clarity",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "celebration"
+    }
+  },
+  {
+    "title": "evermore",
+    "artist": "Taylor Swift",
+    "language": "English",
+    "primaryEmotion": "sadness",
+    "secondaryEmotion": "melancholy",
+    "energy": 0.38,
+    "valence": 0.3,
+    "emotionalIntensity": 0.78,
+    "lyricDirectness": 0.65,
+    "tags": [
+      "enduring_pain",
+      "sudden_hope",
+      "sadness"
+    ],
+    "regulation": {
+      "function": "reflection",
+      "targetState": "processing"
+    },
+    "matchingSignals": {
+      "comfortSeeking": 0.85,
+      "reflectionSeeking": 0.88,
+      "energySeeking": 0.35,
+      "distractionSeeking": 0.25
+    },
+    "emotionArc": {
+      "hold": 0.6,
+      "bridge": 0.57,
+      "lift": 0.31
+    },
+    "listenerContext": {
+      "bestFor": [
+        "exploring enduring pain feelings",
+        "emotion-aware listening"
+      ],
+      "avoidWhen": [
+        "seeking pure upbeat escape"
+      ]
+    },
+    "emotionalMeaning": {
+      "coreFeeling": "Enduring Pain  mixed with  Sudden Hope",
+      "underlyingNeed": "feel understood in complex emotional territory",
+      "emotionalFunction": "reflection"
+    }
   }
 ]

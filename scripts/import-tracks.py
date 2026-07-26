@@ -2,13 +2,15 @@
 """Idempotent import of track emotion batches into profiles + demo catalog."""
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILES_PATH = ROOT / "data" / "track-emotion-profiles.json"
 CATALOG_PATH = ROOT / "lib" / "demo-track-catalog.ts"
+MOCK_DATA_PATH = ROOT / "lib" / "mock-data.ts"
 
-BATCH = [
+_LEGACY_BATCH = [
   {"title": "Red", "artist": "Taylor Swift", "lyricFocus": "Intense Passion / Vivid Reminiscing", "energy": 0.82, "valence": 0.65, "lyricDirectness": 0.70},
   {"title": "Begin Again", "artist": "Taylor Swift", "lyricFocus": "Cautious Hope / Gentle Rebirth", "energy": 0.45, "valence": 0.75, "lyricDirectness": 0.80},
   {"title": "State of Grace", "artist": "Taylor Swift", "lyricFocus": "Ethereal Optimism / Vulnerable Commitment", "energy": 0.78, "valence": 0.70, "lyricDirectness": 0.60},
@@ -101,7 +103,58 @@ ARTIST_MAP = {
   "olivia rodrigo": "Olivia Rodrigo",
   "sabrina carpenter": "Sabrina Carpenter",
   "clairo": "Clairo",
+  "post malone": "Post Malone",
+  "post malone & swae lee": "Post Malone",
+  "jvke": "JVKE",
+  "stephen sanchez": "Stephen Sanchez",
+  "joji": "Joji",
+  "jimin": "Jimin",
+  "jung kook": "Jung Kook",
+  "newjeans": "NewJeans",
 }
+
+
+def load_batch() -> list:
+  if len(sys.argv) > 1:
+    path = Path(sys.argv[1])
+    if not path.is_absolute():
+      path = ROOT / path
+    return json.loads(path.read_text())
+  default = ROOT / "scripts" / "batch-import.json"
+  if default.exists():
+    return json.loads(default.read_text())
+  return _LEGACY_BATCH
+
+
+def ensure_demo_artists(catalog_text: str, artists: set[str]) -> str:
+  header = catalog_text.split("RAW_DEMO_TRACKS")[0]
+  for artist in sorted(artists):
+    if f'"{artist}"' in header:
+      continue
+    catalog_text = catalog_text.replace(
+      '| "Frank Ocean";',
+      f'| "Frank Ocean"\n  | "{artist}";',
+    )
+  return catalog_text
+
+
+def ensure_mock_channels(artists: set[str]) -> None:
+  if not MOCK_DATA_PATH.exists() or not artists:
+    return
+  text = MOCK_DATA_PATH.read_text()
+  existing = set(re.findall(r'name:\s*"([^"]+)"', text))
+  ch_num = max(int(m) for m in re.findall(r'id:\s*"ch(\d+)"', text) or ["0"])
+  additions = []
+  for artist in sorted(artists):
+    if artist in existing:
+      continue
+    ch_num += 1
+    additions.append(
+      f'  {{ id: "ch{ch_num}", name: "{artist}", url: "#", source: "liked" as const }},'
+    )
+  if additions:
+    text = text.replace("\n];", "\n" + "\n".join(additions) + "\n];")
+    MOCK_DATA_PATH.write_text(text)
 
 
 def norm_key(title: str, artist: str) -> tuple[str, str]:
@@ -253,7 +306,10 @@ def main():
   skipped_profile = []
   skipped_catalog = []
 
-  for t in BATCH:
+  batch = load_batch()
+  new_artists: set[str] = set()
+
+  for t in batch:
     key = norm_key(t["title"], t["artist"])
     if key in seen:
       continue
@@ -268,6 +324,8 @@ def main():
     if key in catalog_keys:
       skipped_catalog.append(f"{t['title']} / {key[1]}")
     else:
+      artist = ARTIST_MAP.get(t["artist"].lower(), t["artist"]).split("feat.")[0].strip()
+      new_artists.add(artist)
       new_catalog_lines.append(catalog_stub(t))
       catalog_keys.add(key)
 
@@ -281,7 +339,9 @@ def main():
       catalog_text = catalog_text.replace(insert_marker, block + insert_marker)
     else:
       catalog_text = catalog_text.replace("];", block + "];")
+    catalog_text = ensure_demo_artists(catalog_text, new_artists)
     CATALOG_PATH.write_text(catalog_text)
+    ensure_mock_channels(new_artists)
 
   print(f"Profiles: +{len(new_profiles)} (total {len(merged)}), skipped {len(skipped_profile)}")
   print(f"Catalog: +{len(new_catalog_lines)}, skipped {len(skipped_catalog)}")
