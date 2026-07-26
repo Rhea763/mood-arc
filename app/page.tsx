@@ -183,10 +183,10 @@ function MoodArcHome() {
     );
   };
 
-  const inApp = mockMode
-    ? demoActive
-    : isEmbed
-      ? true
+  const inApp = isEmbed
+    ? true
+    : mockMode
+      ? demoActive
       : status === "authenticated";
 
   const loadTaste = useCallback(async () => {
