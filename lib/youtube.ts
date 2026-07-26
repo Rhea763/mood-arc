@@ -41,10 +41,10 @@ async function youtubeFetch<T>(
 
 export async function getMyChannel(accessToken: string) {
   const data = await youtubeFetch<{
-    items: Array<{ id: string; snippet: { title: string } }>;
+    items?: Array<{ id: string; snippet: { title: string } }>;
   }>(accessToken, "/channels?part=snippet&mine=true");
 
-  const ch = data.items[0];
+  const ch = data.items?.[0];
   return {
     id: ch?.id ?? "me",
     name: ch?.snippet?.title ?? "YouTube 用户",
@@ -53,7 +53,7 @@ export async function getMyChannel(accessToken: string) {
 
 export async function getSubscriptions(accessToken: string, maxResults = 25) {
   const data = await youtubeFetch<{
-    items: Array<{
+    items?: Array<{
       snippet: {
         title: string;
         resourceId: { channelId: string };
@@ -64,7 +64,7 @@ export async function getSubscriptions(accessToken: string, maxResults = 25) {
     `/subscriptions?part=snippet&mine=true&maxResults=${maxResults}`
   );
 
-  return data.items.map((item) => ({
+  return (data.items ?? []).map((item) => ({
     id: item.snippet.resourceId.channelId,
     name: item.snippet.title,
     url: `https://www.youtube.com/channel/${item.snippet.resourceId.channelId}`,
@@ -73,7 +73,7 @@ export async function getSubscriptions(accessToken: string, maxResults = 25) {
 
 export async function getLikedVideoChannels(accessToken: string, maxResults = 20) {
   const data = await youtubeFetch<{
-    items: Array<{
+    items?: Array<{
       snippet: {
         channelId: string;
         channelTitle: string;
@@ -85,7 +85,7 @@ export async function getLikedVideoChannels(accessToken: string, maxResults = 20
   );
 
   const map = new Map<string, { id: string; name: string; url: string }>();
-  for (const item of data.items) {
+  for (const item of data.items ?? []) {
     const id = item.snippet.channelId;
     if (!map.has(id)) {
       map.set(id, {
