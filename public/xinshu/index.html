@@ -64,6 +64,43 @@
   .btn-start{border:none;background:var(--accent);color:#fff;font-size:16px;font-weight:600;padding:16px 38px;border-radius:14px;cursor:pointer;font-family:inherit;transition:.15s;box-shadow:0 4px 16px rgba(181,60,74,.28)}
   .btn-start:active{transform:scale(.96)}
   .home-bottom{font-size:12px;color:var(--ink-soft);margin-top:20px}
+  .hcard.demo{border-color:var(--line);background:linear-gradient(180deg,#fff 0%,var(--line-soft) 100%)}
+
+  /* ===== 完整版示例页 ===== */
+  .demo-wrap{max-width:680px;margin:0 auto;padding:24px 20px 130px}
+  .demo-hero{text-align:center;margin-bottom:24px}
+  .demo-hero h2{font-size:22px;margin-bottom:8px}
+  .demo-hero p{font-size:13px;color:var(--ink-soft);line-height:1.55}
+  .demo-tracks{display:flex;flex-direction:column;gap:8px;margin:20px 0}
+  .demo-track{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--line-soft);cursor:pointer;transition:.15s;text-align:left;font-family:inherit;width:100%}
+  .demo-track:hover{border-color:var(--accent);background:var(--line-soft)}
+  .demo-track.playing{border-color:var(--accent);box-shadow:var(--shadow-soft)}
+  .demo-track img{width:44px;height:44px;border-radius:8px;object-fit:cover;background:var(--line-soft);flex-shrink:0}
+  .demo-track .meta{flex:1;min-width:0}
+  .demo-track .meta b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .demo-track .meta span{font-size:12px;color:var(--ink-soft)}
+  .demo-track .idx{font-size:12px;color:var(--ink-soft);width:22px;text-align:center;flex-shrink:0}
+  .btn-demo-play{width:100%;border:none;background:var(--accent);color:#fff;font-size:15px;font-weight:600;padding:15px;border-radius:14px;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(181,60,74,.24)}
+  .btn-demo-play:active{transform:scale(.98)}
+
+  /* ===== 心书全站示例播放器 ===== */
+  .xinshu-demo-player{position:fixed;inset:auto 0 0 0;z-index:90;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -8px 28px rgba(74,46,59,.08);display:none;padding:12px 16px 16px}
+  .xinshu-demo-player.active{display:block}
+  body.has-xinshu-demo-player{padding-bottom:9.5rem}
+  body.has-xinshu-demo-player .page-nav{bottom:9rem}
+  .xdp-inner{max-width:680px;margin:0 auto}
+  .xdp-row{display:flex;align-items:center;gap:12px}
+  .xdp-cover{width:52px;height:52px;border-radius:10px;object-fit:cover;background:var(--line-soft);flex-shrink:0}
+  .xdp-meta{flex:1;min-width:0}
+  .xdp-meta .kicker{font-size:11px;color:var(--ink-soft);font-weight:600}
+  .xdp-meta .title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .xdp-meta .artist{font-size:12px;color:var(--ink-soft)}
+  .xdp-controls{display:flex;align-items:center;gap:4px;flex-shrink:0}
+  .xdp-btn{border:none;background:transparent;cursor:pointer;padding:8px;border-radius:50%;color:var(--ink-mid);font-family:inherit}
+  .xdp-btn.main{background:var(--ink);color:#fff;padding:10px}
+  .xdp-lyric{text-align:center;font-size:13px;color:var(--ink-mid);margin:8px 0 6px;min-height:1.25em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .xdp-progress{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .xdp-progress input[type=range]{flex:1;accent-color:var(--accent)}
 
   /* 页面底部翻页导航 */
   .page-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;padding:16px 20px 28px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.92) 38%,rgba(255,255,255,1) 70%);gap:12px}
@@ -408,6 +445,11 @@
       <h3>晚间心书</h3>
       <p>听完后再次记录心情，形成今日情绪闭环</p>
     </div>
+    <div class="hcard demo" onclick="goPage('demo')">
+      <div class="hcard-icon">🎧</div>
+      <h3>完整版示例</h3>
+      <p>8 首预设本地 MP3，无需 iframe，直接试听完整播放体验</p>
+    </div>
   </div>
   <button class="btn-start" onclick="startToday()">🌙 开始今天</button>
   <p class="home-bottom">心情歌单 → 匿名日记 → 歌单陪伴 → 晚间复盘</p>
@@ -477,6 +519,23 @@
 <div class="page-nav">
   <button class="btn-nav btn-prev" id="plPrevBtn" onclick="playlistNav(-1)">← 上一步</button>
   <button class="btn-nav btn-next" id="plNextBtn" onclick="playlistNav(1)">下一步 →</button>
+</div>
+</div>
+
+<!-- ===== 完整版示例（独立试听，不依赖 iframe） ===== -->
+<div class="page" id="page-demo">
+<div class="demo-wrap">
+  <div class="demo-hero">
+    <p class="moodarc-kicker">🎧 完整版示例</p>
+    <h2>预设 8 首本地 MP3</h2>
+    <p>这是「完整版预期」的试听示例：含 2 首 Lana Del Rey + 6 首本机收藏。<br>加载后可在心书各页面底部继续播放。</p>
+  </div>
+  <button type="button" class="btn-demo-play" id="btnLoadFullDemo">▶ 开始播放完整示例</button>
+  <div class="demo-tracks" id="demoTrackList"></div>
+</div>
+<div class="page-nav">
+  <button class="btn-nav btn-prev" onclick="goPage('home')">← 首页</button>
+  <button class="btn-nav btn-next" onclick="goPage('playlist')">去心情歌单 →</button>
 </div>
 </div>
 
@@ -641,6 +700,32 @@
 <div class="cheer-pop" id="cheerPop"></div>
 <div class="toast" id="toast"></div>
 
+<div class="xinshu-demo-player" id="xinshuDemoPlayer" aria-label="完整版示例播放器">
+  <div class="xdp-inner">
+    <div class="xdp-row">
+      <img class="xdp-cover" id="xdpCover" src="" alt="">
+      <div class="xdp-meta">
+        <div class="kicker" id="xdpKicker">完整版示例 · 心绪弧线</div>
+        <div class="title" id="xdpTitle">—</div>
+        <div class="artist" id="xdpArtist">—</div>
+      </div>
+      <div class="xdp-controls">
+        <button type="button" class="xdp-btn" id="xdpPrev" aria-label="上一首">⏮</button>
+        <button type="button" class="xdp-btn main" id="xdpToggle" aria-label="播放">▶</button>
+        <button type="button" class="xdp-btn" id="xdpNext" aria-label="下一首">⏭</button>
+        <button type="button" class="xdp-btn" id="xdpClose" aria-label="关闭">✕</button>
+      </div>
+    </div>
+    <div class="xdp-lyric" id="xdpLyric">…</div>
+    <div class="xdp-progress">
+      <span id="xdpTimeCur">0:00</span>
+      <input type="range" id="xdpSeek" min="0" max="100" step="0.1" value="0" aria-label="播放进度">
+      <span id="xdpTimeDur">0:00</span>
+    </div>
+  </div>
+</div>
+<audio id="xinshuDemoAudio" preload="metadata" style="display:none"></audio>
+
 <script>
 /* ============ 工具函数 ============ */
 function $(id){return document.getElementById(id);}
@@ -651,7 +736,7 @@ let state={items:[],tomorrow:[],vented:false};
 let playlistStep=1;
 
 const PAGE_ALIASES={evening:'journal',mood:'playlist'};
-const VALID_PAGES=['home','playlist','calendar','journal'];
+const VALID_PAGES=['home','playlist','calendar','journal','demo'];
 
 function resolvePage(name){
   return PAGE_ALIASES[name]||name;
@@ -719,6 +804,7 @@ function goPage(name){
   if(name==='calendar')renderCalendar();
   if(name==='journal')renderJournal();
   if(name==='playlist')setupPlaylistPage();
+  if(name==='demo')renderDemoPage();
 }
 
 // "开始今天"：按顺序引导
@@ -745,6 +831,160 @@ function showStartGuide(){
     setTimeout(()=>goPage('playlist'),300);
   };
   showModal('modalReflect');
+}
+
+/* ============ 完整版示例播放器（心书独立） ============ */
+const FULL_DEMO_PLAYLIST_NAME='完整版示例 · 心绪弧线';
+const FULL_DEMO_PLAYLIST=[
+  {id:'demo-01',title:'Mariners Apartment Complex',artist:'Lana Del Rey',src:'/demo-audio/01-mariners-apartment-complex.mp3',cover:'/demo-audio/covers/01-lana.svg',lyrics:[
+    {time:12,text:'You lose your way, just take my hand'},
+    {time:28,text:"You're lost at sea, but I'll take the wheel"},
+    {time:44,text:"And yes, I'd say that I'm your friend"},
+    {time:60,text:'Come take a walk with me'},
+    {time:76,text:"There's a place where all the walls come down"},
+    {time:92,text:"They'll tear each other up and call it a night"},
+    {time:108,text:'Oh, how quiet it is on the other side'},
+    {time:124,text:"We're just crazy enough to be okay"},
+    {time:140,text:"Maybe we're not that crazy after all"}
+  ]},
+  {id:'demo-02',title:'Taco Truck x VB',artist:'Lana Del Rey',src:'/demo-audio/02-taco-truck-x-vb.mp3',cover:'/demo-audio/covers/02-lana.svg',lyrics:[
+    {time:10,text:"One last time, I think I'll take the stage"},
+    {time:26,text:"One last time, I'll see you in the place"},
+    {time:42,text:"Oh, but don't you know that it's all a game?"},
+    {time:58,text:'All a game that I play'},
+    {time:74,text:"I'm a princess cut from marble, smoother than a storm"},
+    {time:90,text:"And the scars that mark my body, they're silver and gold"},
+    {time:106,text:'My blood was a fountain that fell from the sky'},
+    {time:122,text:"But it's alright, I fall in love every night"}
+  ]},
+  {id:'demo-03',title:'本地示例 1',artist:'本机收藏',src:'/demo-audio/03-local-demo-1.mp3',cover:'/demo-audio/covers/03-local.svg',lyrics:[{time:0,text:'本地示例 1'},{time:8,text:'来自本机 Music 库的示例音频'},{time:16,text:'可在心书各页面继续收听'}]},
+  {id:'demo-04',title:'本地示例 2',artist:'本机收藏',src:'/demo-audio/04-local-demo-2.mp3',cover:'/demo-audio/covers/04-local.svg',lyrics:[{time:0,text:'本地示例 2'},{time:8,text:'来自本机 Music 库的示例音频'},{time:16,text:'可在心书各页面继续收听'}]},
+  {id:'demo-05',title:'本地示例 3',artist:'本机收藏',src:'/demo-audio/05-local-demo-3.mp3',cover:'/demo-audio/covers/05-local.svg',lyrics:[{time:0,text:'本地示例 3'},{time:8,text:'来自本机 Music 库的示例音频'},{time:16,text:'可在心书各页面继续收听'}]},
+  {id:'demo-06',title:'本地示例 4',artist:'本机收藏',src:'/demo-audio/06-local-demo-4.mp3',cover:'/demo-audio/covers/06-local.svg',lyrics:[{time:0,text:'本地示例 4'},{time:8,text:'来自本机 Music 库的示例音频'},{time:16,text:'可在心书各页面继续收听'}]},
+  {id:'demo-07',title:'本地示例 5',artist:'本机收藏',src:'/demo-audio/07-local-demo-5.mp3',cover:'/demo-audio/covers/07-local.svg',lyrics:[{time:0,text:'本地示例 5'},{time:8,text:'来自本机 Music 库的示例音频'},{time:16,text:'可在心书各页面继续收听'}]},
+  {id:'demo-08',title:'本地示例 6',artist:'本机收藏',src:'/demo-audio/08-local-demo-6.mp3',cover:'/demo-audio/covers/08-local.svg',lyrics:[{time:0,text:'本地示例 6'},{time:8,text:'来自本机 Music 库的示例音频'},{time:16,text:'可在心书各页面继续收听'}]}
+];
+let demoTrackIndex=0;
+let demoPlayerActive=false;
+
+function fmtAudioTime(sec){
+  if(!Number.isFinite(sec)||sec<0)return'0:00';
+  const m=Math.floor(sec/60);
+  const s=Math.floor(sec%60);
+  return m+':'+String(s).padStart(2,'0');
+}
+
+function lyricAtTime(lines,t){
+  if(!lines||!lines.length)return'';
+  let idx=0;
+  for(let i=0;i<lines.length;i++){
+    if(lines[i].time<=t)idx=i;else break;
+  }
+  return lines[idx].text||'';
+}
+
+function getDemoAudio(){
+  return $('xinshuDemoAudio');
+}
+
+function setDemoPlayerVisible(on){
+  demoPlayerActive=on;
+  const bar=$('xinshuDemoPlayer');
+  if(bar)bar.classList.toggle('active',on);
+  document.body.classList.toggle('has-xinshu-demo-player',on);
+}
+
+function updateDemoPlayerUI(){
+  const track=FULL_DEMO_PLAYLIST[demoTrackIndex];
+  const audio=getDemoAudio();
+  if(!track||!demoPlayerActive)return;
+  $('xdpCover').src=track.cover;
+  $('xdpTitle').textContent=track.title;
+  $('xdpArtist').textContent=track.artist+' · '+(demoTrackIndex+1)+'/'+FULL_DEMO_PLAYLIST.length;
+  $('xdpKicker').textContent=FULL_DEMO_PLAYLIST_NAME;
+  $('xdpLyric').textContent=lyricAtTime(track.lyrics,audio?audio.currentTime:0);
+  $('xdpTimeCur').textContent=fmtAudioTime(audio?audio.currentTime:0);
+  $('xdpTimeDur').textContent=fmtAudioTime(audio?audio.duration:0);
+  if(audio&&audio.duration){
+    $('xdpSeek').max=String(audio.duration);
+    $('xdpSeek').value=String(audio.currentTime);
+  }
+  $('xdpToggle').textContent=audio&&!audio.paused?'⏸':'▶';
+  document.querySelectorAll('.demo-track').forEach(function(el,i){
+    el.classList.toggle('playing',i===demoTrackIndex&&demoPlayerActive&&!audio.paused);
+  });
+}
+
+function loadDemoTrack(index,autoplay){
+  const audio=getDemoAudio();
+  const track=FULL_DEMO_PLAYLIST[index];
+  if(!audio||!track)return;
+  demoTrackIndex=index;
+  setDemoPlayerVisible(true);
+  audio.src=track.src;
+  audio.load();
+  if(autoplay){
+    audio.play().then(function(){updateDemoPlayerUI();}).catch(function(){updateDemoPlayerUI();});
+  }else{
+    updateDemoPlayerUI();
+  }
+}
+
+function closeDemoPlayer(){
+  const audio=getDemoAudio();
+  if(audio){audio.pause();audio.removeAttribute('src');audio.load();}
+  setDemoPlayerVisible(false);
+  updateDemoPlayerUI();
+}
+
+function renderDemoPage(){
+  const list=$('demoTrackList');
+  if(!list)return;
+  list.innerHTML=FULL_DEMO_PLAYLIST.map(function(t,i){
+    return '<button type="button" class="demo-track" data-idx="'+i+'">'+
+      '<span class="idx">'+(i+1)+'</span>'+
+      '<img src="'+t.cover+'" alt="">'+
+      '<span class="meta"><b>'+t.title.replace(/</g,'&lt;')+'</b><span>'+t.artist.replace(/</g,'&lt;')+'</span></span>'+
+      '</button>';
+  }).join('');
+  list.querySelectorAll('.demo-track').forEach(function(btn){
+    btn.onclick=function(){loadDemoTrack(parseInt(btn.dataset.idx,10),true);};
+  });
+  const main=$('btnLoadFullDemo');
+  if(main)main.onclick=function(){loadDemoTrack(0,true);};
+  updateDemoPlayerUI();
+}
+
+function setupDemoPlayerEvents(){
+  const audio=getDemoAudio();
+  if(!audio)return;
+  audio.addEventListener('timeupdate',updateDemoPlayerUI);
+  audio.addEventListener('durationchange',updateDemoPlayerUI);
+  audio.addEventListener('loadedmetadata',updateDemoPlayerUI);
+  audio.addEventListener('play',updateDemoPlayerUI);
+  audio.addEventListener('pause',updateDemoPlayerUI);
+  audio.addEventListener('ended',function(){
+    loadDemoTrack((demoTrackIndex+1)%FULL_DEMO_PLAYLIST.length,true);
+  });
+  $('xdpToggle').onclick=function(){
+    if(!demoPlayerActive){loadDemoTrack(0,true);return;}
+    if(audio.paused)audio.play();else audio.pause();
+  };
+  $('xdpPrev').onclick=function(){
+    if(!demoPlayerActive){loadDemoTrack(0,true);return;}
+    if(audio.currentTime>3){audio.currentTime=0;return;}
+    loadDemoTrack((demoTrackIndex-1+FULL_DEMO_PLAYLIST.length)%FULL_DEMO_PLAYLIST.length,true);
+  };
+  $('xdpNext').onclick=function(){
+    if(!demoPlayerActive){loadDemoTrack(0,true);return;}
+    loadDemoTrack((demoTrackIndex+1)%FULL_DEMO_PLAYLIST.length,true);
+  };
+  $('xdpClose').onclick=closeDemoPlayer;
+  $('xdpSeek').oninput=function(){
+    if(!audio||!demoPlayerActive)return;
+    audio.currentTime=parseFloat($('xdpSeek').value)||0;
+    updateDemoPlayerUI();
+  };
 }
 
 /* ============ 心情歌单向导 ============ */
@@ -1986,6 +2226,8 @@ function init(){
   }else{
     goPage('home');
   }
+  setupDemoPlayerEvents();
+  renderDemoPage();
 }
 window.addEventListener('hashchange',()=>{
   const hash=resolvePage(window.location.hash.replace('#',''));

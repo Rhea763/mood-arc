@@ -60,6 +60,8 @@ import {
   artistMatchesLanguages,
   type ArtistLanguage,
 } from "@/lib/artist-catalog";
+import { useDemoAudioPlayer } from "@/lib/demo-audio-player-context";
+import { FULL_DEMO_PLAYLIST } from "@/lib/demo-full-playlist";
 
 const VALID_MOODS = new Set<string>(MOODS);
 
@@ -121,6 +123,7 @@ function MoodArcHome() {
     null
   );
   const formRef = useRef<HTMLDivElement>(null);
+  const { loadFullDemo, active: fullDemoActive } = useDemoAudioPlayer();
 
   const availableGoals = mood ? getGoalsForMood(mood) : [];
   const availableIntentions = emotion ? intentionsForEmotion(emotion) : [];
@@ -1006,6 +1009,31 @@ function MoodArcHome() {
                   {n} 首
                 </button>
               ))}
+            </div>
+          </section>
+
+          <section className="rounded-xl border border-dashed border-stone-300 bg-stone-50/80 p-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="text-sm font-medium text-stone-700">
+                  完整版示例
+                </h2>
+                <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                  预设 {FULL_DEMO_PLAYLIST.length} 首本机 MP3（含 2 首 Lana Del Rey +
+                  6 首本地收藏），加载后可全站连续播放。
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={loadFullDemo}
+                className={`shrink-0 rounded-full border px-5 py-2.5 text-sm font-medium transition ${
+                  fullDemoActive
+                    ? "border-stone-900 bg-stone-900 text-white"
+                    : "border-stone-400 bg-white text-stone-800 hover:border-stone-600"
+                }`}
+              >
+                {fullDemoActive ? "示例播放中 · 见底部播放器" : "加载完整版示例"}
+              </button>
             </div>
           </section>
 
