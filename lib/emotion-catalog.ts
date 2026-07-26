@@ -185,6 +185,22 @@ export function emotionFromMoodId(moodId: string): EmotionId | null {
     兴奋: "energetic",
     愤怒: "stressed",
     满足: "happy",
+    期待: "happy",
   };
   return map[moodId] ?? null;
+}
+
+/** 从调节目标反推 intention，供心情历程记录使用 */
+export function intentionFromRegulationGoal(
+  goal: RegulationGoalId
+): IntentionId {
+  const map: Record<RegulationGoalId, IntentionId> = {
+    solace: "comfort",
+    diversion: "distraction",
+    revival: "energy",
+    celebrate: "celebrate",
+    energy: "energy",
+    settle: "process",
+  };
+  return map[goal] ?? "comfort";
 }

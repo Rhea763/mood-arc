@@ -42,11 +42,10 @@ import {
 import { EMBED_FETCH_HEADERS } from "@/lib/embed-mode";
 import { MOODS } from "@/lib/context-catalog";
 import {
-  EMOTIONS,
-  intentionsForEmotion,
   moodIdFromEmotion,
   regulationGoalFromIntention,
   emotionFromMoodId,
+  intentionFromRegulationGoal,
   isValidIntention,
 } from "@/lib/emotion-catalog";
 import {
@@ -83,6 +82,7 @@ function MoodArcHome() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isEmbed = pathname === "/embed" || searchParams.get("embed") === "1";
+  const isCompactEmbed = isEmbed && searchParams.get("compact") === "1";
   const { status, data: session } = useSession();
   const buildTimeMock = isBuildTimeMockDemo();
   const [mockMode, setMockMode] = useState<boolean | null>(null);
@@ -126,7 +126,6 @@ function MoodArcHome() {
   const { loadFullDemo, active: fullDemoActive } = useDemoAudioPlayer();
 
   const availableGoals = mood ? getGoalsForMood(mood) : [];
-  const availableIntentions = emotion ? intentionsForEmotion(emotion) : [];
 
   const filteredChannels = useMemo(() => {
     if (!taste) return [];
@@ -150,29 +149,22 @@ function MoodArcHome() {
     });
   }, [selectedLanguages, taste]);
 
-  const selectEmotion = (e: EmotionId) => {
-    setEmotion(e);
-    setMood(moodIdFromEmotion(e));
-    setIntention(null);
-    setRegulationGoal(null);
-    setResult(null);
-  };
-
-  const selectIntention = (i: IntentionId) => {
-    if (!emotion) return;
-    setIntention(i);
-    setRegulationGoal(regulationGoalFromIntention(i, emotion));
-    setResult(null);
-  };
-
   const selectMood = (m: string) => {
     setMood(m);
+    setEmotion(emotionFromMoodId(m));
+    setIntention(null);
     setResult(null);
     setRegulationGoal((goal) => {
       if (!goal) return null;
       const goals = getGoalsForMood(m);
       return goals.some((g) => g.id === goal) ? goal : null;
     });
+  };
+
+  const selectRegulationGoal = (goal: RegulationGoalId) => {
+    setRegulationGoal(goal);
+    setIntention(intentionFromRegulationGoal(goal));
+    setResult(null);
   };
 
   const embedLogin = () => {
@@ -355,16 +347,20 @@ function MoodArcHome() {
               .filter(Boolean)
           )
         );
-      } else {
-        applyCalendarPayload({
-          tags: searchParams.get("tags")?.split("|").filter(Boolean),
-          happy: searchParams.get("happy")?.split("|").filter(Boolean),
-          sad: searchParams.get("sad")?.split("|").filter(Boolean),
-          intensity: urlIntensity
-            ? parseInt(urlIntensity, 10)
-            : undefined,
-          intention: urlIntention,
-        });
+      }
+      const diaryPayload = {
+        tags: searchParams.get("tags")?.split("|").filter(Boolean),
+        happy: searchParams.get("happy")?.split("|").filter(Boolean),
+        sad: searchParams.get("sad")?.split("|").filter(Boolean),
+        intensity: urlIntensity ? parseInt(urlIntensity, 10) : undefined,
+        intention: urlIntention,
+      };
+      const diaryLines = diarySnippetFromPayload(diaryPayload);
+      if (diaryLines.length) setCalendarDiary(diaryLines);
+      if (!urlCauses) {
+        applyCalendarPayload(diaryPayload);
+      } else if (!resolvedMood) {
+        applyCalendarPayload(diaryPayload);
       }
     });
 
@@ -387,6 +383,18 @@ function MoodArcHome() {
   }, [inApp, isEmbed, result]);
 
   const buildMoodSnapshot = (
+    e: EmotionId,
+    inten: number,
+    goal: RegulationGoalId
+  ): MoodSnapshot => ({
+    emotion: e,
+    intensity: inten,
+    intention: intentionFromRegulationGoal(goal),
+    moodId: moodIdFromEmotion(e),
+    regulationGoal: goal,
+  });
+
+  const buildMoodSnapshotFromIntention = (
     e: EmotionId,
     inten: number,
     intent: IntentionId
@@ -454,7 +462,6 @@ function MoodArcHome() {
 
   const handleGenerate = async () => {
     if (!mood || !taste || !regulationGoal) return;
-    if (!isEmbed && (!emotion || !intention)) return;
 
     const selected = taste.channels.filter((c) =>
       selectedChannelIds.has(c.id)
@@ -497,20 +504,23 @@ function MoodArcHome() {
       const response = data as GenerateResponse;
       setResult(response);
 
-      if (!isEmbed && emotion && intention) {
-        const record = createMoodRecord({
-          beforeMood: buildMoodSnapshot(emotion, intensity, intention),
-          recommendedSongs: response.videos.slice(0, 5).map((v) => ({
-            title: v.name,
-            artist: v.channel,
-            url: v.url,
-            reason: v.reason,
-            emotionMatch: v.emotionMatch,
-          })),
-          playlistName: response.playlistName,
-        });
-        setActiveMoodRecordId(record.id);
-        setTodayRecord(record);
+      if (!isEmbed && regulationGoal) {
+        const em = emotion ?? emotionFromMoodId(mood);
+        if (em) {
+          const record = createMoodRecord({
+            beforeMood: buildMoodSnapshot(em, intensity, regulationGoal),
+            recommendedSongs: response.videos.slice(0, 5).map((v) => ({
+              title: v.name,
+              artist: v.channel,
+              url: v.url,
+              reason: v.reason,
+              emotionMatch: v.emotionMatch,
+            })),
+            playlistName: response.playlistName,
+          });
+          setActiveMoodRecordId(record.id);
+          setTodayRecord(record);
+        }
       }
     } catch {
       setGenerateError("网络错误，请稍后重试");
@@ -667,7 +677,7 @@ function MoodArcHome() {
         )}
       </header>
 
-      {calendarDiary.length > 0 && isEmbed && (
+      {calendarDiary.length > 0 && isEmbed && !isCompactEmbed && (
         <div className="mb-6 rounded-xl border border-[#E8C4C4] bg-[#FFF9F8] p-4">
           <p className="text-xs font-medium text-[#B53C4A] mb-2">
             来自今日心情日记
@@ -711,6 +721,7 @@ function MoodArcHome() {
           {!isEmbed && (
             <DailyMoodCard
               record={todayRecord}
+              currentMood={mood}
               currentEmotion={emotion}
               currentIntensity={intensity}
               currentIntention={intention}
@@ -721,6 +732,41 @@ function MoodArcHome() {
           )}
 
           <div ref={formRef}>
+          {isCompactEmbed && (
+            <section className="rounded-xl border border-[#E8C4C4] bg-[#FFF9F8] p-4">
+              <p className="text-xs font-medium text-[#B53C4A] mb-2">
+                情绪陪伴 · 前两步已记录
+              </p>
+              {mood && (
+                <p className="text-sm text-[#4A2E3B]">
+                  心情：{mood}
+                  {regulationGoal && (
+                    <> · 目标：{getRegulationGoalLabel(regulationGoal)}</>
+                  )}
+                  {intensity ? <> · 强度 {intensity}/10</> : null}
+                </p>
+              )}
+              {calendarDiary.length > 0 && (
+                <ul className="mt-2 space-y-1 text-sm text-[#4A2E3B]">
+                  {calendarDiary.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          )}
+
+          {isCompactEmbed && (
+            <section className="mb-2">
+              <h2 className="text-lg font-semibold text-[#4A2E3B]">
+                生成情绪歌单
+              </h2>
+              <p className="mt-1 text-sm text-stone-500">
+                选择语言、艺人和歌单长度，然后点击「生成歌单」
+              </p>
+            </section>
+          )}
+
           <section className="rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
             <div className="mb-3 border-b border-stone-100 pb-3">
               <div className="mb-2 flex items-center justify-between gap-2">
@@ -784,6 +830,8 @@ function MoodArcHome() {
             </div>
           </section>
 
+          {!isCompactEmbed && (
+          <>
           <section>
             <h2 className="mb-3 text-sm font-medium text-stone-700">
               在什么情境
@@ -819,75 +867,51 @@ function MoodArcHome() {
           <section>
             <h2 className="mb-3 text-sm font-medium text-stone-700">
               今天的心情
-              <span className="ml-2 font-normal text-stone-400">How you feel</span>
             </h2>
-            {!isEmbed ? (
-              <>
-                <div className="mb-4 grid grid-cols-3 gap-2">
-                  {EMOTIONS.map((e) => (
-                    <button
-                      key={e.id}
-                      type="button"
-                      onClick={() => selectEmotion(e.id)}
-                      className={`rounded-lg border py-2.5 text-sm font-medium transition ${
-                        emotion === e.id
-                          ? "border-stone-900 bg-stone-900 text-white"
-                          : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
-                      }`}
-                    >
-                      {e.emoji} {e.labelEn}
-                    </button>
-                  ))}
-                </div>
-                {emotion && (
-                  <div className="mb-4">
-                    <EmotionIntensitySlider
-                      value={intensity}
-                      onChange={(v) => {
-                        setIntensity(v);
-                        setResult(null);
-                      }}
-                    />
-                  </div>
-                )}
-              </>
-            ) : (
-              <>
-                <p className="mb-2 text-xs text-stone-500">偏低落</p>
-                <div className="mb-4 grid grid-cols-3 gap-2">
-                  {NEGATIVE_MOODS.map((m) => (
-                    <button
-                      key={m}
-                      type="button"
-                      onClick={() => selectMood(m)}
-                      className={`rounded-lg border py-2.5 text-sm font-medium transition ${
-                        mood === m
-                          ? "border-stone-900 bg-stone-900 text-white"
-                          : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
-                      }`}
-                    >
-                      {m}
-                    </button>
-                  ))}
-                </div>
-                <p className="mb-2 text-xs text-stone-500">偏积极</p>
-                <div className="grid grid-cols-3 gap-2">
-                  {POSITIVE_MOODS.map((m) => (
-                    <button
-                      key={m}
-                      type="button"
-                      onClick={() => selectMood(m)}
-                      className={`rounded-lg border py-2.5 text-sm font-medium transition ${
-                        mood === m
-                          ? "border-stone-900 bg-stone-900 text-white"
-                          : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
-                      }`}
-                    >
-                      {m}
-                    </button>
-                  ))}
-                </div>
-              </>
+            <p className="mb-2 text-xs text-stone-500">偏低落</p>
+            <div className="mb-4 grid grid-cols-3 gap-2">
+              {NEGATIVE_MOODS.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => selectMood(m)}
+                  className={`rounded-lg border py-2.5 text-sm font-medium transition ${
+                    mood === m
+                      ? "border-stone-900 bg-stone-900 text-white"
+                      : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
+                  }`}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+            <p className="mb-2 text-xs text-stone-500">偏积极</p>
+            <div className="grid grid-cols-3 gap-2">
+              {POSITIVE_MOODS.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => selectMood(m)}
+                  className={`rounded-lg border py-2.5 text-sm font-medium transition ${
+                    mood === m
+                      ? "border-stone-900 bg-stone-900 text-white"
+                      : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
+                  }`}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+            {mood && (
+              <div className="mt-4">
+                <EmotionIntensitySlider
+                  value={intensity}
+                  onChange={(v) => {
+                    setIntensity(v);
+                    setResult(null);
+                  }}
+                />
+              </div>
             )}
           </section>
 
@@ -896,7 +920,7 @@ function MoodArcHome() {
               情境与原因
             </h2>
             <p className="mb-2 text-xs text-stone-500">原因（可选）</p>
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {CAUSES.map((c) => {
                 const selected = causes.has(c);
                 return (
@@ -915,77 +939,50 @@ function MoodArcHome() {
                 );
               })}
             </div>
-            <p className="mb-2 text-xs text-stone-500">
-              {!isEmbed ? "你想让音乐帮你…" : "调节目标（必选）"}
-              {mood && (
-                <span className="ml-1 text-stone-400">
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-sm font-medium text-stone-700">
+              调节目标
+              <span className="ml-2 font-normal text-stone-400">必选</span>
+            </h2>
+            {!mood ? (
+              <p className="text-xs text-stone-400">请先选择心情</p>
+            ) : (
+              <>
+                <p className="mb-3 text-xs text-stone-500">
                   当前心情：{mood}
-                </span>
-              )}
-            </p>
-            {!isEmbed ? (
-              !emotion ? (
-                <p className="text-xs text-stone-400">请先选择情绪</p>
-              ) : (
+                </p>
                 <div className="space-y-2">
-                  {availableIntentions.map((i) => (
+                  {availableGoals.map((g) => (
                     <button
-                      key={i.id}
+                      key={g.id}
                       type="button"
-                      onClick={() => selectIntention(i.id)}
+                      onClick={() => selectRegulationGoal(g.id)}
                       className={`w-full rounded-lg border px-3 py-2.5 text-left transition ${
-                        intention === i.id
+                        regulationGoal === g.id
                           ? "border-stone-900 bg-stone-900 text-white"
                           : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
                       }`}
                     >
-                      <span className="text-sm font-medium">{i.labelZh}</span>
+                      <span className="text-sm font-medium">{g.label}</span>
                       <span
                         className={`mt-0.5 block text-xs ${
-                          intention === i.id
+                          regulationGoal === g.id
                             ? "text-stone-300"
                             : "text-stone-500"
                         }`}
                       >
-                        {i.labelEn} · {i.hintZh}
+                        {g.hint}
                       </span>
                     </button>
                   ))}
                 </div>
-              )
-            ) : !mood ? (
-              <p className="text-xs text-stone-400">请先选择心情</p>
-            ) : (
-              <div className="space-y-2">
-                {availableGoals.map((g) => (
-                  <button
-                    key={g.id}
-                    type="button"
-                    onClick={() => {
-                      setRegulationGoal(g.id);
-                      setResult(null);
-                    }}
-                    className={`w-full rounded-lg border px-3 py-2.5 text-left transition ${
-                      regulationGoal === g.id
-                        ? "border-stone-900 bg-stone-900 text-white"
-                        : "border-stone-300 bg-white text-stone-700 hover:border-stone-400"
-                    }`}
-                  >
-                    <span className="text-sm font-medium">{g.label}</span>
-                    <span
-                      className={`mt-0.5 block text-xs ${
-                        regulationGoal === g.id
-                          ? "text-stone-300"
-                          : "text-stone-500"
-                      }`}
-                    >
-                      {g.hint}
-                    </span>
-                  </button>
-                ))}
-              </div>
+              </>
             )}
           </section>
+          </>
+          )}
 
           <section>
             <h2 className="mb-3 text-sm font-medium text-stone-700">
@@ -1012,6 +1009,7 @@ function MoodArcHome() {
             </div>
           </section>
 
+          {!isCompactEmbed && (
           <section className="rounded-xl border border-dashed border-stone-300 bg-stone-50/80 p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -1036,6 +1034,7 @@ function MoodArcHome() {
               </button>
             </div>
           </section>
+          )}
 
           </div>
 
@@ -1046,24 +1045,21 @@ function MoodArcHome() {
                 !mood ||
                 !regulationGoal ||
                 generating ||
-                selectedChannelIds.size === 0 ||
-                (!isEmbed && (!emotion || !intention))
+                selectedChannelIds.size === 0
               }
               onClick={handleGenerate}
               className="w-full rounded-full bg-stone-900 py-3 text-base font-medium text-white transition enabled:hover:bg-stone-700 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {generating ? "正在生成…" : "生成歌单"}
+              {generating ? "正在生成…" : isCompactEmbed ? "生成歌单" : "生成歌单"}
             </button>
             {!generating &&
               (!mood || !regulationGoal || selectedChannelIds.size === 0) && (
                 <p className="mt-2 text-center text-xs text-stone-500">
-                  {!emotion && !isEmbed
-                    ? "请先选择情绪与需求"
-                    : !mood
-                      ? "请先选择心情，再选调节目标后即可生成"
-                      : !regulationGoal
-                        ? "请选择你想让音乐帮你做什么"
-                        : "请至少选择一位艺人"}
+                  {!mood
+                    ? "请先选择心情，再选调节目标后即可生成"
+                    : !regulationGoal
+                      ? "请选择你想让音乐帮你做什么"
+                      : "请至少选择一位艺人"}
                 </p>
               )}
           </div>
@@ -1299,7 +1295,7 @@ function MoodArcHome() {
                   onSave={(afterEmotion, afterIntensity, afterIntention) => {
                     const updated = updateMoodRecordAfterMood(
                       activeMoodRecordId,
-                      buildMoodSnapshot(
+                      buildMoodSnapshotFromIntention(
                         afterEmotion,
                         afterIntensity,
                         afterIntention

@@ -127,6 +127,7 @@
   .moodarc-head h2{font-size:20px;margin-bottom:6px}
   .moodarc-sub{font-size:13px;color:var(--ink-soft);line-height:1.5}
   #moodarcFrame{display:block;width:100%;min-height:720px;border:0;background:#fff5f4}
+  #moodarcFrame.compact{min-height:560px}
   .moodarc-diary{font-size:12px;color:var(--ink-soft);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-soft)}
   .moodarc-diary li{margin:2px 0;list-style:none}
 
@@ -242,9 +243,7 @@
   .mood-page-wrap .mood-card h3{font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 
   /* ===== 歌单向导 ===== */
-  .wizard-steps{display:flex;gap:6px;margin-bottom:20px;max-width:680px;margin-left:auto;margin-right:auto;padding:0 20px}
-  .wizard-steps span{flex:1;text-align:center;font-size:11px;color:var(--ink-soft);padding:8px 4px;border-radius:10px;background:var(--line-soft);transition:.2s}
-  .wizard-steps span.on{background:var(--accent);color:#fff;font-weight:600}
+  .wizard-steps{display:none}
   .pl-step{display:none;max-width:680px;margin:0 auto;padding:24px 20px 100px}
   .pl-step.active{display:block}
   .pl-hero{text-align:center;margin-bottom:22px}
@@ -452,28 +451,23 @@
     </div>
   </div>
   <button class="btn-start" onclick="startToday()">🌙 开始今天</button>
-  <p class="home-bottom">心情歌单 → 匿名日记 → 歌单陪伴 → 晚间复盘</p>
+  <p class="home-bottom">心情签到 → 匿名日记 → 生成歌单 → 晚间复盘</p>
 </div>
 </div>
 
-<!-- ===== 心情歌单（三步：签到 → 日记 → 歌单） ===== -->
+<!-- ===== 心情歌单（三页：签到 → 日记 → 生成歌单） ===== -->
 <div class="page" id="page-playlist">
-<div class="wizard-steps" id="wizardSteps">
-  <span class="on" data-step="1">① 心情签到</span>
-  <span data-step="2">② 匿名日记</span>
-  <span data-step="3">③ 情绪歌单</span>
-</div>
 
 <div class="pl-step active" id="plStep1">
   <div class="pl-hero">
     <h2>你现在的心情是？</h2>
-    <p>How are you feeling today?</p>
+    <p>第一步：心情签到</p>
   </div>
   <div class="mood-card" style="margin-bottom:14px">
     <h3>🏷️ 选择心情</h3>
     <div class="tag-row" id="mpTags"></div>
   </div>
-  <div class="mood-card" style="margin-bottom:14px">
+  <div class="mood-card">
     <div class="intensity-row">
       <label><span>情绪强度</span><span id="intensityVal">5 / 10</span></label>
       <input type="range" id="mpIntensity" min="1" max="10" value="5">
@@ -481,38 +475,36 @@
     <h3 style="margin-top:14px;margin-bottom:10px">💭 你现在需要什么？</h3>
     <div class="intention-grid" id="intentionGrid"></div>
   </div>
+</div>
+
+<div class="pl-step" id="plStep2">
+  <div class="pl-hero">
+    <h2>匿名日记本</h2>
+    <p>第二步：写下今天的事，进入情绪陪伴</p>
+  </div>
   <div class="mood-card" style="margin-bottom:14px">
     <h3>😊 今天有什么开心的事？</h3>
     <input type="text" class="mood-input" id="mpHappy1" placeholder="写下一件让你开心的事…" maxlength="60">
     <input type="text" class="mood-input" id="mpHappy2" placeholder="还有吗？再写一件…" maxlength="60">
   </div>
-  <div class="mood-card">
+  <div class="mood-card" style="margin-bottom:14px">
     <h3>😔 今天有什么不开心的事？</h3>
     <div class="sh" style="font-size:12px;color:var(--ink-soft);margin-bottom:10px">💡 选一个方向试试，也可以直接手动输入</div>
     <div class="suggest-tags" id="suggestTags" style="margin-bottom:12px"></div>
     <input type="text" class="mood-input" id="mpSad1" placeholder="选上面的选项，或写下一件让你烦恼的事…" maxlength="60">
     <input type="text" class="mood-input" id="mpSad2" placeholder="还有吗？再写一件…" maxlength="60">
   </div>
-</div>
-
-<div class="pl-step" id="plStep2">
-  <div class="pl-hero">
-    <h2>匿名日记本</h2>
-    <p>像读别人的故事一样，重新看见自己的处境</p>
-  </div>
   <div class="diary-inline" id="plDiaryBody"></div>
 </div>
 
 <div class="pl-step" id="plStep3">
   <div class="guidance-banner" id="plGuidanceBanner"></div>
+  <div class="pl-hero">
+    <h2>生成情绪歌单</h2>
+    <p>第三步：选择语言、艺人和歌单长度，然后点击生成</p>
+  </div>
   <div class="moodarc-shell">
-    <div class="moodarc-head">
-      <p class="moodarc-kicker">🎵 今日情绪歌单</p>
-      <h2>音乐 + 情绪陪伴</h2>
-      <p class="moodarc-sub">每首歌不只是一条推荐，而是帮你命名、理解此刻感受的引导</p>
-      <ul class="moodarc-diary" id="moodarcDiaryPreview" hidden></ul>
-    </div>
-    <iframe id="moodarcFrame" title="MoodArc 歌单" src="about:blank" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe id="moodarcFrame" class="compact" title="MoodArc 歌单" src="about:blank" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </div>
 
@@ -1016,15 +1008,13 @@ function setPlaylistStep(n){
   [1,2,3].forEach(i=>{
     const el=$('plStep'+i);
     if(el)el.classList.toggle('active',i===n);
-    const dot=document.querySelector('#wizardSteps span[data-step="'+i+'"]');
-    if(dot)dot.classList.toggle('on',i<=n);
   });
   const prev=$('plPrevBtn'),next=$('plNextBtn');
   if(prev)prev.style.visibility=n===1?'hidden':'visible';
   if(next){
-    next.textContent=n===3?'去晚间心书 →':n===2?'生成今日歌单 →':'下一步 →';
+    next.textContent=n===3?'去晚间心书 →':'下一步 →';
   }
-  if(n===2)renderInlineDiary();
+  if(n===2){setupMoodInputs();renderInlineDiary();}
   if(n===3){renderGuidanceBanner();syncMoodArcFrame();saveBeforeJourney();}
 }
 
@@ -1060,7 +1050,7 @@ function setupMoodInputs(){
   $('mpSad1').value=m.sad[0]||'';$('mpSad2').value=m.sad[1]||'';
   [['mpHappy1','happy',0],['mpHappy2','happy',1],['mpSad1','sad',0],['mpSad2','sad',1]].forEach(([id,key,idx])=>{
     const el=$(id);if(!el)return;
-    el.oninput=e=>{state.mood[key][idx]=e.target.value;save();};
+    el.oninput=e=>{state.mood[key][idx]=e.target.value;save();if(playlistStep===2)renderInlineDiary();};
   });
   const tw=$('suggestTags');if(tw){tw.innerHTML='';
   const usedSads=[m.sad[0]||'',m.sad[1]||''].filter(s=>s.trim());
@@ -2312,7 +2302,7 @@ window.addEventListener('hashchange',()=>{
     const frame = document.getElementById("moodarcFrame");
     if (!frame) return;
     const m = state.mood || {};
-    const params = new URLSearchParams({ embed: "1" });
+    const params = new URLSearchParams({ embed: "1", compact: "1" });
     const mood = moodFromState();
     if (mood) params.set("mood", mood);
     if (m.intensity) params.set("intensity", String(m.intensity));
@@ -2325,7 +2315,7 @@ window.addEventListener('hashchange',()=>{
     if (happy.length) params.set("happy", happy.join("|"));
     if (sad.length) params.set("sad", sad.join("|"));
     if (tags.length) params.set("tags", tags.join("|"));
-    updateDiaryPreview(diaryLinesFromState());
+    frame.classList.add("compact");
     frame.src = MOODARC_BASE + "?" + params.toString();
   }
 

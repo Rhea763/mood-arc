@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import type { MoodRecord } from "@/types/emotion";
-import { getEmotionLabel, playlistThemeName } from "@/lib/emotion-catalog";
+import {
+  getEmotionLabelZh,
+  playlistThemeName,
+} from "@/lib/emotion-catalog";
+import { getRegulationGoalLabel } from "@/lib/context-catalog";
+import type { EmotionId, IntentionId } from "@/types/emotion";
+import type { RegulationGoalId } from "@/types/music";
 
 function intensityBar(intensity: number): string {
   const filled = Math.round(intensity);
@@ -11,6 +17,7 @@ function intensityBar(intensity: number): string {
 
 interface DailyMoodCardProps {
   record: MoodRecord | null;
+  currentMood?: string | null;
   currentEmotion?: string | null;
   currentIntensity?: number;
   currentIntention?: string | null;
@@ -19,44 +26,64 @@ interface DailyMoodCardProps {
 
 export function DailyMoodCard({
   record,
+  currentMood,
   currentEmotion,
   currentIntensity = 5,
   currentIntention,
   onScrollToForm,
 }: DailyMoodCardProps) {
+  const moodLabel = record?.moodId ?? currentMood;
   const emotion = record?.emotion ?? currentEmotion;
   const intensity = record?.intensity ?? currentIntensity;
   const intention = record?.intention ?? currentIntention;
+  const regulationGoal = record?.regulationGoal as RegulationGoalId | undefined;
+
+  const hasSelection = Boolean(moodLabel || emotion);
 
   return (
     <section className="rounded-xl border border-stone-200 bg-gradient-to-br from-white to-stone-50 p-5 shadow-sm">
-      <p className="text-xs font-medium uppercase tracking-wide text-stone-400">
-        How are you feeling today?
+      <p className="text-xs font-medium tracking-wide text-stone-400">
+        今天的心绪
       </p>
-      <p className="mt-1 text-sm text-stone-500">今天的心绪</p>
 
-      {emotion ? (
+      {hasSelection ? (
         <div className="mt-4 space-y-3">
+          {moodLabel && (
+            <div>
+              <p className="text-xs text-stone-500">今天的心情</p>
+              <p className="text-lg font-medium text-stone-800">{moodLabel}</p>
+            </div>
+          )}
+          {emotion && (
+            <div>
+              <p className="text-xs text-stone-500">情绪细项</p>
+              <p className="text-sm text-stone-700">
+                {getEmotionLabelZh(emotion as EmotionId)}
+              </p>
+            </div>
+          )}
           <div>
-            <p className="text-xs text-stone-500">Today&apos;s mood</p>
-            <p className="text-lg font-medium text-stone-800">
-              {getEmotionLabel(emotion as import("@/types/emotion").EmotionId)}
-            </p>
-          </div>
-          <div>
-            <p className="text-xs text-stone-500">Intensity</p>
+            <p className="text-xs text-stone-500">情绪强度</p>
             <p className="font-mono text-sm text-stone-700">
               {intensityBar(intensity)} {intensity}/10
             </p>
           </div>
-          {intention && (
+          {regulationGoal && (
             <div>
-              <p className="text-xs text-stone-500">Recommended playlist</p>
+              <p className="text-xs text-stone-500">调节目标</p>
+              <p className="text-sm text-stone-700">
+                {getRegulationGoalLabel(regulationGoal)}
+              </p>
+            </div>
+          )}
+          {emotion && intention && !regulationGoal && (
+            <div>
+              <p className="text-xs text-stone-500">推荐歌单主题</p>
               <p className="text-sm text-stone-700 italic">
                 &ldquo;
                 {playlistThemeName(
-                  emotion as import("@/types/emotion").EmotionId,
-                  intention as import("@/types/emotion").IntentionId
+                  emotion as EmotionId,
+                  intention as IntentionId
                 )}
                 &rdquo;
               </p>
@@ -68,20 +95,20 @@ export function DailyMoodCard({
               onClick={onScrollToForm}
               className="rounded-full border border-stone-300 bg-white px-4 py-1.5 text-sm text-stone-700 hover:border-stone-400"
             >
-              更新心情 / Update
+              更新心情
             </button>
             <Link
               href="/journey"
               className="rounded-full border border-stone-200 px-4 py-1.5 text-sm text-stone-600 hover:border-stone-300"
             >
-              情绪轨迹 / Journey
+              情绪轨迹
             </Link>
           </div>
         </div>
       ) : (
         <div className="mt-4">
           <p className="text-sm text-stone-600">
-            还没有记录今天的心情。选一种情绪，我们会为你匹配歌单。
+            还没有记录今天的心情。选一种心情，我们会为你匹配歌单。
           </p>
           <button
             type="button"
