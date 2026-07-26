@@ -96,10 +96,13 @@ export async function generateYouTubePlaylist(
 export function youtubeErrorMessage(err: unknown): string | null {
   if (err instanceof YouTubeApiError) {
     if (err.status === 401) return "Google 登录已过期";
+    if (err.status === 429) return err.message || "YouTube API 配额用尽";
     if (err.status === 403) {
+      if (err.reason === "quotaExceeded" || err.reason === "dailyLimitExceeded") {
+        return "YouTube API 配额用尽";
+      }
       return "YouTube API 403（权限或配额）";
     }
-    if (err.status === 429) return "YouTube API 配额用尽";
   }
   if (err instanceof YouTubePlaylistEmptyError) {
     return "YouTube 上未找到对应曲目";
@@ -107,6 +110,6 @@ export function youtubeErrorMessage(err: unknown): string | null {
   return null;
 }
 
-export function shouldEmbedFallbackToNetease(err: unknown): boolean {
+export function shouldFallbackToNetease(err: unknown): boolean {
   return youtubeErrorMessage(err) !== null;
 }

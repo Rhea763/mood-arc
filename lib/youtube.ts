@@ -4,11 +4,49 @@ const YOUTUBE_API = "https://www.googleapis.com/youtube/v3";
 
 export class YouTubeApiError extends Error {
   status: number;
+  reason?: string;
 
-  constructor(status: number, message: string) {
+  constructor(status: number, message: string, reason?: string) {
     super(message);
     this.status = status;
     this.name = "YouTubeApiError";
+    this.reason = reason;
+  }
+}
+
+function parseYouTubeErrorBody(
+  status: number,
+  body: string
+): { status: number; message: string; reason?: string } {
+  try {
+    const json = JSON.parse(body) as {
+      error?: { message?: string; errors?: Array<{ reason?: string }> };
+    };
+    const reason = json.error?.errors?.[0]?.reason;
+    const message = json.error?.message ?? body;
+
+    if (
+      reason === "quotaExceeded" ||
+      reason === "dailyLimitExceeded" ||
+      reason === "userRateLimitExceeded"
+    ) {
+      return {
+        status: 429,
+        message: "YouTube API 配额用尽（默认约 1 万 units/天）",
+        reason,
+      };
+    }
+
+    return { status, message, reason };
+  } catch {
+    if (/quota|Quota exceeded/i.test(body)) {
+      return {
+        status: 429,
+        message: "YouTube API 配额用尽（默认约 1 万 units/天）",
+        reason: "quotaExceeded",
+      };
+    }
+    return { status, message: body || `YouTube API error ${status}` };
   }
 }
 
@@ -30,10 +68,8 @@ async function youtubeFetch<T>(
 
   if (!res.ok) {
     const body = await res.text();
-    throw new YouTubeApiError(
-      res.status,
-      body || `YouTube API error ${res.status}`
-    );
+    const parsed = parseYouTubeErrorBody(res.status, body);
+    throw new YouTubeApiError(parsed.status, parsed.message, parsed.reason);
   }
 
   return res.json() as Promise<T>;

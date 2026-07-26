@@ -89,7 +89,8 @@
   .moodarc-head h2{font-size:20px;margin-bottom:6px}
   .moodarc-sub{font-size:13px;color:var(--ink-soft);line-height:1.5}
   #moodarcFrame{display:block;width:100%;min-height:720px;border:0;background:#fff5f4}
-  @media(max-width:640px){#moodarcFrame{min-height:680px}}
+  .moodarc-diary{font-size:12px;color:var(--ink-soft);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-soft)}
+  .moodarc-diary li{margin:2px 0;list-style:none}
 
 
   /* ===== 日历页 ===== */
@@ -386,6 +387,7 @@
       <p class="moodarc-kicker">🎵 MoodArc</p>
       <h2>心情歌单生成</h2>
       <p class="moodarc-sub">根据你在「记录心情」里写的内容，生成带弧线打分的专属歌单</p>
+      <ul class="moodarc-diary" id="moodarcDiaryPreview" hidden></ul>
     </div>
     <iframe id="moodarcFrame" title="MoodArc 歌单" src="https://mood-arc.vercel.app/embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
@@ -1744,20 +1746,55 @@ window.addEventListener('hashchange',()=>{
     return (found.length ? found : ["说不清"]).join(",");
   }
 
+  function diaryLinesFromState() {
+    const m = state.mood || {};
+    const lines = [];
+    for (const h of m.happy || []) {
+      if (h && h.trim()) lines.push("😊 " + h.trim());
+    }
+    for (const s of m.sad || []) {
+      if (s && s.trim()) lines.push("😔 " + s.trim());
+    }
+    return lines;
+  }
+
+  function updateDiaryPreview(lines) {
+    const el = document.getElementById("moodarcDiaryPreview");
+    if (!el) return;
+    if (!lines.length) {
+      el.hidden = true;
+      el.innerHTML = "";
+      return;
+    }
+    el.hidden = false;
+    el.innerHTML = lines.map(function(l) {
+      return "<li>" + l.replace(/</g, "&lt;") + "</li>";
+    }).join("");
+  }
+
   function syncMoodArcFrame() {
     const frame = document.getElementById("moodarcFrame");
     if (!frame) return;
+    const m = state.mood || {};
     const params = new URLSearchParams({ embed: "1" });
     const mood = moodFromState();
     if (mood) params.set("mood", mood);
     const causes = causesFromState();
     if (causes) params.set("causes", causes);
+    const happy = (m.happy || []).filter(function(x) { return x && x.trim(); });
+    const sad = (m.sad || []).filter(function(x) { return x && x.trim(); });
+    const tags = m.tags || [];
+    if (happy.length) params.set("happy", happy.join("|"));
+    if (sad.length) params.set("sad", sad.join("|"));
+    if (tags.length) params.set("tags", tags.join("|"));
+    updateDiaryPreview(diaryLinesFromState());
     frame.src = MOODARC_BASE + "?" + params.toString();
   }
 
   const _goPage = window.goPage;
   window.goPage = function(name) {
     if (name === "playlist") syncMoodArcFrame();
+    if (name === "mood") updateDiaryPreview(diaryLinesFromState());
     return _goPage(name);
   };
 

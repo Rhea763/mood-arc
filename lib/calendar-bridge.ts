@@ -61,5 +61,24 @@ export function buildEmbedSearchParams(
   if (mood) params.set("mood", mood);
   const causes = causesFromCalendarPayload(payload);
   if (causes.length) params.set("causes", causes.join(","));
+
+  const happy = (payload.happy ?? []).filter(Boolean);
+  const sad = (payload.sad ?? []).filter(Boolean);
+  const tags = (payload.tags ?? []).filter(Boolean);
+  if (happy.length) params.set("happy", happy.join("|"));
+  if (sad.length) params.set("sad", sad.join("|"));
+  if (tags.length) params.set("tags", tags.join("|"));
+
   return params;
+}
+
+export function diarySnippetFromPayload(payload: CalendarMoodPayload): string[] {
+  const lines: string[] = [];
+  for (const h of payload.happy ?? []) {
+    if (h?.trim()) lines.push(`😊 ${h.trim()}`);
+  }
+  for (const s of payload.sad ?? []) {
+    if (s?.trim()) lines.push(`😔 ${s.trim()}`);
+  }
+  return lines;
 }

@@ -11,11 +11,8 @@ import {
 import { isValidPlaylistLength } from "@/lib/regulation-goals";
 import {
   generateYouTubePlaylist,
-  shouldEmbedFallbackToNetease,
-  YouTubePlaylistEmptyError,
   youtubeErrorMessage,
 } from "@/lib/youtube-playlist-generate";
-import { YouTubeApiError } from "@/lib/youtube";
 import type {
   GenerateRequest,
   GenerateResponse,
@@ -52,6 +49,45 @@ function neteaseFallback(
     ),
     fallbackReason: reason,
   };
+}
+
+/** YouTube 失败时统一 fallback 网易云（弧线打分不变） */
+async function generateYouTubeOrNetease(
+  accessToken: string | null,
+  params: GenerateParams,
+  opts: { requireLogin: boolean }
+): Promise<NextResponse> {
+  if (!accessToken) {
+    if (opts.requireLogin) {
+      return NextResponse.json({ error: "请先登录" }, { status: 401 });
+    }
+    await new Promise((r) => setTimeout(r, 400));
+    return NextResponse.json(
+      neteaseFallback(
+        params,
+        "未登录 Google，已改用网易云试听（弧线打分不变）"
+      )
+    );
+  }
+
+  try {
+    const response = await generateYouTubePlaylist(accessToken, params);
+    return NextResponse.json(response);
+  } catch (err) {
+    const detail = youtubeErrorMessage(err);
+    if (detail) {
+      console.warn("YouTube fallback to Netease:", detail, err);
+      await new Promise((r) => setTimeout(r, 400));
+      return NextResponse.json(
+        neteaseFallback(params, `${detail}，已改用网易云试听`)
+      );
+    }
+    console.error("generate error:", err);
+    await new Promise((r) => setTimeout(r, 400));
+    return NextResponse.json(
+      neteaseFallback(params, "YouTube 生成异常，已改用网易云试听")
+    );
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -107,86 +143,22 @@ export async function POST(req: NextRequest) {
 
   if (isMockMode()) {
     await new Promise((r) => setTimeout(r, 600));
-    return NextResponse.json(getMockGenerate(
-      mood,
-      causes,
-      selectedChannelNames,
-      regulationGoal,
-      playlistLength,
-      scenario
-    ));
+    return NextResponse.json(
+      getMockGenerate(
+        mood,
+        causes,
+        selectedChannelNames,
+        regulationGoal,
+        playlistLength,
+        scenario
+      )
+    );
   }
 
   const accessToken = await requireAccessToken();
 
-  if (embedMode) {
-    if (!accessToken) {
-      await new Promise((r) => setTimeout(r, 400));
-      return NextResponse.json(
-        neteaseFallback(
-          params,
-          "未登录 Google，已改用网易云试听（弧线打分不变）"
-        )
-      );
-    }
-
-    try {
-      const response = await generateYouTubePlaylist(accessToken, params);
-      return NextResponse.json(response);
-    } catch (err) {
-      if (shouldEmbedFallbackToNetease(err)) {
-        const detail = youtubeErrorMessage(err) ?? "YouTube 生成失败";
-        console.warn("embed YouTube fallback:", detail, err);
-        await new Promise((r) => setTimeout(r, 400));
-        return NextResponse.json(
-          neteaseFallback(params, `${detail}，已改用网易云试听`)
-        );
-      }
-      console.error("embed generate error:", err);
-      return NextResponse.json(
-        neteaseFallback(params, "YouTube 异常，已改用网易云试听")
-      );
-    }
-  }
-
-  if (!accessToken) {
-    return NextResponse.json({ error: "请先登录" }, { status: 401 });
-  }
-
-  try {
-    const response = await generateYouTubePlaylist(accessToken, params);
-    return NextResponse.json(response);
-  } catch (err) {
-    if (err instanceof YouTubePlaylistEmptyError) {
-      return NextResponse.json({ error: err.message }, { status: 404 });
-    }
-    if (err instanceof YouTubeApiError) {
-      if (err.status === 401) {
-        return NextResponse.json(
-          { error: "登录已过期，请重新登录" },
-          { status: 401 }
-        );
-      }
-      if (err.status === 403) {
-        return NextResponse.json(
-          {
-            error:
-              "YouTube API 403：检查 API 是否启用、OAuth scope 是否包含 youtube、或当日配额是否用尽",
-          },
-          { status: 403 }
-        );
-      }
-      if (err.status === 429) {
-        return NextResponse.json(
-          { error: "YouTube API 配额用尽，明天再试或申请提额" },
-          { status: 429 }
-        );
-      }
-    }
-    console.error("generate error:", err);
-    return NextResponse.json(
-      { error: "生成播放列表失败，请稍后重试" },
-      { status: 500 }
-    );
-  }
+  // 主站 + 嵌入页：YouTube 优先，配额/登录/搜索失败 → 网易云备选
+  return generateYouTubeOrNetease(accessToken, params, {
+    requireLogin: !embedMode && !accessToken,
+  });
 }

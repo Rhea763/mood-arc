@@ -32,6 +32,7 @@ import {
 } from "@/lib/demo-mode";
 import {
   causesFromCalendarPayload,
+  diarySnippetFromPayload,
   moodFromCalendarPayload,
 } from "@/lib/calendar-bridge";
 import { EMBED_FETCH_HEADERS } from "@/lib/embed-mode";
@@ -83,6 +84,7 @@ function MoodArcHome() {
   const [generating, setGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string | null>(null);
   const [result, setResult] = useState<GenerateResponse | null>(null);
+  const [calendarDiary, setCalendarDiary] = useState<string[]>([]);
 
   const availableGoals = mood ? getGoalsForMood(mood) : [];
 
@@ -208,6 +210,8 @@ function MoodArcHome() {
       if (mappedCauses.length) {
         setCauses(new Set(mappedCauses));
       }
+      const diary = diarySnippetFromPayload(payload);
+      if (diary.length) setCalendarDiary(diary);
     };
 
     queueMicrotask(() => {
@@ -427,9 +431,11 @@ function MoodArcHome() {
             <p className="mt-2 text-xs text-amber-700">
               {isEmbed && !mockMode
                 ? status === "authenticated"
-                  ? "心绪日历 · 优先生成 YouTube 歌单"
-                  : "心绪日历 · 登录后生成 YouTube 歌单，否则网易云试听"
-                : "演示模式 · 模拟数据"}
+                  ? "心绪日历 · 优先生成 YouTube 歌单，失败自动网易云"
+                  : "心绪日历 · 登录后走 YouTube，否则自动网易云试听"
+                : !mockMode
+                  ? "YouTube 优先 · 配额或失败时自动网易云备选"
+                  : "演示模式 · 模拟数据"}
             </p>
           )}
         </div>
@@ -475,6 +481,19 @@ function MoodArcHome() {
           </button>
         )}
       </header>
+
+      {calendarDiary.length > 0 && isEmbed && (
+        <div className="mb-6 rounded-xl border border-[#E8C4C4] bg-[#FFF9F8] p-4">
+          <p className="text-xs font-medium text-[#B53C4A] mb-2">
+            来自今日心情日记
+          </p>
+          <ul className="space-y-1 text-sm text-[#4A2E3B]">
+            {calendarDiary.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {session?.error === "RefreshAccessTokenError" && !mockMode && (
         <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
@@ -768,7 +787,9 @@ function MoodArcHome() {
                   rel="noopener noreferrer"
                   className="block w-full rounded-full bg-[#E60026] py-3 text-center text-base font-medium text-white transition hover:bg-[#c40020]"
                 >
-                  在网易云音乐中打开
+                  {result.fallbackReason
+                    ? "YouTube 不可用 · 在网易云搜索歌单"
+                    : "在网易云音乐中打开"}
                 </a>
               ) : (
                 <a
