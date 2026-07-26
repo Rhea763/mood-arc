@@ -178,11 +178,6 @@ export function DemoAudioPlayerProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  useEffect(() => {
-    document.body.classList.toggle("has-global-demo-player", active);
-    return () => document.body.classList.remove("has-global-demo-player");
-  }, [active]);
-
   const value = useMemo<DemoAudioPlayerState>(
     () => ({
       active,

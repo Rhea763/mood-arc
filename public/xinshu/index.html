@@ -83,24 +83,25 @@
   .btn-demo-play{width:100%;border:none;background:var(--accent);color:#fff;font-size:15px;font-weight:600;padding:15px;border-radius:14px;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(181,60,74,.24)}
   .btn-demo-play:active{transform:scale(.98)}
 
-  /* ===== 心书全站示例播放器 ===== */
-  .xinshu-demo-player{position:fixed;inset:auto 0 0 0;z-index:90;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -8px 28px rgba(74,46,59,.08);display:none;padding:12px 16px 16px}
-  .xinshu-demo-player.active{display:block}
-  body.has-xinshu-demo-player{padding-bottom:9.5rem}
-  body.has-xinshu-demo-player .page-nav{bottom:9rem}
-  .xdp-inner{max-width:680px;margin:0 auto}
-  .xdp-row{display:flex;align-items:center;gap:12px}
-  .xdp-cover{width:52px;height:52px;border-radius:10px;object-fit:cover;background:var(--line-soft);flex-shrink:0}
-  .xdp-meta{flex:1;min-width:0}
-  .xdp-meta .kicker{font-size:11px;color:var(--ink-soft);font-weight:600}
-  .xdp-meta .title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* ===== 心书全站示例播放器（右上角迷你） ===== */
+  .xinshu-demo-player{position:fixed;top:16px;right:16px;z-index:90;display:none;flex-direction:column;align-items:flex-end;gap:8px}
+  .xinshu-demo-player.active{display:flex}
+  .xdp-panel{width:256px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 8px 28px rgba(74,46,59,.12);display:none}
+  .xinshu-demo-player.expanded .xdp-panel{display:block}
+  .xdp-meta .kicker{font-size:10px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .xdp-meta .title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
   .xdp-meta .artist{font-size:12px;color:var(--ink-soft)}
-  .xdp-controls{display:flex;align-items:center;gap:4px;flex-shrink:0}
-  .xdp-btn{border:none;background:transparent;cursor:pointer;padding:8px;border-radius:50%;color:var(--ink-mid);font-family:inherit}
-  .xdp-btn.main{background:var(--ink);color:#fff;padding:10px}
-  .xdp-lyric{text-align:center;font-size:13px;color:var(--ink-mid);margin:8px 0 6px;min-height:1.25em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .xdp-lyric{text-align:center;font-size:12px;color:var(--ink-mid);margin:8px 0 6px;min-height:1.25em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .xdp-progress{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
   .xdp-progress input[type=range]{flex:1;accent-color:var(--accent)}
+  .xdp-controls{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+  .xdp-btn{border:none;background:transparent;cursor:pointer;padding:6px;border-radius:50%;color:var(--ink-mid);font-family:inherit;font-size:16px}
+  .xdp-btn.main{background:var(--ink);color:#fff;padding:8px 10px}
+  .xdp-mini{position:relative;width:80px;height:80px;border-radius:12px;overflow:visible;box-shadow:0 4px 16px rgba(74,46,59,.15);flex-shrink:0}
+  .xdp-mini .xdp-cover{width:100%;height:100%;border-radius:12px;object-fit:cover;display:block;background:var(--line-soft)}
+  .xdp-mini-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.18);color:#fff;font-size:18px;border:none;border-radius:12px;cursor:pointer;font-family:inherit}
+  .xdp-mini-expand{position:absolute;inset:0;border:none;background:transparent;cursor:pointer;border-radius:12px}
+  .xdp-mini-close{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;z-index:1}
 
   /* 页面底部翻页导航 */
   .page-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;padding:16px 20px 28px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.92) 38%,rgba(255,255,255,1) 70%);gap:12px}
@@ -427,7 +428,7 @@
   <div class="home-hero">
     <span class="hlogo">🍃</span>
     <h1>心绪日历</h1>
-    <p class="htag">帮助理解、表达、陪伴自己情绪的音乐日记</p>
+    <p class="htag">写下今天的计划，记下此刻的心情，戴上耳机听首歌，然后——变好一点点。</p>
   </div>
   <div class="home-cards">
     <div class="hcard" onclick="goPage('playlist')" style="border-color:transparent">
@@ -638,7 +639,6 @@
 <div class="dock" id="dockEve">
   <button class="btn-big" style="background:var(--card);color:var(--ink-mid);border:1px solid var(--line)" onclick="goPage('playlist')">← 心情歌单</button>
   <button class="btn-big btn-vent" id="btnVent">🌙 睡前发泄</button>
-  <button class="btn-big btn-reflect" id="btnReflect">今日梳理</button>
 </div>
 </div>
 
@@ -695,20 +695,11 @@
 <div class="toast" id="toast"></div>
 
 <div class="xinshu-demo-player" id="xinshuDemoPlayer" aria-label="完整版示例播放器">
-  <div class="xdp-inner">
-    <div class="xdp-row">
-      <img class="xdp-cover" id="xdpCover" src="" alt="">
-      <div class="xdp-meta">
-        <div class="kicker" id="xdpKicker">完整版示例 · 心绪弧线</div>
-        <div class="title" id="xdpTitle">—</div>
-        <div class="artist" id="xdpArtist">—</div>
-      </div>
-      <div class="xdp-controls">
-        <button type="button" class="xdp-btn" id="xdpPrev" aria-label="上一首">⏮</button>
-        <button type="button" class="xdp-btn main" id="xdpToggle" aria-label="播放">▶</button>
-        <button type="button" class="xdp-btn" id="xdpNext" aria-label="下一首">⏭</button>
-        <button type="button" class="xdp-btn" id="xdpClose" aria-label="关闭">✕</button>
-      </div>
+  <div class="xdp-panel" id="xdpPanel">
+    <div class="xdp-meta">
+      <div class="kicker" id="xdpKicker">完整版示例 · 心绪弧线</div>
+      <div class="title" id="xdpTitle">—</div>
+      <div class="artist" id="xdpArtist">—</div>
     </div>
     <div class="xdp-lyric" id="xdpLyric">…</div>
     <div class="xdp-progress">
@@ -716,6 +707,17 @@
       <input type="range" id="xdpSeek" min="0" max="100" step="0.1" value="0" aria-label="播放进度">
       <span id="xdpTimeDur">0:00</span>
     </div>
+    <div class="xdp-controls">
+      <button type="button" class="xdp-btn" id="xdpPrev" aria-label="上一首">⏮</button>
+      <button type="button" class="xdp-btn main" id="xdpTogglePanel" aria-label="播放">▶</button>
+      <button type="button" class="xdp-btn" id="xdpNext" aria-label="下一首">⏭</button>
+    </div>
+  </div>
+  <div class="xdp-mini" id="xdpMini">
+    <img class="xdp-cover" id="xdpCover" src="" alt="">
+    <button type="button" class="xdp-mini-expand" id="xdpExpand" aria-label="展开播放器详情"></button>
+    <button type="button" class="xdp-mini-play" id="xdpToggle" aria-label="播放">▶</button>
+    <button type="button" class="xdp-mini-close" id="xdpClose" aria-label="关闭">✕</button>
   </div>
 </div>
 <audio id="xinshuDemoAudio" preload="metadata" style="display:none"></audio>
@@ -884,8 +886,15 @@ function getDemoAudio(){
 function setDemoPlayerVisible(on){
   demoPlayerActive=on;
   const bar=$('xinshuDemoPlayer');
-  if(bar)bar.classList.toggle('active',on);
-  document.body.classList.toggle('has-xinshu-demo-player',on);
+  if(bar){
+    bar.classList.toggle('active',on);
+    if(!on)bar.classList.remove('expanded');
+  }
+}
+
+function toggleDemoPlayerExpanded(){
+  const bar=$('xinshuDemoPlayer');
+  if(bar&&demoPlayerActive)bar.classList.toggle('expanded');
 }
 
 function updateDemoPlayerUI(){
@@ -904,6 +913,7 @@ function updateDemoPlayerUI(){
     $('xdpSeek').value=String(audio.currentTime);
   }
   $('xdpToggle').textContent=audio&&!audio.paused?'⏸':'▶';
+  $('xdpTogglePanel').textContent=audio&&!audio.paused?'⏸':'▶';
   document.querySelectorAll('.demo-track').forEach(function(el,i){
     el.classList.toggle('playing',i===demoTrackIndex&&demoPlayerActive&&!audio.paused);
   });
@@ -960,9 +970,19 @@ function setupDemoPlayerEvents(){
   audio.addEventListener('ended',function(){
     loadDemoTrack((demoTrackIndex+1)%FULL_DEMO_PLAYLIST.length,true);
   });
-  $('xdpToggle').onclick=function(){
+  $('xdpToggle').onclick=function(e){
+    e.stopPropagation();
     if(!demoPlayerActive){loadDemoTrack(0,true);return;}
     if(audio.paused)audio.play();else audio.pause();
+  };
+  $('xdpTogglePanel').onclick=function(){
+    if(!demoPlayerActive){loadDemoTrack(0,true);return;}
+    if(audio.paused)audio.play();else audio.pause();
+  };
+  $('xdpExpand').onclick=function(){toggleDemoPlayerExpanded();};
+  $('xdpMini').onclick=function(e){
+    if(e.target.id==='xdpClose'||e.target.id==='xdpToggle')return;
+    toggleDemoPlayerExpanded();
   };
   $('xdpPrev').onclick=function(){
     if(!demoPlayerActive){loadDemoTrack(0,true);return;}
@@ -1688,13 +1708,8 @@ function showVentGuide(allDone){
     :'把烦心事揉成纸团扔掉，是一种对自己的温柔。\n接下来，花几分钟梳理一下今天吧。';
   $('guideBody').innerHTML=`<div class="closing"><div class="big">🌙</div><h3>睡前还有一步</h3><p>发泄完了，心轻了一些<br>现在，让我们一起回顾今天<br>给这一天画上温柔的句号</p></div>`;
   $('guideFoot').innerHTML=`
-    <button class="btn btn-ghost" id="vSkip" style="flex:1">不了，想直接睡</button>
-    <button class="btn-primary btn" id="vGoReflect" style="flex:1">去今日梳理 →</button>`;
+    <button class="btn-primary btn" id="vSkip" style="width:100%">好的，去记录听后心情</button>`;
   $('vSkip').onclick=()=>hideModal('modalReflect');
-  $('vGoReflect').onclick=()=>{
-    hideModal('modalReflect');
-    setTimeout(()=>openReflect(),300);
-  };
   showModal('modalReflect');
 }
 
@@ -1723,7 +1738,6 @@ const moodNotePh={
 const moodDecisionLabel={acknowledge:'看见',talk:'聊聊',reframe:'换角度',release:'放下',selfcare:'抱抱'};
 
 let guideState=null;
-$('btnReflect').onclick=openReflect;
 
 function generateComfort(sads,happies){
   if(!sads.length && !happies.length) return null;

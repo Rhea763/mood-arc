@@ -27,7 +27,6 @@ import {
 import { NeteasePlayer } from "@/components/netease-player";
 import { DailyMoodCard } from "@/components/daily-mood-card";
 import { EmotionIntensitySlider } from "@/components/emotion-intensity-slider";
-import { SongRecommendation } from "@/components/song-recommendation";
 import { PostListeningCheckin } from "@/components/post-listening-checkin";
 import {
   DEMO_KEY,
@@ -1030,7 +1029,7 @@ function MoodArcHome() {
                     : "border-stone-400 bg-white text-stone-800 hover:border-stone-600"
                 }`}
               >
-                {fullDemoActive ? "示例播放中 · 见底部播放器" : "加载完整版示例"}
+                {fullDemoActive ? "示例播放中 · 见右上角播放器" : "加载完整版示例"}
               </button>
             </div>
           </section>
@@ -1233,11 +1232,6 @@ function MoodArcHome() {
                                     {v.neteaseEmbedUrl && (
                                       <NeteasePlayer embedUrl={v.neteaseEmbedUrl} />
                                     )}
-                                    {(v.reason || v.emotionMatch) && (
-                                      <div className="mt-2">
-                                        <SongRecommendation video={v} />
-                                      </div>
-                                    )}
                                   </li>
                                 );
                               })}
@@ -1277,11 +1271,6 @@ function MoodArcHome() {
                           </p>
                           {v.neteaseEmbedUrl && (
                             <NeteasePlayer embedUrl={v.neteaseEmbedUrl} />
-                          )}
-                          {(v.reason || v.emotionMatch) && (
-                            <div className="mt-2">
-                              <SongRecommendation video={v} />
-                            </div>
                           )}
                         </li>
                       ))}

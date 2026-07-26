@@ -4,10 +4,6 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-body.has-global-demo-player {
-  padding-bottom: 9.5rem;
-}
-
 .embed-calendar {
   --calendar-accent: #b53c4a;
   --calendar-ink: #4a2e3b;
