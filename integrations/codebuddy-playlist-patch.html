@@ -1,0 +1,131 @@
+<!--
+  心绪日历 · 歌单页集成 MoodArc
+  =================================
+  在 CodeBuddy 项目里，找到 id="page-playlist" 区块，
+  用下方「替换 HTML」整段替换原来的 .playlist-placeholder 部分。
+  再把「追加 JS」粘贴到 </script> 结束标签之前。
+-->
+
+<!-- ===== 替换 HTML（page-playlist 内 .content-wrap 里） ===== -->
+<div class="moodarc-shell">
+  <div class="moodarc-head">
+    <p class="moodarc-kicker">🎵 MoodArc</p>
+    <h2>心情歌单生成</h2>
+    <p class="moodarc-sub">根据你在「记录心情」里写的内容，生成带弧线打分的专属歌单</p>
+  </div>
+  <iframe
+    id="moodarcFrame"
+    title="MoodArc 歌单"
+    src="https://mood-arc.vercel.app/embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
+<style>
+  .moodarc-shell {
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--line-soft);
+    overflow: hidden;
+  }
+  .moodarc-head {
+    padding: 18px 18px 12px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .moodarc-kicker {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .moodarc-head h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .moodarc-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  #moodarcFrame {
+    display: block;
+    width: 100%;
+    min-height: 720px;
+    border: 0;
+    background: #fff5f4;
+  }
+  @media (max-width: 640px) {
+    #moodarcFrame { min-height: 680px; }
+  }
+</style>
+
+<!-- ===== 追加 JS ===== -->
+<script>
+(function(){
+  const MOODARC_BASE = "https://mood-arc.vercel.app/embed";
+  const TAG_MAP = {
+    "😊 开心": "开心",
+    "😌 平静": "平静",
+    "😰 焦虑": "焦虑",
+    "😫 疲惫": "疲惫",
+    "😠 愤怒": "愤怒",
+    "😢 低落": "失落",
+    "🙏 感恩": "满足",
+    "😶 迷茫": "孤独"
+  };
+
+  function moodFromState() {
+    const m = state.mood || {};
+    for (const tag of m.tags || []) {
+      if (TAG_MAP[tag]) return TAG_MAP[tag];
+    }
+    return null;
+  }
+
+  function causesFromState() {
+    const text = []
+      .concat(state.mood?.sad || [])
+      .concat(state.mood?.happy || [])
+      .filter(Boolean)
+      .join(" ");
+    if (!text) return "";
+    const rules = [
+      [/感情|恋爱|分手|对象|喜欢|前任/, "感情"],
+      [/工作|上班|加班|老板|同事|项目/, "工作"],
+      [/学业|考试|作业|论文|学习|学校/, "学业"],
+      [/朋友|人际|社交|关系|沟通/, "人际"],
+      [/家庭|父母|家人|家里/, "家庭"],
+      [/身体|健康|生病|睡眠|累/, "健康"],
+      [/钱|经济|消费|账单/, "经济"]
+    ];
+    const found = [];
+    for (const [re, cause] of rules) {
+      if (re.test(text)) found.push(cause);
+    }
+    return (found.length ? found : ["说不清"]).join(",");
+  }
+
+  function syncMoodArcFrame() {
+    const frame = document.getElementById("moodarcFrame");
+    if (!frame) return;
+    const params = new URLSearchParams({ embed: "1" });
+    const mood = moodFromState();
+    if (mood) params.set("mood", mood);
+    const causes = causesFromState();
+    if (causes) params.set("causes", causes);
+    frame.src = MOODARC_BASE + "?" + params.toString();
+  }
+
+  const _goPage = window.goPage;
+  window.goPage = function(name) {
+    if (name === "playlist") syncMoodArcFrame();
+    return _goPage(name);
+  };
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (location.hash === "#playlist") syncMoodArcFrame();
+  });
+})();
+</script>

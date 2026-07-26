@@ -3,3 +3,50 @@
 body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
+
+.embed-calendar {
+  --calendar-accent: #b53c4a;
+  --calendar-ink: #4a2e3b;
+  --calendar-ink-soft: #9c6b7a;
+  --calendar-line: #f2d5d3;
+  --calendar-bg: #fff5f4;
+}
+
+.embed-calendar .border-stone-900,
+.embed-calendar .bg-stone-900 {
+  border-color: var(--calendar-accent) !important;
+  background-color: var(--calendar-accent) !important;
+}
+
+.embed-calendar .border-stone-300 {
+  border-color: var(--calendar-line) !important;
+}
+
+.embed-calendar .text-stone-500,
+.embed-calendar .text-stone-400 {
+  color: var(--calendar-ink-soft) !important;
+}
+
+.embed-calendar .text-stone-700,
+.embed-calendar .text-stone-800,
+.embed-calendar .text-stone-900 {
+  color: var(--calendar-ink) !important;
+}
+
+.embed-calendar .bg-stone-50 {
+  background-color: var(--calendar-bg) !important;
+}
+
+.embed-calendar .border-stone-200 {
+  border-color: var(--calendar-line) !important;
+}
+
+.embed-calendar button.rounded-full.bg-stone-900,
+.embed-calendar button.rounded-full.bg-\[\#FF0000\] {
+  background-color: var(--calendar-accent) !important;
+}
+
+.embed-calendar button.rounded-full.bg-stone-900:hover,
+.embed-calendar button.rounded-full.bg-\[\#FF0000\]:hover {
+  filter: brightness(0.92);
+}

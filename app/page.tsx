@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
 import type {
   GenerateResponse,
@@ -29,8 +30,32 @@ import {
   isBuildTimeMockDemo,
   isLocalDevHost,
 } from "@/lib/demo-mode";
+import {
+  causesFromCalendarPayload,
+  moodFromCalendarPayload,
+} from "@/lib/calendar-bridge";
+import { MOODS } from "@/lib/context-catalog";
+
+const VALID_MOODS = new Set<string>(MOODS);
 
 export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex flex-1 items-center justify-center p-6">
+          <p className="text-stone-500">加载中…</p>
+        </main>
+      }
+    >
+      <MoodArcHome />
+    </Suspense>
+  );
+}
+
+function MoodArcHome() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const isEmbed = pathname === "/embed" || searchParams.get("embed") === "1";
   const { status } = useSession();
   const buildTimeMock = isBuildTimeMockDemo();
   const [mockMode, setMockMode] = useState<boolean | null>(null);
@@ -134,14 +159,65 @@ export default function Home() {
     queueMicrotask(() => {
       const stored = localStorage.getItem(DEMO_KEY);
       const onPublicHost = !isLocalDevHost();
-      if (stored === "1" || (onPublicHost && stored === null)) {
+      if (isEmbed || stored === "1" || (onPublicHost && stored === null)) {
         setDemoActive(true);
-        if (onPublicHost) {
+        if (onPublicHost || isEmbed) {
           localStorage.setItem(DEMO_KEY, "1");
         }
       }
     });
-  }, [mockMode]);
+  }, [mockMode, isEmbed]);
+
+  useEffect(() => {
+    if (!isEmbed) return;
+
+    const applyCalendarPayload = (payload: {
+      mood?: string | null;
+      tags?: string[];
+      happy?: string[];
+      sad?: string[];
+    }) => {
+      const mappedMood = moodFromCalendarPayload(payload);
+      if (mappedMood && VALID_MOODS.has(mappedMood)) {
+        setMood(mappedMood);
+      }
+      const mappedCauses = causesFromCalendarPayload(payload);
+      if (mappedCauses.length) {
+        setCauses(new Set(mappedCauses));
+      }
+    };
+
+    queueMicrotask(() => {
+      const urlMood = searchParams.get("mood");
+      if (urlMood && VALID_MOODS.has(urlMood)) {
+        setMood(urlMood);
+      }
+      const urlCauses = searchParams.get("causes");
+      if (urlCauses) {
+        setCauses(
+          new Set(
+            urlCauses
+              .split(",")
+              .map((c) => c.trim())
+              .filter(Boolean)
+          )
+        );
+      } else {
+        applyCalendarPayload({
+          tags: searchParams.get("tags")?.split("|").filter(Boolean),
+          happy: searchParams.get("happy")?.split("|").filter(Boolean),
+          sad: searchParams.get("sad")?.split("|").filter(Boolean),
+        });
+      }
+    });
+
+    const onMessage = (event: MessageEvent) => {
+      if (event.data?.type !== "xinshu-calendar-mood") return;
+      applyCalendarPayload(event.data.payload ?? {});
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [isEmbed, searchParams]);
 
   useEffect(() => {
     if (!inApp) return;
@@ -229,19 +305,23 @@ export default function Home() {
 
   if (mockMode === null || (!mockMode && status === "loading")) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="text-stone-500">加载中…</p>
+      <main className={`flex flex-1 items-center justify-center p-6 ${isEmbed ? "embed-calendar" : ""}`}>
+        <p className={isEmbed ? "text-[#9C6B7A]" : "text-stone-500"}>加载中…</p>
       </main>
     );
   }
 
   if (!inApp) {
     return (
-      <main className="flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center">
+      <main className={`flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center ${isEmbed ? "embed-calendar" : ""}`}>
         <div className="max-w-md space-y-3">
-          <h1 className="text-4xl font-semibold tracking-tight">MoodArc</h1>
-          <p className="text-stone-600">
-            说清楚心情和处境，按你的口味生成一份此刻真正需要的歌单。
+          <h1 className={`text-4xl font-semibold tracking-tight ${isEmbed ? "text-[#4A2E3B]" : ""}`}>
+            {isEmbed ? "心绪歌单" : "MoodArc"}
+          </h1>
+          <p className={isEmbed ? "text-[#9C6B7A]" : "text-stone-600"}>
+            {isEmbed
+              ? "根据今天的心情，生成一份带弧线打分的专属歌单。"
+              : "说清楚心情和处境，按你的口味生成一份此刻真正需要的歌单。"}
           </p>
           {mockMode && (
             <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
@@ -260,9 +340,13 @@ export default function Home() {
           <button
             type="button"
             onClick={enterDemo}
-            className="rounded-full bg-stone-900 px-8 py-3 text-base font-medium text-white transition hover:bg-stone-700"
+            className={`rounded-full px-8 py-3 text-base font-medium text-white transition ${
+              isEmbed
+                ? "bg-[#B53C4A] hover:bg-[#9a3340]"
+                : "bg-stone-900 hover:bg-stone-700"
+            }`}
           >
-            进入演示
+            {isEmbed ? "开始生成歌单" : "进入演示"}
           </button>
         ) : (
           <div className="space-y-3">
@@ -297,10 +381,16 @@ export default function Home() {
     : [];
 
   return (
-    <main className="mx-auto w-full max-w-lg flex-1 p-5 pb-10">
+    <main
+      className={`mx-auto w-full max-w-lg flex-1 p-5 pb-10 ${
+        isEmbed ? "embed-calendar" : ""
+      }`}
+    >
       <header className="mb-8 flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">MoodArc</h1>
+          <h1 className={`text-2xl font-semibold tracking-tight ${isEmbed ? "text-[#4A2E3B]" : ""}`}>
+            {isEmbed ? "心绪歌单" : "MoodArc"}
+          </h1>
           {taste && (
             <p className="mt-1 text-sm text-stone-500">
               你好，{taste.user.name}
