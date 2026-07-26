@@ -9,6 +9,8 @@ import {
   neteaseTrackEmbedUrl,
   neteaseTrackPlayUrl,
   neteasePlaylistSearchUrl,
+  qqPlaylistSearchUrl,
+  qqTrackSearchUrl,
 } from "@/lib/play-links";
 import { buildSequencedPlaylist } from "@/lib/generate-playlist";
 
@@ -55,6 +57,7 @@ export function getMockGenerate(
     url: neteaseTrackPlayUrl(track.artist, track.title),
     neteaseSongId: songId ?? undefined,
     neteaseEmbedUrl: songId ? neteaseTrackEmbedUrl(songId) : undefined,
+    qqUrl: qqTrackSearchUrl(track.artist, track.title),
     phase: track.phase,
     phaseLabel: track.phaseLabel,
     energy: track.energy,
@@ -72,6 +75,7 @@ export function getMockGenerate(
     playlistId: "mock-demo-playlist",
     playlistName,
     playlistUrl: neteasePlaylistSearchUrl(playlistName),
+    qqPlaylistUrl: qqPlaylistSearchUrl(playlistName),
     videos,
     mock: true,
     scenario,

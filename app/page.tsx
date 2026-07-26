@@ -781,25 +781,49 @@ function MoodArcHome() {
               </div>
 
               {result.mock ? (
-                <a
-                  href={result.playlistUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full rounded-full bg-[#E60026] py-3 text-center text-base font-medium text-white transition hover:bg-[#c40020]"
-                >
-                  {result.fallbackReason
-                    ? "YouTube 不可用 · 在网易云搜索歌单"
-                    : "在网易云音乐中打开"}
-                </a>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <a
+                    href={result.playlistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block flex-1 rounded-full bg-[#E60026] py-3 text-center text-base font-medium text-white transition hover:bg-[#c40020]"
+                  >
+                    {result.fallbackReason
+                      ? "YouTube 不可用 · 网易云"
+                      : "在网易云音乐中打开"}
+                  </a>
+                  {result.qqPlaylistUrl && (
+                    <a
+                      href={result.qqPlaylistUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block flex-1 rounded-full bg-[#31C27C] py-3 text-center text-base font-medium text-white transition hover:bg-[#28a866]"
+                    >
+                      {result.fallbackReason
+                        ? "YouTube 不可用 · QQ 音乐"
+                        : "在 QQ 音乐中搜索"}
+                    </a>
+                  )}
+                </div>
               ) : (
-                <a
-                  href={result.playlistUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full rounded-full bg-[#FF0000] py-3 text-center text-base font-medium text-white transition hover:bg-[#cc0000]"
-                >
-                  在 YouTube 中打开
-                </a>
+                <div className="space-y-2">
+                  <a
+                    href={result.playlistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full rounded-full bg-[#FF0000] py-3 text-center text-base font-medium text-white transition hover:bg-[#cc0000]"
+                  >
+                    在 YouTube 中打开歌单
+                  </a>
+                  <a
+                    href={`https://y.qq.com/n/ryqq/search?w=${encodeURIComponent(result.playlistName.replace(/·/g, " "))}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full rounded-full border border-[#31C27C] py-2.5 text-center text-sm font-medium text-[#31C27C] transition hover:bg-green-50"
+                  >
+                    在 QQ 音乐搜索同主题
+                  </a>
+                </div>
               )}
 
               {result.videos.length > 0 && (
@@ -814,7 +838,7 @@ function MoodArcHome() {
                   )}
                   {result.mock && (
                     <p className="mb-2 text-xs text-stone-500">
-                      每首下方可点播放试听；若无法播放可点曲名在网易云打开。
+                      每首下方可网易云试听；曲名链到网易云，「QQ」链到 QQ 音乐搜索。
                     </p>
                   )}
                   {result.arcSlots && result.arcSlots.length > 0 ? (
@@ -861,6 +885,19 @@ function MoodArcHome() {
                                         {" "}
                                         — {v.channel}
                                       </span>
+                                      {result.mock && v.qqUrl && (
+                                        <>
+                                          {" · "}
+                                          <a
+                                            href={v.qqUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[#31C27C] underline-offset-2 hover:underline"
+                                          >
+                                            QQ
+                                          </a>
+                                        </>
+                                      )}
                                       {v.energy != null && v.valence != null && (
                                         <span className="ml-1 text-[10px] text-stone-400">
                                           E{v.energy.toFixed(2)} V
@@ -903,6 +940,19 @@ function MoodArcHome() {
                               {v.name}
                             </a>
                             <span className="text-stone-400"> — {v.channel}</span>
+                            {result.mock && v.qqUrl && (
+                              <>
+                                {" · "}
+                                <a
+                                  href={v.qqUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#31C27C] underline-offset-2 hover:underline"
+                                >
+                                  QQ
+                                </a>
+                              </>
+                            )}
                           </p>
                           {v.neteaseEmbedUrl && (
                             <NeteasePlayer embedUrl={v.neteaseEmbedUrl} />

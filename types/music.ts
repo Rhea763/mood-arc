@@ -52,6 +52,7 @@ export interface GenerateVideo {
   vocalTimbreLabel?: string;
   neteaseSongId?: number;
   neteaseEmbedUrl?: string;
+  qqUrl?: string;
   note?: string;
 }
 
@@ -75,4 +76,5 @@ export interface GenerateResponse {
   arcSlots?: PlaylistArcSlot[];
   /** Embed: YouTube failed and Netease demo was used instead */
   fallbackReason?: string;
+  qqPlaylistUrl?: string;
 }

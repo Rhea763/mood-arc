@@ -35,3 +35,15 @@ export function neteasePlaylistSearchUrl(playlistName: string): string {
   const q = encodeURIComponent(playlistName.replace(/·/g, " "));
   return `https://music.163.com/#/search/m/?s=${q}`;
 }
+
+/** QQ 音乐：单曲搜索（无官方 embed，跳转搜索/App） */
+export function qqTrackSearchUrl(artist: string, title: string): string {
+  const q = encodeURIComponent(`${title} ${artist}`);
+  return `https://y.qq.com/n/ryqq/search?w=${q}`;
+}
+
+/** QQ 音乐：歌单关键词搜索 */
+export function qqPlaylistSearchUrl(playlistName: string): string {
+  const q = encodeURIComponent(playlistName.replace(/·/g, " "));
+  return `https://y.qq.com/n/ryqq/search?w=${q}`;
+}
