@@ -1,28 +1,66 @@
 import type { DemoTrack } from "@/lib/demo-track-catalog";
+import {
+  getTrackProfile,
+  recommendationNoteFromProfile,
+  scoringTagsFromProfile,
+} from "@/lib/track-profiles";
 import type {
   EmotionArcProfile,
   ListenerContext,
   RegulationProfile,
   SongEmotionData,
 } from "@/types/emotion";
-import type { LyricFocus } from "@/lib/lyric-focus";
 
-const LYRIC_TO_EMOTION: Record<LyricFocus, string> = {
-  grief: "sadness",
-  longing: "longing",
-  anger: "anger",
-  introspection: "reflection",
-  defiance: "defiance",
-  hope: "hope",
-  flirt: "warmth",
-  celebration: "joy",
-  bittersweet: "bittersweet",
-  nostalgia: "nostalgia",
-  numbness: "numbness",
-  reflection: "reflection",
-};
+export function buildSongEmotionData(track: DemoTrack): SongEmotionData {
+  const profile = getTrackProfile(track.title, track.artist);
+  if (profile) {
+    return {
+      title: track.title,
+      artist: track.artist,
+      emotion: {
+        primaryEmotion: profile.primaryEmotion,
+        secondaryEmotion: profile.secondaryEmotion,
+      },
+      regulation: {
+        function: profile.regulation.function,
+        targetState: profile.regulation.targetState,
+      },
+      emotionArc: {
+        hold: profile.emotionArc.hold,
+        bridge: profile.emotionArc.bridge,
+        lift: profile.emotionArc.lift,
+      },
+      listenerContext: {
+        bestFor: profile.listenerContext.bestFor,
+        avoidWhen: profile.listenerContext.avoidWhen,
+      },
+    };
+  }
 
-function regulationFromTags(track: DemoTrack): RegulationProfile {
+  return buildSongEmotionDataFromLegacy(track);
+}
+
+function buildSongEmotionDataFromLegacy(track: DemoTrack): SongEmotionData {
+  const primary = track.lyricFocus;
+  const secondary = track.tags.includes("heartbreak")
+    ? "heartbreak"
+    : track.tags.includes("hope")
+      ? "hope"
+      : track.valence >= 0.6
+        ? "warmth"
+        : undefined;
+
+  return {
+    title: track.title,
+    artist: track.artist,
+    emotion: { primaryEmotion: primary, secondaryEmotion: secondary },
+    regulation: regulationFromLegacyTags(track),
+    emotionArc: arcFromLegacyTrack(track),
+    listenerContext: listenerContextFromLegacy(track),
+  };
+}
+
+function regulationFromLegacyTags(track: DemoTrack): RegulationProfile {
   if (track.tags.includes("solace")) {
     return { function: "solace", targetState: "held" };
   }
@@ -47,20 +85,14 @@ function regulationFromTags(track: DemoTrack): RegulationProfile {
   return { function: "processing", targetState: "aware" };
 }
 
-function arcFromTrack(track: DemoTrack): EmotionArcProfile {
+function arcFromLegacyTrack(track: DemoTrack): EmotionArcProfile {
   const lowEnergy = 1 - track.energy;
   const lowValence = 1 - track.valence;
   let hold = lowEnergy * 0.45 + lowValence * 0.55;
   let bridge =
     Math.abs(track.energy - 0.5) * 0.4 +
-    Math.abs(track.valence - 0.45) * 0.35 +
-    (track.phaseFit === "bridge" || track.phaseFit === "climax" ? 0.25 : 0);
+    Math.abs(track.valence - 0.45) * 0.35;
   let lift = track.energy * 0.45 + track.valence * 0.55;
-
-  if (track.phaseFit === "verse") hold += 0.12;
-  if (track.phaseFit === "bridge") bridge += 0.15;
-  if (track.phaseFit === "chorus" || track.phaseFit === "climax") lift += 0.12;
-
   const sum = hold + bridge + lift || 1;
   return {
     hold: Math.round((hold / sum) * 100) / 100,
@@ -69,64 +101,32 @@ function arcFromTrack(track: DemoTrack): EmotionArcProfile {
   };
 }
 
-function listenerContextFromTrack(track: DemoTrack): ListenerContext {
+function listenerContextFromLegacy(track: DemoTrack): ListenerContext {
   const bestFor: string[] = [];
   const avoidWhen: string[] = [];
-
-  if (track.tags.includes("solace") || track.lyricDirectness >= 0.75) {
+  if (track.tags.includes("solace")) {
     bestFor.push("processing feelings", "needing validation");
   }
   if (track.tags.includes("heartbreak")) {
     bestFor.push("heartbreak", "relationship endings");
   }
-  if (track.tags.includes("loneliness")) {
-    bestFor.push("feeling alone");
-  }
-  if (track.tags.includes("uptempo") && track.valence >= 0.55) {
-    bestFor.push("wanting a lift", "celebration");
-  }
-  if (track.tags.includes("settle") || track.energy <= 0.35) {
-    bestFor.push("winding down", "quiet evenings");
-  }
-
-  if (track.energy >= 0.85 && track.tags.includes("party")) {
-    avoidWhen.push("deep grief", "overwhelm");
-  }
-  if (track.lyricDirectness >= 0.85 && track.valence <= 0.3) {
-    avoidWhen.push("wanting distraction only");
-  }
-  if (track.tags.includes("anger") && track.energy >= 0.7) {
-    avoidWhen.push("seeking soft comfort");
-  }
-  if (track.valence >= 0.8 && track.energy >= 0.75) {
-    avoidWhen.push("raw sadness at high intensity");
-  }
-
   return {
     bestFor: bestFor.length ? bestFor : ["reflective listening"],
     avoidWhen,
   };
 }
 
-export function buildSongEmotionData(track: DemoTrack): SongEmotionData {
-  const primary = LYRIC_TO_EMOTION[track.lyricFocus] ?? "mixed";
-  const secondary =
-    track.tags.includes("heartbreak")
-      ? "heartbreak"
-      : track.tags.includes("hope")
-        ? "hope"
-        : track.valence >= 0.6
-          ? "warmth"
-          : undefined;
+/** Merge profile scoring tags onto a catalog track for arc selection */
+export function effectiveTrackTags(track: DemoTrack): string[] {
+  const profile = getTrackProfile(track.title, track.artist);
+  if (profile) return scoringTagsFromProfile(profile);
+  return track.tags;
+}
 
-  return {
-    title: track.title,
-    artist: track.artist,
-    emotion: { primaryEmotion: primary, secondaryEmotion: secondary },
-    regulation: regulationFromTags(track),
-    emotionArc: arcFromTrack(track),
-    listenerContext: listenerContextFromTrack(track),
-  };
+export function effectiveTrackNote(track: DemoTrack): string {
+  const profile = getTrackProfile(track.title, track.artist);
+  if (profile) return recommendationNoteFromProfile(profile);
+  return track.note;
 }
 
 export function getSongEmotionData(

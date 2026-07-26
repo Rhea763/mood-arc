@@ -46,6 +46,8 @@ import {
   intentionsForEmotion,
   moodIdFromEmotion,
   regulationGoalFromIntention,
+  emotionFromMoodId,
+  isValidIntention,
 } from "@/lib/emotion-catalog";
 import {
   createMoodRecord,
@@ -243,10 +245,34 @@ function MoodArcHome() {
       tags?: string[];
       happy?: string[];
       sad?: string[];
+      intensity?: number;
+      intention?: string | null;
     }) => {
       const mappedMood = moodFromCalendarPayload(payload);
       if (mappedMood && VALID_MOODS.has(mappedMood)) {
         setMood(mappedMood);
+        const em = emotionFromMoodId(mappedMood);
+        if (em) setEmotion(em);
+      }
+      if (
+        payload.intention &&
+        isValidIntention(payload.intention) &&
+        mappedMood
+      ) {
+        const em = emotionFromMoodId(mappedMood);
+        if (em) {
+          setIntention(payload.intention);
+          setRegulationGoal(
+            regulationGoalFromIntention(payload.intention, em)
+          );
+        }
+      }
+      if (
+        typeof payload.intensity === "number" &&
+        payload.intensity >= 1 &&
+        payload.intensity <= 10
+      ) {
+        setIntensity(payload.intensity);
       }
       const mappedCauses = causesFromCalendarPayload(payload);
       if (mappedCauses.length) {
@@ -258,8 +284,25 @@ function MoodArcHome() {
 
     queueMicrotask(() => {
       const urlMood = searchParams.get("mood");
+      let resolvedMood: string | null = null;
       if (urlMood && VALID_MOODS.has(urlMood)) {
+        resolvedMood = urlMood;
         setMood(urlMood);
+        const em = emotionFromMoodId(urlMood);
+        if (em) setEmotion(em);
+      }
+      const urlIntensity = searchParams.get("intensity");
+      if (urlIntensity) {
+        const n = parseInt(urlIntensity, 10);
+        if (n >= 1 && n <= 10) setIntensity(n);
+      }
+      const urlIntention = searchParams.get("intention");
+      if (urlIntention && isValidIntention(urlIntention) && resolvedMood) {
+        const em = emotionFromMoodId(resolvedMood);
+        if (em) {
+          setIntention(urlIntention);
+          setRegulationGoal(regulationGoalFromIntention(urlIntention, em));
+        }
       }
       const urlCauses = searchParams.get("causes");
       if (urlCauses) {
@@ -276,6 +319,10 @@ function MoodArcHome() {
           tags: searchParams.get("tags")?.split("|").filter(Boolean),
           happy: searchParams.get("happy")?.split("|").filter(Boolean),
           sad: searchParams.get("sad")?.split("|").filter(Boolean),
+          intensity: urlIntensity
+            ? parseInt(urlIntensity, 10)
+            : undefined,
+          intention: urlIntention,
         });
       }
     });

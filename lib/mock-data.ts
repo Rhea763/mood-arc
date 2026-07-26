@@ -24,6 +24,19 @@ export const MOCK_CHANNELS = [
   { id: "ch5", name: "Sabrina Carpenter", url: "#", source: "liked" as const },
   { id: "ch6", name: "Charli XCX", url: "#", source: "liked" as const },
   { id: "ch7", name: "Gracie Abrams", url: "#", source: "subscribed" as const },
+  { id: "ch8", name: "SZA", url: "#", source: "subscribed" as const },
+  { id: "ch9", name: "Adele", url: "#", source: "liked" as const },
+  { id: "ch10", name: "周杰伦", url: "#", source: "liked" as const },
+  { id: "ch11", name: "刘若英", url: "#", source: "liked" as const },
+  { id: "ch12", name: "毛不易", url: "#", source: "liked" as const },
+  { id: "ch13", name: "Beyond", url: "#", source: "subscribed" as const },
+  { id: "ch14", name: "Clairo", url: "#", source: "liked" as const },
+  { id: "ch15", name: "Billie Eilish", url: "#", source: "subscribed" as const },
+  { id: "ch16", name: "Lorde", url: "#", source: "liked" as const },
+  { id: "ch17", name: "Chappell Roan", url: "#", source: "liked" as const },
+  { id: "ch18", name: "Conan Gray", url: "#", source: "liked" as const },
+  { id: "ch19", name: "Phoebe Bridgers", url: "#", source: "subscribed" as const },
+  { id: "ch20", name: "Frank Ocean", url: "#", source: "subscribed" as const },
 ];
 
 export function getMockTaste(): TasteResponse {

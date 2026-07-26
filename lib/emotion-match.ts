@@ -1,5 +1,6 @@
 import type { RegulationGoalId } from "@/lib/context-catalog";
 import type { DemoTrack } from "@/lib/demo-track-catalog";
+import { getTrackProfile } from "@/lib/track-profiles";
 import { buildSongEmotionData } from "@/lib/song-emotion";
 import type { EmotionId, EmotionMatchScores, IntentionId } from "@/types/emotion";
 import { getEmotion } from "@/lib/emotion-catalog";
@@ -8,12 +9,12 @@ const GOAL_PREFERS: Record<
   RegulationGoalId,
   { functions: string[]; arc: "hold" | "bridge" | "lift" }
 > = {
-  solace: { functions: ["solace", "validation"], arc: "hold" },
-  diversion: { functions: ["diversion"], arc: "lift" },
-  revival: { functions: ["revival", "processing"], arc: "bridge" },
-  celebrate: { functions: ["celebration"], arc: "lift" },
-  energy: { functions: ["energy"], arc: "lift" },
-  settle: { functions: ["settle", "processing"], arc: "hold" },
+  solace: { functions: ["solace", "validation", "comfort"], arc: "hold" },
+  diversion: { functions: ["diversion", "release", "catharsis"], arc: "lift" },
+  revival: { functions: ["revival", "processing", "motivation"], arc: "bridge" },
+  celebrate: { functions: ["celebration", "motivation"], arc: "lift" },
+  energy: { functions: ["energy", "motivation"], arc: "lift" },
+  settle: { functions: ["settle", "processing", "healing", "comfort"], arc: "hold" },
 };
 
 const EMOTION_AFFINITY: Record<
@@ -41,39 +42,56 @@ export function computeEmotionMatch(
   intensity: number,
   goal: RegulationGoalId
 ): EmotionMatchScores {
-  const profile = buildSongEmotionData(track);
+  const profile = getTrackProfile(track.title, track.artist);
+  if (profile) {
+    const m = profile.matchingSignals;
+    const intensityFactor = 0.75 + intensity / 40;
+    return {
+      sadness: clampPct(
+        (1 - profile.valence) * 70 * EMOTION_AFFINITY[emotion].sadness * intensityFactor * 0.5
+      ),
+      comfort: clampPct(m.comfortSeeking * 100 * EMOTION_AFFINITY[emotion].comfort),
+      energy: clampPct(m.energySeeking * 100 * EMOTION_AFFINITY[emotion].energy),
+      validation: clampPct(m.comfortSeeking * 85 * intensityFactor * 0.55),
+      processing: clampPct(m.reflectionSeeking * 100 * 0.55),
+    };
+  }
+
+  const profileData = buildSongEmotionData(track);
   const pref = GOAL_PREFERS[goal];
   const affinity = EMOTION_AFFINITY[emotion];
   const intensityFactor = 0.75 + intensity / 40;
 
   const sadnessBase =
     (1 - track.valence) * 55 +
-    (profile.emotion.primaryEmotion === "sadness" ? 25 : 0) +
-    (profile.emotion.primaryEmotion === "heartbreak" ? 20 : 0);
+    (profileData.emotion.primaryEmotion === "sadness" ? 25 : 0) +
+    (profileData.emotion.primaryEmotion === "heartbreak" ? 20 : 0);
   const comfortBase =
-    (profile.regulation.function === "solace" ||
-    profile.regulation.function === "validation"
+    (profileData.regulation.function === "solace" ||
+    profileData.regulation.function === "validation" ||
+    profileData.regulation.function === "comfort"
       ? 35
       : 0) +
     (track.tags.includes("solace") ? 30 : 0) +
     (1 - track.energy) * 20 +
-    profile.emotionArc.hold * 25;
-  const energyBase = track.energy * 55 + profile.emotionArc.lift * 30;
+    profileData.emotionArc.hold * 25;
+  const energyBase = track.energy * 55 + profileData.emotionArc.lift * 30;
   const validationBase =
-    (profile.regulation.function === "validation" ||
-    profile.regulation.function === "solace"
+    (profileData.regulation.function === "validation" ||
+    profileData.regulation.function === "solace" ||
+    profileData.regulation.function === "comfort"
       ? 40
       : 0) +
     track.lyricDirectness * 35;
   const processingBase =
-    (profile.regulation.function === "processing" ? 35 : 0) +
+    (profileData.regulation.function === "processing" ? 35 : 0) +
     track.lyricDirectness * 25 +
-    profile.emotionArc.bridge * 25;
+    profileData.emotionArc.bridge * 25;
 
-  const goalFnBoost = pref.functions.includes(profile.regulation.function)
+  const goalFnBoost = pref.functions.includes(profileData.regulation.function)
     ? 18
     : 0;
-  const arcBoost = profile.emotionArc[pref.arc] * 22;
+  const arcBoost = profileData.emotionArc[pref.arc] * 22;
 
   return {
     sadness: clampPct(sadnessBase * affinity.sadness * intensityFactor * 0.45),
@@ -93,6 +111,12 @@ export function buildRecommendationReason(
   intention: IntentionId,
   goal: RegulationGoalId
 ): string {
+  const rich = getTrackProfile(track.title, track.artist);
+  if (rich?.emotionalMeaning?.coreFeeling) {
+    const emotionMeta = getEmotion(emotion);
+    return `Recommended because you're feeling ${emotionMeta.labelEn.toLowerCase()} (${intensity}/10) — ${rich.emotionalMeaning.coreFeeling}`;
+  }
+
   const profile = buildSongEmotionData(track);
   const emotionMeta = getEmotion(emotion);
   const intensityWord =

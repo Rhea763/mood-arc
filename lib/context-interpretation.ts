@@ -2,6 +2,7 @@ import type { RegulationGoalId, ScenarioId } from "@/lib/context-catalog";
 import { getMoodValence } from "@/lib/context-catalog";
 import type { DemoTrack } from "@/lib/demo-track-catalog";
 import { DEMO_TRACKS } from "@/lib/demo-track-catalog";
+import { effectiveTrackTags } from "@/lib/song-emotion";
 
 export interface ContextInterpretation {
   /** 给用户看的组合理解 */
@@ -275,18 +276,18 @@ function scoreTrack(
 ): number {
   let score = 0;
 
-  for (const tag of track.tags) {
+  for (const tag of effectiveTrackTags(track)) {
     score += interp.themeWeights[tag] ?? 0;
     score += GOAL_TAG_BOOST[goal][tag] ?? 0;
   }
 
-  if (interp.energyContrast && track.tags.includes("party_contrast")) {
+  if (interp.energyContrast && effectiveTrackTags(track).includes("party_contrast")) {
     score += 5;
   }
-  if (interp.energyContrast && goal === "solace" && track.tags.includes("uptempo")) {
+  if (interp.energyContrast && goal === "solace" && effectiveTrackTags(track).includes("uptempo")) {
     score -= 2;
   }
-  if (interp.romanceThread && track.tags.includes("romance")) {
+  if (interp.romanceThread && effectiveTrackTags(track).includes("romance")) {
     score += 2;
   }
 

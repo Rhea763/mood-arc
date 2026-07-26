@@ -1,0 +1,79 @@
+心绪日历 · 产品说明（供 ChatGPT / AI 阅读）
+==========================================
+
+【重要】主应用 https://mood-arc.vercel.app/xinshu#mood 是 JavaScript 单页应用，AI 浏览器往往只能看到壳层文字。
+请改读本文件或 HTML 版：https://mood-arc.vercel.app/xinshu/guide.html
+
+一句话：给疲惫的一天一个温柔的出口——日程 + 心情记录 + 晚间梳理 + MoodArc 情绪歌单。
+
+--- 在线地址 ---
+
+首页:        https://mood-arc.vercel.app/xinshu
+记录心情:    https://mood-arc.vercel.app/xinshu#mood
+心情歌单:    https://mood-arc.vercel.app/xinshu#playlist
+心绪日历:    https://mood-arc.vercel.app/xinshu#calendar
+晚间梳理:    https://mood-arc.vercel.app/xinshu#evening
+AI 说明页:   https://mood-arc.vercel.app/xinshu/guide.html
+纯文本说明:  https://mood-arc.vercel.app/xinshu/guide.txt
+MoodArc 主站: https://mood-arc.vercel.app
+MoodArc 嵌入: https://mood-arc.vercel.app/embed
+
+--- 用户流程（「开始今天」）---
+
+1. 心情歌单 (#playlist) — MoodArc 根据心情生成歌单
+2. 心绪日历 (#calendar) — 今日待办
+3. 记录心情 (#mood) — 开心/烦恼/标签
+4. 晚间梳理 (#evening) — 烦恼应对策略与总结
+
+--- #mood 记录心情页 ---
+
+开心的事（2 条，各最多 60 字）:
+  mpHappy1, mpHappy2 → state.mood.happy[0], [1]
+
+不开心的事（2 条 + 15 个快捷建议）:
+  mpSad1, mpSad2 → state.mood.sad[0], [1]
+  快捷: 学习压力有点大 / 和朋友闹了点不愉快 / 家里的事让我烦恼 / 最近情绪起伏很大 / 对自己有点不确定 / 对未来有点迷茫 / 有些话不知道怎么说 / 今天太累了 / 感觉没人理解我 / 被人批评了 / 担心考试/成绩 / 和同学相处不愉快 / 觉得自己不够好 / 有件事一直放不下 / 说不清楚为什么不开心
+
+心情标签（8 个，可多选）:
+  😊 开心 | 😌 平静 | 😰 焦虑 | 😫 疲惫 | 😠 愤怒 | 😢 低落 | 🙏 感恩 | 😶 迷茫
+  → state.mood.tags
+
+导航: 上一步 #calendar · 下一步 #evening
+数据: 浏览器 localStorage，按日重置 mood 字段
+
+--- MoodArc 集成 (#playlist) ---
+
+iframe: https://mood-arc.vercel.app/embed
+
+进入歌单页时同步 URL 参数:
+  embed=1
+  mood=     （来自标签映射，取第一个有效标签）
+  causes=   （从文本关键词推断：感情/工作/学业/人际/家庭/健康/经济/说不清）
+  happy=    （多条用 | 分隔）
+  sad=      （多条用 | 分隔）
+  tags=     （原始 emoji 标签，| 分隔）
+
+标签 → mood 映射:
+  😊开心→开心 | 😌平静→平静 | 😰焦虑→焦虑 | 😫疲惫→疲惫
+  😠愤怒→愤怒 | 😢低落→失落 | 🙏感恩→满足 | 😶迷茫→孤独
+
+--- MoodArc 能力 ---
+
+- 情绪 + 强度(1-10) + 调节意图 → 弧线打分歌单
+- 63+ 首歌曲 rich 情绪标签库
+- 每首：匹配度 + 推荐理由
+- YouTube 优先；不可用则网易云/QQ音乐
+- /journey 本地心情历程
+
+--- 晚间梳理策略 ---
+
+看见它 | 找人聊聊 | 换个角度 | 放下它 | 抱抱自己
+根据烦恼主题生成安慰语（学业/疲惫/人际/自我怀疑/焦虑/孤独/失去/失败/健康/家庭等）
+
+--- 技术 ---
+
+心绪日历: public/xinshu/index.html（纯前端）
+MoodArc: Next.js @ Vercel
+仓库: github.com/Rhea763/mood-arc
+
+文档更新: 2026-07-26

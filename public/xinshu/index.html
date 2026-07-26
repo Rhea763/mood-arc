@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>心绪日历 · 给疲惫的一天一个温柔的出口</title>
+<title>Mood Arc · 情绪陪伴音乐日记</title>
+<link rel="help" href="/xinshu/guide.html" title="产品说明（供 AI 阅读）">
 <style>
   :root{
     --bg:#FFFFFF;
@@ -203,6 +204,42 @@
   .mood-page-wrap .mood-card{padding:22px 18px;margin-bottom:14px}
   .mood-page-wrap .mood-card h3{font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 
+  /* ===== 歌单向导 ===== */
+  .wizard-steps{display:flex;gap:6px;margin-bottom:20px;max-width:680px;margin-left:auto;margin-right:auto;padding:0 20px}
+  .wizard-steps span{flex:1;text-align:center;font-size:11px;color:var(--ink-soft);padding:8px 4px;border-radius:10px;background:var(--line-soft);transition:.2s}
+  .wizard-steps span.on{background:var(--accent);color:#fff;font-weight:600}
+  .pl-step{display:none;max-width:680px;margin:0 auto;padding:24px 20px 100px}
+  .pl-step.active{display:block}
+  .pl-hero{text-align:center;margin-bottom:22px}
+  .pl-hero h2{font-size:22px;font-weight:700;margin-bottom:6px}
+  .pl-hero p{font-size:14px;color:var(--ink-soft)}
+  .intensity-row{margin:16px 0 8px}
+  .intensity-row label{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-mid);margin-bottom:8px;font-weight:600}
+  .intensity-row input[type=range]{width:100%;accent-color:var(--accent)}
+  .intention-grid{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+  .intention-btn{cursor:pointer;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;font-family:inherit;transition:.15s}
+  .intention-btn:hover{border-color:var(--accent);background:var(--line-soft)}
+  .intention-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .intention-btn strong{display:block;font-size:14px;margin-bottom:2px}
+  .intention-btn small{font-size:12px;opacity:.85}
+  .intention-btn.active small{color:rgba(255,255,255,.9)}
+  .diary-inline .diary-card{margin:0}
+  .guidance-banner{background:linear-gradient(135deg,#FFF5F4,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px;font-size:13px;color:var(--ink-mid);line-height:1.6}
+  .guidance-banner strong{color:var(--accent)}
+
+  /* ===== 心情历程 ===== */
+  .journey-card{background:var(--card);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft);margin-bottom:16px;border:1px solid var(--line-soft)}
+  .journey-card h3{font-size:16px;font-weight:600;margin-bottom:14px}
+  .journey-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center;margin-bottom:14px}
+  .journey-compare .jv-label{font-size:11px;color:var(--ink-soft);margin-bottom:4px}
+  .journey-compare .jv-val{font-size:20px;font-weight:700}
+  .journey-compare .jv-arrow{color:var(--ink-soft);font-size:18px}
+  .journey-note{font-size:13px;color:var(--ink-mid);line-height:1.65;background:var(--line-soft);border-radius:10px;padding:12px 14px}
+  .history-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .history-item{background:var(--card);border-radius:12px;padding:14px;box-shadow:var(--shadow-soft);font-size:13px;border-left:3px solid var(--accent)}
+  .history-item .hi-date{font-weight:600;margin-bottom:4px}
+  .history-item .hi-meta{color:var(--ink-soft);font-size:12px;line-height:1.5}
+
   /* ===== 底部 Dock ===== */
   .dock{position:fixed;bottom:0;left:0;right:0;z-index:50;display:flex;justify-content:center;gap:12px;padding:18px 16px 28px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.95) 42%);backdrop-filter:blur(8px)}
   .dock .btn-big{border:none;border-radius:14px;padding:15px 24px;font-size:15px;box-shadow:var(--shadow);font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
@@ -339,13 +376,11 @@
 
 <!-- ===== 导航栏 ===== -->
 <nav class="nav-bar" id="navBar" style="display:none">
-  <a class="nav-brand" href="#home" onclick="goPage('home')"><span class="nlogo">🍃</span>心绪日历</a>
+  <a class="nav-brand" href="#home" onclick="goPage('home')"><span class="nlogo">🍃</span>Mood Arc</a>
   <div class="nav-links">
-    <a href="#home" onclick="goPage('home')">🏠 首页</a>
-    <a href="#playlist" onclick="goPage('playlist')">🎵 歌单</a>
-    <a href="#calendar" onclick="goPage('calendar')">心绪日历</a>
-    <a href="#mood" onclick="goPage('mood')">记录心情</a>
-    <a href="#evening" onclick="goPage('evening')">晚间梳理</a>
+    <a href="#calendar" onclick="goPage('calendar')">📅 心情日历</a>
+    <a href="#playlist" onclick="goPage('playlist')">🎵 心情歌单</a>
+    <a href="#journal" onclick="goPage('journal')">🌙 晚间心书</a>
   </div>
 </nav>
 
@@ -354,54 +389,57 @@
 <div class="home-wrap">
   <div class="home-hero">
     <span class="hlogo">🍃</span>
-    <h1>心绪日历</h1>
-    <p class="htag">给疲惫的一天一个温柔的出口</p>
+    <h1>Mood Arc</h1>
+    <p class="htag">帮助理解、表达、陪伴自己情绪的音乐日记</p>
   </div>
   <div class="home-cards">
     <div class="hcard" onclick="goPage('playlist')" style="border-color:transparent">
       <div class="hcard-icon">🎵</div>
-      <h3>心情歌单生成</h3>
-      <p>根据你的心情，生成一首专属歌单，用音乐治愈今天</p>
+      <h3>心情歌单</h3>
+      <p>你现在心情如何？记录后获得情绪引导 + 专属歌单</p>
     </div>
     <div class="hcard" onclick="goPage('calendar')" style="border-color:transparent">
       <div class="hcard-icon">📅</div>
-      <h3>心绪日历</h3>
-      <p>规划今天要做的事，清晰地看见一天的轮廓</p>
+      <h3>心情日历</h3>
+      <p>规划今日事项，查看长期情绪变化</p>
     </div>
-    <div class="hcard" onclick="goPage('mood')" style="border-color:transparent">
-      <div class="hcard-icon">💭</div>
-      <h3>记录心情</h3>
-      <p>记下开心和烦恼，让每一种情绪都被看见</p>
+    <div class="hcard" onclick="goPage('journal')" style="border-color:transparent">
+      <div class="hcard-icon">🌙</div>
+      <h3>晚间心书</h3>
+      <p>听完后再次记录心情，形成今日情绪闭环</p>
     </div>
   </div>
   <button class="btn-start" onclick="startToday()">🌙 开始今天</button>
-  <p class="home-bottom">按下"开始今天"，按顺序完成一天的心绪之旅</p>
+  <p class="home-bottom">心情歌单 → 匿名日记 → 歌单陪伴 → 晚间复盘</p>
 </div>
 </div>
 
-<!-- ===== 心情歌单页面（留空） ===== -->
+<!-- ===== 心情歌单（三步：签到 → 日记 → 歌单） ===== -->
 <div class="page" id="page-playlist">
-<div class="content-wrap">
-  <div class="moodarc-shell">
-    <div class="moodarc-head">
-      <p class="moodarc-kicker">🎵 MoodArc</p>
-      <h2>心情歌单生成</h2>
-      <p class="moodarc-sub">根据你在「记录心情」里写的内容，生成带弧线打分的专属歌单</p>
-      <ul class="moodarc-diary" id="moodarcDiaryPreview" hidden></ul>
-    </div>
-    <iframe id="moodarcFrame" title="MoodArc 歌单" src="https://mood-arc.vercel.app/embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</div>
-<div class="page-nav">
-  <button class="btn-nav btn-prev" onclick="goPage('home')">← 首页</button>
-  <button class="btn-nav btn-next" onclick="goPage('calendar')">心绪日历 →</button>
-</div>
+<div class="wizard-steps" id="wizardSteps">
+  <span class="on" data-step="1">① 心情签到</span>
+  <span data-step="2">② 匿名日记</span>
+  <span data-step="3">③ 情绪歌单</span>
 </div>
 
-<!-- ===== 记录心情页面 ===== -->
-<div class="page" id="page-mood">
-<div class="mood-page-wrap">
-  <div class="mood-card">
+<div class="pl-step active" id="plStep1">
+  <div class="pl-hero">
+    <h2>你现在的心情是？</h2>
+    <p>How are you feeling today?</p>
+  </div>
+  <div class="mood-card" style="margin-bottom:14px">
+    <h3>🏷️ 选择心情</h3>
+    <div class="tag-row" id="mpTags"></div>
+  </div>
+  <div class="mood-card" style="margin-bottom:14px">
+    <div class="intensity-row">
+      <label><span>情绪强度</span><span id="intensityVal">5 / 10</span></label>
+      <input type="range" id="mpIntensity" min="1" max="10" value="5">
+    </div>
+    <h3 style="margin-top:14px;margin-bottom:10px">💭 你现在需要什么？</h3>
+    <div class="intention-grid" id="intentionGrid"></div>
+  </div>
+  <div class="mood-card" style="margin-bottom:14px">
     <h3>😊 今天有什么开心的事？</h3>
     <input type="text" class="mood-input" id="mpHappy1" placeholder="写下一件让你开心的事…" maxlength="60">
     <input type="text" class="mood-input" id="mpHappy2" placeholder="还有吗？再写一件…" maxlength="60">
@@ -413,18 +451,36 @@
     <input type="text" class="mood-input" id="mpSad1" placeholder="选上面的选项，或写下一件让你烦恼的事…" maxlength="60">
     <input type="text" class="mood-input" id="mpSad2" placeholder="还有吗？再写一件…" maxlength="60">
   </div>
-  <div class="mood-card" style="margin-top:14px">
-    <h3>🏷️ 今天的心情标签</h3>
-    <div class="tag-row" id="mpTags"></div>
+</div>
+
+<div class="pl-step" id="plStep2">
+  <div class="pl-hero">
+    <h2>匿名日记本</h2>
+    <p>像读别人的故事一样，重新看见自己的处境</p>
+  </div>
+  <div class="diary-inline" id="plDiaryBody"></div>
+</div>
+
+<div class="pl-step" id="plStep3">
+  <div class="guidance-banner" id="plGuidanceBanner"></div>
+  <div class="moodarc-shell">
+    <div class="moodarc-head">
+      <p class="moodarc-kicker">🎵 今日情绪歌单</p>
+      <h2>音乐 + 情绪陪伴</h2>
+      <p class="moodarc-sub">每首歌不只是一条推荐，而是帮你命名、理解此刻感受的引导</p>
+      <ul class="moodarc-diary" id="moodarcDiaryPreview" hidden></ul>
+    </div>
+    <iframe id="moodarcFrame" title="MoodArc 歌单" src="about:blank" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </div>
+
 <div class="page-nav">
-  <button class="btn-nav btn-prev" onclick="goPage('calendar')">← 心绪日历</button>
-  <button class="btn-nav btn-next" onclick="goPage('evening')">晚间梳理 →</button>
+  <button class="btn-nav btn-prev" id="plPrevBtn" onclick="playlistNav(-1)">← 上一步</button>
+  <button class="btn-nav btn-next" id="plNextBtn" onclick="playlistNav(1)">下一步 →</button>
 </div>
 </div>
 
-<!-- ===== 心绪日历页面（纯日历） ===== -->
+<!-- ===== 心情日历（待办 + 情绪历程） ===== -->
 <div class="page" id="page-calendar">
 <div class="wrap">
   <div class="main-col">
@@ -432,7 +488,7 @@
     <div class="topbar">
       <div class="brand">
         <div class="logo">🍃</div>
-        <div><b>心绪日历</b></div>
+        <div><b>心情日历</b></div>
       </div>
       <div class="topbar-right">
         <div class="date-pill" id="datePillCal"></div>
@@ -464,43 +520,60 @@
     <span class="emoji">🌤️</span>
     <p>今天还没有安排，先给自己泡杯茶吧</p>
   </div>
+
+  <div class="mood-section">
+    <div class="list-head" style="margin-top:28px"><span class="lbl">📈 情绪历程</span></div>
+    <div class="history-list" id="moodHistoryList"></div>
+    <div class="empty" id="moodHistoryEmpty" style="padding:24px 0">
+      <span class="emoji">💭</span>
+      <p>完成一次「心情歌单」后，这里会记录你的情绪变化</p>
+    </div>
+  </div>
   </div>
 </div>
 <div class="page-nav">
-  <button class="btn-nav btn-prev" onclick="goPage('playlist')">← 歌单</button>
-  <button class="btn-nav btn-next" onclick="goPage('mood')">记录心情 →</button>
+  <button class="btn-nav btn-prev" onclick="goPage('home')">← 首页</button>
+  <button class="btn-nav btn-next" onclick="goPage('journal')">晚间心书 →</button>
 </div>
 </div>
 
-<!-- ===== 晚间梳理页面（只读事项 + 发泄 + 梳理） ===== -->
-<div class="page" id="page-evening">
-<div class="wrap">
-  <div class="main-col">
+<!-- ===== 晚间心书（听完后复盘 + 可选梳理） ===== -->
+<div class="page" id="page-journal">
+<div class="wrap" style="max-width:680px">
+  <div class="main-col" style="max-width:none">
   <header>
     <div class="topbar">
       <div class="brand">
         <div class="logo">🌙</div>
-        <div><b>晚间梳理</b></div>
+        <div><b>晚间心书</b></div>
       </div>
       <div class="topbar-right">
         <div class="date-pill" id="datePillEve"></div>
-        <button class="btn-reset" id="btnResetEve">重置</button>
       </div>
     </div>
     <div class="big-date" id="bigDateEve"></div>
-    <div class="hello-sub" id="helloSubEve">今天辛苦了</div>
+    <div class="hello-sub" id="helloSubEve">听完后，再照照镜子</div>
   </header>
 
-  <div class="stats">
-    <div class="stat done"><div class="n" id="stDoneEve">0</div><div class="t">已完成</div></div>
-    <div class="stat todo"><div class="n" id="stTodoEve">0</div><div class="t">未完成</div></div>
-    <div class="stat"><div class="n" id="stTotalEve">0</div><div class="t">今日事项</div></div>
+  <div class="journey-card" id="journeyBeforeCard">
+    <h3>🎧 听完后，你现在的心情是？</h3>
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">After listening — 不必说音乐「治愈」了你，只记录你此刻的感受变化。</p>
+    <div class="tag-row" id="afterTags" style="margin-bottom:14px"></div>
+    <div class="intensity-row">
+      <label><span>现在的强度</span><span id="afterIntensityVal">5 / 10</span></label>
+      <input type="range" id="afterIntensity" min="1" max="10" value="5">
+    </div>
+    <textarea class="mood-input" id="afterReflection" placeholder="可选：写下你的感受…例如「我好像更能接受这段记忆了」" style="min-height:72px;margin-top:12px;resize:vertical"></textarea>
+    <button class="btn-add" style="width:100%;margin-top:12px" id="btnSaveJourney">保存今日心情历程</button>
   </div>
 
-  <div class="list-head">
-    <span class="lbl">今日事项</span>
-    <span class="cnt" id="listCntEve"></span>
+  <div class="journey-card" id="journeyResultCard" style="display:none">
+    <h3>📊 Today's Mood Journey</h3>
+    <div class="journey-compare" id="journeyCompare"></div>
+    <div class="journey-note" id="journeyNote"></div>
   </div>
+
+  <div class="list-head" style="margin-top:8px"><span class="lbl">今日事项回顾</span><span class="cnt" id="listCntEve"></span></div>
   <div class="items" id="itemListEve"></div>
   <div class="empty" id="emptyStateEve">
     <span class="emoji">🌙</span>
@@ -510,11 +583,14 @@
 </div>
 
 <div class="dock" id="dockEve">
-  <button class="btn-big" style="background:var(--card);color:var(--ink-mid);border:1px solid var(--line)" onclick="goPage('mood')">← 记录心情</button>
+  <button class="btn-big" style="background:var(--card);color:var(--ink-mid);border:1px solid var(--line)" onclick="goPage('playlist')">← 心情歌单</button>
   <button class="btn-big btn-vent" id="btnVent">🌙 睡前发泄</button>
   <button class="btn-big btn-reflect" id="btnReflect">今日梳理</button>
 </div>
 </div>
+
+<!-- legacy evening alias (hidden, redirects via JS) -->
+<div class="page" id="page-evening" style="display:none!important"></div>
 
 <!-- 梳理引导模态 -->
 <div class="modal-bg" id="modalReflect">
@@ -572,12 +648,24 @@ function $(id){return document.getElementById(id);}
 /* ============ 数据层 ============ */
 const STORE_KEY='xinshu_calendar_v2';
 let state={items:[],tomorrow:[],vented:false};
+let playlistStep=1;
+
+const PAGE_ALIASES={evening:'journal',mood:'playlist'};
+const VALID_PAGES=['home','playlist','calendar','journal'];
+
+function resolvePage(name){
+  return PAGE_ALIASES[name]||name;
+}
+
 function load(){
   try{const r=localStorage.getItem(STORE_KEY);if(r)state=JSON.parse(r);}catch(e){}
   if(!state.items)state.items=[];
   if(!state.tomorrow)state.tomorrow=[];
   if(typeof state.vented!=='boolean')state.vented=false;
-  if(!state.mood||!state.mood.happy)state.mood={happy:['',''],sad:['',''],tags:[]};
+  if(!state.mood||!state.mood.happy)state.mood={happy:['',''],sad:['',''],tags:[],intensity:5,intention:null};
+  if(typeof state.mood.intensity!=='number')state.mood.intensity=5;
+  if(!state.moodHistory)state.moodHistory=[];
+  if(!state.journey)state.journey={};
 }
 function save(){localStorage.setItem(STORE_KEY,JSON.stringify(state));}
 
@@ -617,22 +705,20 @@ function timeShort(t){
 /* ============ 页面路由 ============ */
 let currentPage='home';
 function goPage(name){
+  name=resolvePage(name);
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pg=document.getElementById('page-'+name);
   if(pg)pg.classList.add('active');
   currentPage=name;
   window.location.hash=name;
-  // 导航栏
   const nav=document.getElementById('navBar');
   if(name==='home'){nav.style.display='none';}else{nav.style.display='flex';}
-  // 高亮
   nav.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
   const link=nav.querySelector(`a[href="#${name}"]`);
   if(link)link.classList.add('active');
-  // 页面特定渲染
   if(name==='calendar')renderCalendar();
-  if(name==='evening')renderEvening();
-  if(name==='mood')setupMoodPage();
+  if(name==='journal')renderJournal();
+  if(name==='playlist')setupPlaylistPage();
 }
 
 // "开始今天"：按顺序引导
@@ -648,7 +734,7 @@ function showStartGuide(){
     <div class="closing">
       <div class="big">🌙</div>
       <h3>准备好了吗？</h3>
-      <p>1. 🎵 心情歌单生成<br>2. 📅 心绪日历<br>3. 💭 记录心情<br>4. 🌙 晚间梳理</p>
+      <p>1. 🎵 心情签到 + 匿名日记 + 情绪歌单<br>2. 📅 心情日历<br>3. 🌙 晚间心书复盘</p>
     </div>`;
   $('guideFoot').innerHTML=`
     <button class="btn btn-ghost" id="sgCancel" style="flex:1">下次吧</button>
@@ -661,11 +747,22 @@ function showStartGuide(){
   showModal('modalReflect');
 }
 
-/* ============ 心情歌单页面 ============ */
-// 留空
-
-/* ============ 记录心情页面 ============ */
+/* ============ 心情歌单向导 ============ */
 const MOOD_TAGS=['😊 开心','😌 平静','😰 焦虑','😫 疲惫','😠 愤怒','😢 低落','🙏 感恩','😶 迷茫'];
+const INTENTION_OPTIONS=[
+  {id:'comfort',label:'想被安慰',hint:'被理解、被陪伴，不必马上好起来'},
+  {id:'process',label:'想理解和消化情绪',hint:'允许感受存在，慢慢梳理'},
+  {id:'distraction',label:'想转移注意力',hint:'先离开反复想的事'},
+  {id:'energy',label:'想提升状态',hint:'从低能量拉回稳定与动力'},
+  {id:'celebrate',label:'想保持快乐',hint:'放大好心情，感受这一刻'},
+];
+const INTENTION_GUIDANCE={
+  comfort:'歌单会陪你停留在感受里，不急着让你好起来，只是被理解。',
+  process:'这些歌帮你命名、梳理此刻的情绪，像一位安静的倾听者。',
+  distraction:'先用节奏带走你，给大脑一点喘息的空间。',
+  energy:'从低处拉回来，用律动帮你找回一点力量。',
+  celebrate:'把好心情留久一点，值得被好好感受。',
+};
 const SAD_SUGGESTIONS=[
   '学习压力有点大','和朋友闹了点不愉快','家里的事让我烦恼',
   '最近情绪起伏很大','对自己有点不确定','对未来有点迷茫',
@@ -674,16 +771,58 @@ const SAD_SUGGESTIONS=[
   '觉得自己不够好','有件事一直放不下','说不清楚为什么不开心'
 ];
 
-function setupMoodPage(){
+function setPlaylistStep(n){
+  playlistStep=n;
+  [1,2,3].forEach(i=>{
+    const el=$('plStep'+i);
+    if(el)el.classList.toggle('active',i===n);
+    const dot=document.querySelector('#wizardSteps span[data-step="'+i+'"]');
+    if(dot)dot.classList.toggle('on',i<=n);
+  });
+  const prev=$('plPrevBtn'),next=$('plNextBtn');
+  if(prev)prev.style.visibility=n===1?'hidden':'visible';
+  if(next){
+    next.textContent=n===3?'去晚间心书 →':n===2?'生成今日歌单 →':'下一步 →';
+  }
+  if(n===2)renderInlineDiary();
+  if(n===3){renderGuidanceBanner();syncMoodArcFrame();saveBeforeJourney();}
+}
+
+function playlistNav(dir){
+  if(dir>0){
+    if(playlistStep===1){
+      if(!state.mood.tags.length){toast('请先选择一个心情标签','var(--accent)');return;}
+      if(!state.mood.intention){toast('请选择你现在需要什么','var(--accent)');return;}
+    }
+    if(playlistStep<3)setPlaylistStep(playlistStep+1);
+    else goPage('journal');
+  }else if(playlistStep>1){
+    setPlaylistStep(playlistStep-1);
+  }else{
+    goPage('home');
+  }
+}
+
+function setupPlaylistPage(){
+  setPlaylistStep(playlistStep||1);
+  setupMoodInputs();
+}
+
+function setupMoodInputs(){
   const m=state.mood;
+  const intEl=$('mpIntensity');
+  if(intEl){
+    intEl.value=m.intensity||5;
+    $('intensityVal').textContent=(m.intensity||5)+' / 10';
+    intEl.oninput=e=>{m.intensity=parseInt(e.target.value,10);$('intensityVal').textContent=m.intensity+' / 10';save();};
+  }
   $('mpHappy1').value=m.happy[0]||'';$('mpHappy2').value=m.happy[1]||'';
   $('mpSad1').value=m.sad[0]||'';$('mpSad2').value=m.sad[1]||'';
   [['mpHappy1','happy',0],['mpHappy2','happy',1],['mpSad1','sad',0],['mpSad2','sad',1]].forEach(([id,key,idx])=>{
     const el=$(id);if(!el)return;
     el.oninput=e=>{state.mood[key][idx]=e.target.value;save();};
   });
-  // 烦心事建议
-  const tw=$('suggestTags');tw.innerHTML='';
+  const tw=$('suggestTags');if(tw){tw.innerHTML='';
   const usedSads=[m.sad[0]||'',m.sad[1]||''].filter(s=>s.trim());
   SAD_SUGGESTIONS.forEach(s=>{
     const b=document.createElement('button');
@@ -694,26 +833,116 @@ function setupMoodPage(){
         if(!m.sad[0].trim()){m.sad[0]=s;$('mpSad1').value=s;}
         else if(!m.sad[1].trim()){m.sad[1]=s;$('mpSad2').value=s;}
         else{toast('两件烦恼已经写满啦','var(--ink)');return;}
-        save();setupMoodPage();
+        save();setupMoodInputs();
         toast('已填入：'+s,'var(--orange)');
       };
     }
     tw.appendChild(b);
-  });
-  // 心情标签
-  const tp=$('mpTags');tp.innerHTML='';
+  });}
+  const tp=$('mpTags');if(tp){tp.innerHTML='';
   MOOD_TAGS.forEach(t=>{
     const b=document.createElement('button');
     b.className='mood-tag'+(m.tags.includes(t)?' active':'');
     b.textContent=t;
     b.onclick=()=>{
-      if(m.tags.includes(t))m.tags=m.tags.filter(x=>x!==t);
-      else m.tags.push(t);
-      save();b.classList.toggle('active');
+      m.tags=m.tags.includes(t)?[]:[t];
+      save();setupMoodInputs();
     };
     tp.appendChild(b);
+  });}
+  const ig=$('intentionGrid');if(ig){ig.innerHTML='';
+  INTENTION_OPTIONS.forEach(opt=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='intention-btn'+(m.intention===opt.id?' active':'');
+    b.innerHTML='<strong>'+opt.label+'</strong><small>'+opt.hint+'</small>';
+    b.onclick=()=>{m.intention=opt.id;save();setupMoodInputs();};
+    ig.appendChild(b);
+  });}
+}
+
+function renderInlineDiary(){
+  const body=$('plDiaryBody');if(!body)return;
+  const sads=(state.mood.sad||[]).filter(s=>s&&s.trim());
+  const story=sads.length?diaryStory(sads):diaryStory([]);
+  body.innerHTML=`
+    <div class="diary-card">
+      <div class="dheader">📖 某位匿名用户的日记片段</div>
+      <div class="dstory">${escapeHtml(story.story)}</div>
+      <div class="dtips">
+        <h4>💡 这也许对你有帮助</h4>
+        <ul>${story.tips.map(t=>'<li>'+t+'</li>').join('')}</ul>
+      </div>
+    </div>`;
+}
+
+function renderGuidanceBanner(){
+  const el=$('plGuidanceBanner');if(!el)return;
+  const tag=state.mood.tags[0]||'你的感受';
+  const inten=state.mood.intensity||5;
+  const intent=INTENTION_OPTIONS.find(i=>i.id===state.mood.intention);
+  const guide=INTENTION_GUIDANCE[state.mood.intention]||'这些歌会陪你走过此刻。';
+  el.innerHTML='<strong>情绪陪伴 · </strong>'+tag+' · 强度 '+inten+'/10'
+    +(intent?' · '+intent.label:'')+'<br>'+guide
+    +'<br><span style="font-size:12px;color:var(--ink-soft)">每首歌下方会有「为什么推荐」——不是曲风标签，而是帮你理解此刻感受的引导。</span>';
+}
+
+function saveBeforeJourney(){
+  state.journey={
+    date:todayKey(),
+    beforeTag:state.mood.tags[0]||'',
+    beforeIntensity:state.mood.intensity||5,
+    beforeIntention:state.mood.intention||null,
+    beforeMood:moodFromState(),
+    savedAt:Date.now()
+  };
+  save();
+}
+
+function moodLabelFromTag(tag){return tag||'未记录';}
+
+function saveMoodHistoryEntry(afterTag,afterIntensity,reflection){
+  const j=state.journey||{};
+  const entry={
+    date:todayKey(),
+    beforeTag:j.beforeTag||state.mood.tags[0]||'',
+    beforeIntensity:j.beforeIntensity||state.mood.intensity||5,
+    afterTag:afterTag||'',
+    afterIntensity:afterIntensity||5,
+    intention:state.mood.intention,
+    reflection:(reflection||'').trim(),
+    moodBefore:j.beforeMood||moodFromState(),
+  };
+  state.moodHistory=(state.moodHistory||[]).filter(h=>h.date!==entry.date);
+  state.moodHistory.unshift(entry);
+  if(state.moodHistory.length>30)state.moodHistory=state.moodHistory.slice(0,30);
+  state.journey={...j,afterTag,afterIntensity,reflection:entry.reflection,completedAt:Date.now()};
+  save();
+}
+
+function renderMoodHistory(){
+  const list=$('moodHistoryList'),empty=$('moodHistoryEmpty');
+  if(!list)return;
+  const hist=state.moodHistory||[];
+  list.innerHTML='';
+  if(!hist.length){if(empty)empty.style.display='block';return;}
+  if(empty)empty.style.display='none';
+  hist.slice(0,14).forEach(h=>{
+    const el=document.createElement('div');
+    el.className='history-item';
+    const delta=(h.beforeIntensity||0)-(h.afterIntensity||0);
+    let changeText='强度无明显变化';
+    if(delta>0)changeText='情绪强度有所降低（你描述的感受与之前不同）';
+    else if(delta<0)changeText='情绪强度有所上升';
+    el.innerHTML='<div class="hi-date">'+h.date+'</div>'
+      +'<div class="hi-meta">听前：'+(h.beforeTag||'—')+' '+h.beforeIntensity+'/10'
+      +' → 听后：'+(h.afterTag||'—')+' '+h.afterIntensity+'/10</div>'
+      +'<div class="hi-meta">'+changeText+(h.reflection?'<br>📝 '+escapeHtml(h.reflection):'')+'</div>';
+    list.appendChild(el);
   });
 }
+
+/* ============ 记录心情（已并入歌单向导） ============ */
 
 /* ============ 心绪日历页面 ============ */
 function renderCalendar(){
@@ -735,6 +964,7 @@ function renderCalendar(){
     el.querySelector('.check').onclick=(e)=>{e.stopPropagation();toggleDoneCal(it.id,el);};
     list.appendChild(el);
   });
+  renderMoodHistory();
 }
 
 $('btnAddCal').onclick=()=>addItem('Cal');
@@ -768,27 +998,91 @@ function toggleDoneCal(id,el){
   }
 }
 
-/* ============ 晚间梳理页面（只读事项，仅可勾选） ============ */
-function renderEvening(){
+/* ============ 晚间心书页面 ============ */
+function renderJournal(){
   $('datePillEve').textContent=fmtDate();
   $('bigDateEve').innerHTML=fmtBigDate();
-  $('helloSubEve').textContent=hourGreet();
+  $('helloSubEve').textContent='听完后，再照照镜子';
   const list=$('itemListEve'),empty=$('emptyStateEve');
   list.innerHTML='';
   const items=state.items;
-  $('stTotalEve').textContent=items.length;
-  $('stDoneEve').textContent=items.filter(i=>i.done).length;
-  $('stTodoEve').textContent=items.filter(i=>!i.done).length;
   $('listCntEve').textContent=items.length?`${items.length} 项`:'';
-  if(!items.length){empty.style.display='block';updateVentBtn();return;}
-  empty.style.display='none';
-  const sorted=[...items].sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'));
-  sorted.forEach(it=>{
-    const el=makeItemEl(it,'Eve');
-    el.querySelector('.check').onclick=(e)=>{e.stopPropagation();toggleDoneEve(it.id,el);};
-    list.appendChild(el);
-  });
+  if(!items.length){empty.style.display='block';}else{
+    empty.style.display='none';
+    const sorted=[...items].sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'));
+    sorted.forEach(it=>{
+      const el=makeItemEl(it,'Eve');
+      el.querySelector('.check').onclick=(e)=>{e.stopPropagation();toggleDoneEve(it.id,el);};
+      list.appendChild(el);
+    });
+  }
   updateVentBtn();
+  setupAfterCheckin();
+  renderJourneyResult();
+}
+
+function setupAfterCheckin(){
+  const j=state.journey||{};
+  const afterInt=$('afterIntensity');
+  const startVal=j.afterIntensity||Math.max(1,(j.beforeIntensity||state.mood.intensity||5)-2);
+  if(afterInt){
+    afterInt.value=startVal;
+    $('afterIntensityVal').textContent=startVal+' / 10';
+    afterInt.oninput=e=>{$('afterIntensityVal').textContent=e.target.value+' / 10';};
+  }
+  const ref=$('afterReflection');
+  if(ref)ref.value=j.reflection||'';
+  const at=$('afterTags');if(at){at.innerHTML='';
+  MOOD_TAGS.forEach(t=>{
+    const b=document.createElement('button');
+    const active=(j.afterTag||'')===t;
+    b.className='mood-tag'+(active?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{
+      state.journey=state.journey||{};
+      state.journey.afterTag=state.journey.afterTag===t?'':t;
+      save();setupAfterCheckin();
+    };
+    at.appendChild(b);
+  });}
+  const btn=$('btnSaveJourney');
+  if(btn&&!btn._bound){
+    btn._bound=true;
+    btn.onclick=()=>{
+      const tag=state.journey?.afterTag||'';
+      if(!tag){toast('请选择听后的 mood 标签','var(--accent)');return;}
+      const intensity=parseInt($('afterIntensity').value,10)||5;
+      const reflection=$('afterReflection').value||'';
+      saveMoodHistoryEntry(tag,intensity,reflection);
+      renderJourneyResult();
+      renderMoodHistory();
+      toast('已保存今日心情历程','var(--green)');
+    };
+  }
+}
+
+function renderJourneyResult(){
+  const card=$('journeyResultCard'),cmp=$('journeyCompare'),note=$('journeyNote');
+  const j=state.journey||{};
+  const hist=(state.moodHistory||[]).find(h=>h.date===todayKey());
+  if(!hist||!j.completedAt){if(card)card.style.display='none';return;}
+  if(card)card.style.display='block';
+  const before=hist.beforeIntensity,beforeTag=hist.beforeTag||'—';
+  const after=hist.afterIntensity,afterTag=hist.afterTag||'—';
+  const delta=before-after;
+  if(cmp){
+    cmp.innerHTML=`
+      <div><div class="jv-label">Before · 听前</div><div class="jv-val">${beforeTag}<br><small>${before}/10</small></div></div>
+      <div class="jv-arrow">→</div>
+      <div><div class="jv-label">After · 听后</div><div class="jv-val">${afterTag}<br><small>${after}/10</small></div></div>`;
+  }
+  if(note){
+    let msg='你描述的感受与之前有所不同。';
+    if(delta>0)msg='你的情绪强度有所降低。这不等于音乐「治愈」了你——只是你此刻的感受变了。';
+    else if(delta<0)msg='你的情绪强度有所上升。允许这种变化存在。';
+    if(hist.reflection)msg+='<br><br>你的记录：「'+escapeHtml(hist.reflection)+'」';
+    note.innerHTML=msg;
+  }
 }
 
 function makeItemEl(it,suffix){
@@ -815,11 +1109,11 @@ function toggleDoneEve(id,el){
     const rect=el.getBoundingClientRect();
     burstConfetti(rect.left+rect.width/2,rect.top+rect.height/2);
     it.done=true;save();
-    setTimeout(()=>{renderEvening();},80);
+    setTimeout(()=>{renderJournal();},80);
     const left=state.items.filter(i=>!i.done).length;
     cheerPop(el, left?`剩 ${left} 件`:'全部完成！🎉');
   }else{
-    it.done=false;save();renderEvening();
+    it.done=false;save();renderJournal();
   }
 }
 
@@ -1142,7 +1436,7 @@ function afterVent(allDone){
   updateVentBtn();
   if(allDone){
     state.items=state.items.filter(i=>!i.done);
-    save();renderEvening();
+    save();renderJournal();
     const e=$('emptyStateEve');
     if(e){e.querySelector('.emoji').textContent='🌙';e.querySelector('p').textContent='今天的事都揉成纸团扔掉了，干干净净';}
     toast('今天的事都撕碎扔掉了，干得漂亮！🎉','var(--accent)');
@@ -1648,7 +1942,7 @@ function showClosing(title,sub){
 
 /* ============ 重置 ============ */
 $('btnResetCal').onclick=resetAll;
-$('btnResetEve').onclick=resetAll;
+const btnResetEve=$('btnResetEve');if(btnResetEve)btnResetEve.onclick=resetAll;
 function resetAll(){
   $('stepBar').innerHTML='';
   $('guideTitle').textContent='重置全部数据？';
@@ -1661,7 +1955,7 @@ function resetAll(){
   $('rCancel').onclick=()=>hideModal('modalReflect');
   $('rConfirm').onclick=()=>{
     localStorage.removeItem(STORE_KEY);
-    state={items:[],tomorrow:[],vented:false,mood:{happy:['',''],sad:['',''],tags:[]}};
+    state={items:[],tomorrow:[],vented:false,mood:{happy:['',''],sad:['',''],tags:[],intensity:5,intention:null},moodHistory:[],journey:{}};
     save();
     hideModal('modalReflect');
     goPage('home');
@@ -1683,19 +1977,19 @@ function init(){
     setTimeout(()=>toast(`已带入 ${cnt} 件昨日安排`,'var(--ink)'),400);
   }
   if(state._ventedDate!==tk){state.vented=false;state._ventedDate=tk;save();}
-  if(state._moodDate!==tk){state.mood={happy:['',''],sad:['',''],tags:[]};state._moodDate=tk;save();}
+  if(state._moodDate!==tk){state.mood={happy:['',''],sad:['',''],tags:[],intensity:5,intention:null};state.journey={};state._moodDate=tk;save();}
 
   // 路由初始化
-  const hash=window.location.hash.replace('#','');
-  if(hash && ['home','playlist','mood','calendar','evening'].includes(hash)){
+  const hash=resolvePage(window.location.hash.replace('#',''));
+  if(hash && VALID_PAGES.includes(hash)){
     goPage(hash);
   }else{
     goPage('home');
   }
 }
 window.addEventListener('hashchange',()=>{
-  const hash=window.location.hash.replace('#','');
-  if(hash && ['home','playlist','mood','calendar','evening'].includes(hash)){
+  const hash=resolvePage(window.location.hash.replace('#',''));
+  if(hash && VALID_PAGES.includes(hash)){
     goPage(hash);
   }
 });
@@ -1779,6 +2073,8 @@ window.addEventListener('hashchange',()=>{
     const params = new URLSearchParams({ embed: "1" });
     const mood = moodFromState();
     if (mood) params.set("mood", mood);
+    if (m.intensity) params.set("intensity", String(m.intensity));
+    if (m.intention) params.set("intention", m.intention);
     const causes = causesFromState();
     if (causes) params.set("causes", causes);
     const happy = (m.happy || []).filter(function(x) { return x && x.trim(); });
@@ -1793,13 +2089,14 @@ window.addEventListener('hashchange',()=>{
 
   const _goPage = window.goPage;
   window.goPage = function(name) {
-    if (name === "playlist") syncMoodArcFrame();
-    if (name === "mood") updateDiaryPreview(diaryLinesFromState());
+    name = resolvePage(name);
+    if (name === "playlist" && playlistStep === 3) syncMoodArcFrame();
     return _goPage(name);
   };
 
   document.addEventListener("DOMContentLoaded", function() {
-    if (location.hash === "#playlist") syncMoodArcFrame();
+    const h = resolvePage(location.hash.replace("#", ""));
+    if (h === "playlist") setupPlaylistPage();
   });
 })();
 

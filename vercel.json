@@ -4,6 +4,7 @@
   "installCommand": "npm install",
   "rewrites": [
     { "source": "/xinshu", "destination": "/xinshu/index.html" },
+    { "source": "/xinshu/guide", "destination": "/xinshu/guide.html" },
     { "source": "/diary", "destination": "/xinshu/index.html" },
     { "source": "/calendar-app", "destination": "/xinshu/index.html" }
   ]

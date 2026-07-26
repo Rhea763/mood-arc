@@ -171,3 +171,20 @@ export function isValidEmotion(id: string): id is EmotionId {
 export function isValidIntention(id: string): id is IntentionId {
   return INTENTIONS.some((i) => i.id === id);
 }
+
+/** Map MoodArc 中文 mood id → companion EmotionId (embed / 心绪日历) */
+export function emotionFromMoodId(moodId: string): EmotionId | null {
+  const map: Record<string, EmotionId> = {
+    伤心: "sad",
+    焦虑: "anxious",
+    孤独: "lonely",
+    疲惫: "stressed",
+    失落: "heartbroken",
+    平静: "calm",
+    开心: "happy",
+    兴奋: "energetic",
+    愤怒: "stressed",
+    满足: "happy",
+  };
+  return map[moodId] ?? null;
+}
