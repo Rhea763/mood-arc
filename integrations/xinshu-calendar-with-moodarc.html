@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心绪日历 · 给疲惫的一天一个温柔的出口</title>
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --card:#FFFFFF;
+    --ink:#4A2E3B;
+    --ink-soft:#9C6B7A;
+    --ink-mid:#6F4A58;
+    --line:#F2D5D3;
+    --line-soft:#FFF5F4;
+    --accent:#B53C4A;
+    --orange:#F2D5D3;
+    --orange-deep:#EAC6C4;
+    --blue:#B53C4A;
+    --green:#8B9E7D;
+    --red:#B53C4A;
+    --amber:#B53C4A;
+    --teal:#F2D5D3;
+    --purple:#4A2E3B;
+    --shadow:0 8px 28px rgba(181,60,74,.10);
+    --shadow-soft:0 2px 10px rgba(181,60,74,.06);
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+
+  /* ===== 导航栏 ===== */
+  .nav-bar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 20px;display:flex;align-items:center;gap:8px}
+  .nav-brand{cursor:pointer;font-size:15px;font-weight:700;color:var(--ink);margin-right:16px;display:flex;align-items:center;gap:7px;text-decoration:none}
+  .nav-brand .nlogo{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--orange),var(--red));display:flex;align-items:center;justify-content:center;font-size:12px}
+  .nav-links{display:flex;gap:4px;flex-wrap:wrap}
+  .nav-links a{text-decoration:none;font-size:13px;padding:6px 12px;border-radius:14px;color:var(--ink-soft);transition:.15s}
+  .nav-links a:hover{background:var(--line-soft);color:var(--ink)}
+  .nav-links a.active{background:var(--ink);color:#fff}
+  .page{padding-top:58px;min-height:100vh;display:none}
+  .page.active{display:block}
+
+  /* ===== 首页 ===== */
+  .home-wrap{max-width:680px;margin:0 auto;padding:40px 20px 60px;text-align:center}
+  .home-hero .hlogo{font-size:56px;margin-bottom:16px;display:block}
+  .home-hero h1{font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
+  .home-hero .htag{font-size:14px;color:var(--ink-soft);margin-bottom:40px}
+  .home-cards{display:flex;flex-direction:column;gap:14px;max-width:400px;margin:0 auto 34px}
+  .hcard{cursor:pointer;background:var(--card);border-radius:16px;padding:22px 20px;box-shadow:var(--shadow-soft);text-align:left;transition:.18s;border:1.5px solid transparent}
+  .hcard:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--line)}
+  .hcard-icon{font-size:32px;margin-bottom:10px}
+  .hcard h3{font-size:17px;font-weight:600;margin-bottom:4px}
+  .hcard p{font-size:13px;color:var(--ink-soft);line-height:1.5}
+  .btn-start{border:none;background:var(--accent);color:#fff;font-size:16px;font-weight:600;padding:16px 38px;border-radius:14px;cursor:pointer;font-family:inherit;transition:.15s;box-shadow:0 4px 16px rgba(181,60,74,.28)}
+  .btn-start:active{transform:scale(.96)}
+  .home-bottom{font-size:12px;color:var(--ink-soft);margin-top:20px}
+
+  /* 页面底部翻页导航 */
+  .page-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;padding:16px 20px 28px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.92) 38%,rgba(255,255,255,1) 70%);gap:12px}
+  .page-nav .btn-nav{border:none;border-radius:14px;padding:13px 26px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:.15s;box-shadow:var(--shadow-soft);display:flex;align-items:center;gap:6px}
+  .page-nav .btn-nav:active{transform:scale(.96)}
+  .page-nav .btn-prev{background:var(--card);color:var(--ink-mid);border:1px solid var(--line)}
+  .page-nav .btn-next{background:var(--accent);color:#fff;margin-left:auto}
+  .page-nav .btn-prev:only-child{margin-left:auto;margin-right:auto}
+  .page-nav .btn-next:only-child{margin-left:auto;margin-right:auto}
+  .content-wrap,.mood-page-wrap,.wrap{padding-bottom:110px}
+
+  /* ===== 通用内容区 ===== */
+  .content-wrap{max-width:680px;margin:0 auto;padding:24px 20px 130px}
+
+  /* ===== 歌单页面 ===== */
+  .playlist-placeholder{text-align:center;padding:60px 20px}
+  .playlist-placeholder .emoji{font-size:56px;display:block;margin-bottom:16px}
+  .playlist-placeholder h2{font-size:21px;margin-bottom:8px}
+  .playlist-placeholder p{color:var(--ink-soft);font-size:14px}
+  /* ===== MoodArc 嵌入 ===== */
+  .moodarc-shell{background:var(--card);border-radius:16px;box-shadow:var(--shadow-soft);border:1px solid var(--line-soft);overflow:hidden}
+  .moodarc-head{padding:18px 18px 12px;border-bottom:1px solid var(--line-soft)}
+  .moodarc-kicker{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px}
+  .moodarc-head h2{font-size:20px;margin-bottom:6px}
+  .moodarc-sub{font-size:13px;color:var(--ink-soft);line-height:1.5}
+  #moodarcFrame{display:block;width:100%;min-height:720px;border:0;background:#fff5f4}
+  @media(max-width:640px){#moodarcFrame{min-height:680px}}
+
+
+  /* ===== 日历页 ===== */
+  .wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:4px 20px 80px;display:flex;gap:30px;align-items:flex-start}
+  .main-col{flex:1;min-width:0;max-width:640px}
+  .side-col{width:300px;flex-shrink:0}
+  .side-col .mood-section{margin-top:0}
+  .side-col .mood-card{position:sticky;top:74px}
+  @media(max-width:880px){
+    .wrap{flex-direction:column;max-width:680px;padding:4px 16px 80px}
+    .main-col{max-width:none}
+    .side-col{width:100%}
+    .side-col .mood-card{position:static}
+    .mood-section{margin-top:24px}
+  }
+
+  header{margin-bottom:22px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:9px}
+  .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--orange),var(--red));display:flex;align-items:center;justify-content:center;font-size:15px}
+  .brand b{font-size:15px;font-weight:600;letter-spacing:.2px}
+  .date-pill{font-size:13px;color:var(--ink-mid);background:var(--card);padding:7px 14px;border-radius:20px;box-shadow:var(--shadow-soft)}
+  .topbar-right{display:flex;align-items:center;gap:10px}
+  .btn-reset{border:none;background:var(--card);color:var(--ink-soft);font-size:12px;padding:7px 12px;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;transition:.15s;font-family:inherit}
+  .btn-reset:hover{color:var(--accent);background:var(--line-soft)}
+
+  .big-date{font-size:34px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
+  .big-date .red{color:var(--accent)}
+  .hello-sub{font-size:14px;color:var(--ink-soft);margin-top:4px}
+
+  .stats{display:flex;gap:8px;margin:20px 0 24px}
+  .stat{flex:1;background:var(--card);border-radius:12px;padding:14px 12px;box-shadow:var(--shadow-soft);text-align:center}
+  .stat .n{font-size:24px;font-weight:700;line-height:1;letter-spacing:-.5px}
+  .stat .t{font-size:11px;color:var(--ink-soft);margin-top:5px;font-weight:500}
+  .stat.done .n{color:var(--green)}
+  .stat.todo .n{color:var(--accent)}
+
+  .add-box{background:var(--card);border-radius:12px;padding:4px;box-shadow:var(--shadow-soft);margin-bottom:26px;display:flex;align-items:center;gap:4px;border:1px solid var(--line-soft)}
+  .add-box input[type=text]{flex:1;min-width:0;border:none;background:transparent;border-radius:10px;padding:13px 14px;font-size:15px;color:var(--ink);outline:none;font-family:inherit}
+  .add-box input[type=text]::placeholder{color:var(--ink-soft)}
+  .add-box input[type=time]{border:none;background:var(--line-soft);border-radius:10px;padding:13px 10px;font-size:13px;color:var(--ink-mid);outline:none;font-family:inherit}
+  .btn-add{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:13px 18px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
+  .btn-add:active{transform:scale(.94)}
+  .btn-add:disabled{background:var(--line);color:var(--ink-soft)}
+
+  .list-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 4px}
+  .list-head .lbl{font-size:13px;font-weight:600;color:var(--ink-soft);letter-spacing:.3px}
+  .list-head .cnt{font-size:12px;color:var(--ink-soft)}
+
+  .items{display:flex;flex-direction:column;gap:1px;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-soft)}
+  .item{display:flex;align-items:center;gap:14px;padding:15px 16px;background:var(--card);position:relative;transition:.18s;cursor:default}
+  .item:not(:last-child)::after{content:"";position:absolute;left:54px;right:0;bottom:0;height:.5px;background:var(--line)}
+  .item:hover{background:var(--line-soft)}
+  .item .time-col{width:54px;flex-shrink:0;text-align:left}
+  .item .time-col .tm{font-size:14px;font-weight:600;color:var(--ink);line-height:1.1}
+  .item .time-col .sub{font-size:10px;color:var(--ink-soft);margin-top:1px}
+  .item .dot-col{width:10px;flex-shrink:0;display:flex;justify-content:center}
+  .item .dot-col .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+  .item .body-col{flex:1;min-width:0}
+  .item .body-col .txt{font-size:15px;color:var(--ink);word-break:break-word;transition:.25s}
+  .item.done .body-col .txt{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--line)}
+  .item.done .time-col .tm{color:var(--ink-soft)}
+  .item.done .dot-col .dot{background:var(--line)}
+  .check{width:26px;height:26px;border-radius:50%;border:1.8px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s;background:transparent}
+  .check:hover{border-color:var(--green);background:var(--line-soft)}
+  .check svg{opacity:0;transform:scale(.3);transition:.22s}
+  .item.done .check{background:var(--green);border-color:var(--green)}
+  .item.done .check svg{opacity:1;transform:scale(1)}
+
+  .empty{text-align:center;padding:50px 20px;color:var(--ink-soft)}
+  .empty .emoji{font-size:38px;display:block;margin-bottom:10px;opacity:.6}
+  .empty p{font-size:14px}
+
+  /* 心情记录区 */
+  .mood-section{margin-top:26px}
+  .mood-card{background:var(--card);border-radius:14px;padding:18px 16px;box-shadow:var(--shadow-soft)}
+  .mood-group-head{font-size:13px;font-weight:600;color:var(--ink-mid);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+  .mood-group-head small{font-size:11px;color:var(--ink-soft);font-weight:400}
+  .mood-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:14px;font-family:inherit;outline:none;background:var(--line-soft);color:var(--ink);margin-bottom:8px;transition:.15s}
+  .mood-input:last-child{margin-bottom:0}
+  .mood-input:focus{border-color:var(--accent);background:#fff}
+  .mood-input::placeholder{color:var(--ink-soft)}
+  .mood-divider{height:.5px;background:var(--line);margin:15px 0}
+  .tag-row{display:flex;flex-wrap:wrap;gap:7px}
+  .mood-tag{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:7px 12px;font-size:12px;transition:.15s;font-family:inherit;color:var(--ink-mid)}
+  .mood-tag:hover{border-color:var(--accent);background:var(--line-soft)}
+  .mood-tag.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  /* 烦心事建议区 */
+  .suggest-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .suggest-tag{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:14px;padding:6px 12px;font-size:12px;transition:.15s;font-family:inherit;color:var(--ink-mid)}
+  .suggest-tag:hover{border-color:var(--accent);background:var(--line-soft)}
+  .suggest-tag.used{background:var(--line-soft);color:var(--ink-soft);border-color:var(--line);cursor:default}
+
+  .step-bar i.mood-step.on{background:var(--orange)}
+  .mood-summary-card{background:var(--card);border-radius:14px;padding:6px;box-shadow:var(--shadow-soft);margin-bottom:18px}
+  .mood-summary-card.happy{border-left:3px solid var(--green)}
+  .mood-summary-card.sad{border-left:3px solid var(--accent)}
+  .ms-head{padding:12px 14px 6px;font-size:13px;font-weight:600;color:var(--ink-mid)}
+  .ms-list .ms-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:.5px solid var(--line-soft);font-size:14px;flex-wrap:wrap}
+  .ms-list .ms-item:last-child{border-bottom:none}
+  .tag.acknowledge{background:var(--line-soft);color:var(--green)}
+  .tag.talk{background:var(--line-soft);color:var(--ink-mid)}
+  .tag.reframe{background:var(--line-soft);color:var(--purple)}
+  .tag.release{background:var(--line-soft);color:var(--accent)}
+  .tag.selfcare{background:var(--line-soft);color:var(--accent)}
+
+  /* ===== 记录心情页面 ===== */
+  .mood-page-wrap{max-width:680px;margin:0 auto;padding:24px 20px 80px}
+  .mood-page-wrap .mood-card{padding:22px 18px;margin-bottom:14px}
+  .mood-page-wrap .mood-card h3{font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+
+  /* ===== 底部 Dock ===== */
+  .dock{position:fixed;bottom:0;left:0;right:0;z-index:50;display:flex;justify-content:center;gap:12px;padding:18px 16px 28px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.95) 42%);backdrop-filter:blur(8px)}
+  .dock .btn-big{border:none;border-radius:14px;padding:15px 24px;font-size:15px;box-shadow:var(--shadow);font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
+  .btn-big:active{transform:scale(.96)}
+  .btn-reflect{background:var(--ink);color:#fff}
+  .btn-vent{background:var(--accent);color:#fff}
+
+  /* 模态 */
+  .modal-bg{position:fixed;inset:0;background:rgba(74,46,59,.35);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-end;justify-content:center;padding:0;opacity:0;transition:.3s}
+  @media(min-width:600px){.modal-bg{align-items:center;padding:20px}}
+  .modal-bg.show{display:flex;opacity:1}
+  .modal{background:var(--bg);border-radius:20px 20px 0 0;max-width:560px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(74,46,59,.18);transform:translateY(30px);transition:.35s cubic-bezier(.2,.8,.2,1);padding:26px 24px 30px}
+  @media(min-width:600px){.modal{border-radius:20px;transform:translateY(20px) scale(.97)}}
+  .modal-bg.show .modal{transform:none}
+  .modal h2{font-size:21px;font-weight:700;margin-bottom:6px;line-height:1.4;letter-spacing:-.3px}
+  .modal .sub{color:var(--ink-soft);font-size:14px;margin-bottom:20px}
+
+  .step-bar{display:flex;gap:5px;margin-bottom:22px}
+  .step-bar i{flex:1;height:3px;border-radius:2px;background:var(--line);transition:.3s}
+  .step-bar i.on{background:var(--accent)}
+
+  .guide-item{background:var(--card);border-radius:14px;padding:16px;box-shadow:var(--shadow-soft);margin-bottom:16px;border-left:3px solid var(--accent)}
+  .guide-item .gi-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .guide-item .gi-time{font-size:12px;color:var(--ink-mid);background:var(--line-soft);padding:4px 9px;border-radius:7px;font-weight:600}
+  .guide-item .gi-txt{font-size:15px;font-weight:600}
+  .guide-q{font-size:13px;color:var(--ink-soft);margin-bottom:12px}
+  .strategies{display:flex;flex-wrap:wrap;gap:8px}
+  .strat{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 13px;font-size:13px;transition:.15s;font-family:inherit;color:var(--ink)}
+  .strat:hover{border-color:var(--accent);background:var(--line-soft)}
+  .strat.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .strat-note{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;resize:vertical;min-height:46px;background:var(--line-soft);color:var(--ink)}
+  .strat-note:focus{border-color:var(--accent);background:#fff}
+
+  .tomorrow-list{background:var(--card);border-radius:14px;padding:6px;box-shadow:var(--shadow-soft);margin-bottom:18px}
+  .tomorrow-list .ti{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:.5px solid var(--line-soft);font-size:14px}
+  .tomorrow-list .ti:last-child{border-bottom:none}
+  .tomorrow-list .ti .tag{font-size:10px;padding:3px 8px;border-radius:6px;white-space:nowrap;font-weight:600}
+  .tag.tomorrow{background:var(--line-soft);color:var(--accent)}
+  .tag.split{background:var(--line-soft);color:var(--ink-mid)}
+  .tag.delegate{background:var(--line-soft);color:var(--green)}
+  .tag.later{background:var(--line-soft);color:var(--ink-mid)}
+  .tag.drop{background:var(--line-soft);color:var(--accent)}
+
+  .modal-foot{display:flex;gap:10px;margin-top:10px}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--ink-soft);color:var(--ink)}
+  .btn-primary{background:var(--accent);color:#fff;flex:1;border:none;font-family:inherit;cursor:pointer}
+
+  /* 同情卡片 */
+  .comfort-card{background:var(--card);border-radius:14px;padding:26px 22px;box-shadow:var(--shadow-soft);text-align:center;border-left:3px solid var(--accent);margin-bottom:6px}
+  .comfort-emoji{font-size:40px;margin-bottom:14px}
+  .comfort-text p{font-size:16px;line-height:1.85;color:var(--ink);margin-bottom:12px}
+  .comfort-text p:last-child{margin-bottom:0}
+
+  /* 匿名日记风格卡片 */
+  .diary-card{background:var(--card);border-radius:16px;padding:28px 24px;box-shadow:var(--shadow-soft);text-align:left;margin-bottom:16px}
+  .diary-card .dheader{font-size:13px;color:var(--ink-soft);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+  .diary-card .dstory{font-size:15px;line-height:2;color:var(--ink);margin-bottom:18px;white-space:pre-line;letter-spacing:.3px}
+  .diary-card .dstory em{font-style:normal;color:var(--accent);font-weight:500}
+  .diary-card .dtips{background:var(--line-soft);border-radius:12px;padding:18px 20px;border-left:3px solid var(--accent);margin-top:16px}
+  .diary-card .dtips h4{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:10px}
+  .diary-card .dtips ul{list-style:none;padding:0}
+  .diary-card .dtips li{font-size:14px;color:var(--ink);padding:6px 0;padding-left:14px;position:relative;line-height:1.8}
+  .diary-card .dtips li::before{content:"·";position:absolute;left:0;color:var(--accent);font-weight:bold}
+
+  /* 结束结语 */
+  .closing{text-align:center;padding:14px 6px}
+  .closing .big{font-size:34px;margin-bottom:8px}
+  .closing h3{font-size:17px;margin-bottom:8px;font-weight:700}
+  .closing p{color:var(--ink-soft);font-size:14px;line-height:1.9;white-space:pre-line}
+
+  /* Toast */
+  .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:30px;font-size:14px;font-weight:600;box-shadow:var(--shadow);z-index:300;transition:.4s cubic-bezier(.2,.8,.2,1);opacity:0;white-space:nowrap}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+  /* 礼花/纸屑层 */
+  .fx-layer{position:fixed;inset:0;pointer-events:none;z-index:150}
+
+  /* 小人动画层 */
+  .mini-stage{position:fixed;inset:0;pointer-events:none;z-index:180;display:none}
+  .mini-stage.on{display:block}
+  .mini-man{position:absolute;left:50%;bottom:120px;width:140px;height:220px;transform:translateX(50vw) translateY(0);opacity:0;transition:opacity .3s}
+  .paper-ball{position:absolute;left:50%;bottom:200px;width:54px;height:64px;opacity:0;transform-origin:center bottom}
+  .paper-stack{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);opacity:0}
+
+  .cheer-pop{position:fixed;pointer-events:none;z-index:160;font-size:13px;font-weight:700;color:var(--accent);background:#fff;padding:6px 12px;border-radius:20px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px) scale(.8);transition:.3s cubic-bezier(.2,.9,.3,1.2)}
+  .cheer-pop.show{opacity:1;transform:translateY(0) scale(1)}
+
+  @keyframes scrShake{10%,90%{transform:translate(-1px,0)}20%,80%{transform:translate(2px,0)}30%,50%,70%{transform:translate(-4px,1px)}40%,60%{transform:translate(4px,-1px)}}
+  @keyframes scrShakeHard{10%,90%{transform:translate(-3px,-2px)}20%,80%{transform:translate(6px,1px)}30%,50%,70%{transform:translate(-8px,4px)}40%,60%{transform:translate(8px,-3px)}}
+  @keyframes dustExpand{0%{transform:translate(-50%,-50%) scale(.1);opacity:.9}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0}}
+  @keyframes craterAppear{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.3);opacity:.95}70%{transform:translate(-50%,-50%) scale(.85);opacity:.8}100%{transform:translate(-50%,-50%) scale(1);opacity:.7}}
+  @keyframes debrisFly{0%{opacity:1;filter:brightness(1)}100%{opacity:0;filter:brightness(.4)}}
+  @keyframes impactFlash{0%{opacity:.9}100%{opacity:0}}
+
+  /* 陨石坑 */
+  .crater{position:fixed;pointer-events:none;z-index:170;width:180px;height:180px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(30,30,30,.85) 0%,rgba(30,30,30,.55) 30%,rgba(30,30,30,.25) 55%,rgba(0,0,0,.05) 75%,transparent 100%);transform:translate(-50%,-50%) scale(0);opacity:0;box-shadow:inset 0 2px 12px rgba(0,0,0,.3),0 0 0 3px rgba(20,20,20,.15),0 0 60px rgba(0,0,0,.08)}
+  .impact-flash{position:fixed;pointer-events:none;z-index:175;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.7) 0%,rgba(255,255,255,0) 70%);transform:translate(-50%,-50%);opacity:0}
+  .dust-ring{position:fixed;pointer-events:none;z-index:172;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(180,170,160,.35) 0%,rgba(180,170,160,.1) 40%,transparent 70%);transform:translate(-50%,-50%) scale(.1);opacity:0;filter:blur(6px)}
+  .debris{position:fixed;pointer-events:none;z-index:173;width:12px;height:6px;background:#555;border-radius:3px;opacity:0;box-shadow:0 1px 2px rgba(0,0,0,.2)}}
+
+  @media(max-width:640px){
+    .dock{gap:10px}
+    .dock .btn-big{padding:14px 20px;font-size:14px}
+    .modal{padding:24px 20px 28px}
+    .nav-links a{font-size:12px;padding:5px 10px}
+    .nav-brand{font-size:14px;margin-right:8px}
+    .nav-bar{padding:10px 12px;gap:4px}
+  }
+</style>
+<script src="https://beacon.cdn.qq.com/sdk/4.5.9/beacon_web.min.js"></script>
+<script>
+(function(){
+  try{
+    var beacon=new BeaconAction({
+      appkey:'0WEB06U85YBSLJNL',
+      versionCode:'1.0.0',
+      channelID:'share',
+      delay:1000,
+      sessionDuration:30*60*1000,
+      isOversea:false,
+      needReportRqdEvent:false
+    });
+    beacon.onDirectUserAction('preview_page_view',{
+      'url':location.href,
+      'referrer':document.referrer,
+      'title':document.title,
+      'sandbox_id':'3d1a78a43ec6486396e188bc08f12cdd'
+    });
+  }catch(e){}
+})();
+</script></head>
+<body>
+
+<!-- ===== 导航栏 ===== -->
+<nav class="nav-bar" id="navBar" style="display:none">
+  <a class="nav-brand" href="#home" onclick="goPage('home')"><span class="nlogo">🍃</span>心绪日历</a>
+  <div class="nav-links">
+    <a href="#home" onclick="goPage('home')">🏠 首页</a>
+    <a href="#playlist" onclick="goPage('playlist')">🎵 歌单</a>
+    <a href="#calendar" onclick="goPage('calendar')">心绪日历</a>
+    <a href="#mood" onclick="goPage('mood')">记录心情</a>
+    <a href="#evening" onclick="goPage('evening')">晚间梳理</a>
+  </div>
+</nav>
+
+<!-- ===== 首页 ===== -->
+<div class="page active" id="page-home">
+<div class="home-wrap">
+  <div class="home-hero">
+    <span class="hlogo">🍃</span>
+    <h1>心绪日历</h1>
+    <p class="htag">给疲惫的一天一个温柔的出口</p>
+  </div>
+  <div class="home-cards">
+    <div class="hcard" onclick="goPage('playlist')" style="border-color:transparent">
+      <div class="hcard-icon">🎵</div>
+      <h3>心情歌单生成</h3>
+      <p>根据你的心情，生成一首专属歌单，用音乐治愈今天</p>
+    </div>
+    <div class="hcard" onclick="goPage('calendar')" style="border-color:transparent">
+      <div class="hcard-icon">📅</div>
+      <h3>心绪日历</h3>
+      <p>规划今天要做的事，清晰地看见一天的轮廓</p>
+    </div>
+    <div class="hcard" onclick="goPage('mood')" style="border-color:transparent">
+      <div class="hcard-icon">💭</div>
+      <h3>记录心情</h3>
+      <p>记下开心和烦恼，让每一种情绪都被看见</p>
+    </div>
+  </div>
+  <button class="btn-start" onclick="startToday()">🌙 开始今天</button>
+  <p class="home-bottom">按下"开始今天"，按顺序完成一天的心绪之旅</p>
+</div>
+</div>
+
+<!-- ===== 心情歌单页面（留空） ===== -->
+<div class="page" id="page-playlist">
+<div class="content-wrap">
+  <div class="moodarc-shell">
+    <div class="moodarc-head">
+      <p class="moodarc-kicker">🎵 MoodArc</p>
+      <h2>心情歌单生成</h2>
+      <p class="moodarc-sub">根据你在「记录心情」里写的内容，生成带弧线打分的专属歌单</p>
+    </div>
+    <iframe id="moodarcFrame" title="MoodArc 歌单" src="https://mood-arc.vercel.app/embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
+<div class="page-nav">
+  <button class="btn-nav btn-prev" onclick="goPage('home')">← 首页</button>
+  <button class="btn-nav btn-next" onclick="goPage('calendar')">心绪日历 →</button>
+</div>
+</div>
+
+<!-- ===== 记录心情页面 ===== -->
+<div class="page" id="page-mood">
+<div class="mood-page-wrap">
+  <div class="mood-card">
+    <h3>😊 今天有什么开心的事？</h3>
+    <input type="text" class="mood-input" id="mpHappy1" placeholder="写下一件让你开心的事…" maxlength="60">
+    <input type="text" class="mood-input" id="mpHappy2" placeholder="还有吗？再写一件…" maxlength="60">
+  </div>
+  <div class="mood-card">
+    <h3>😔 今天有什么不开心的事？</h3>
+    <div class="sh" style="font-size:12px;color:var(--ink-soft);margin-bottom:10px">💡 选一个方向试试，也可以直接手动输入</div>
+    <div class="suggest-tags" id="suggestTags" style="margin-bottom:12px"></div>
+    <input type="text" class="mood-input" id="mpSad1" placeholder="选上面的选项，或写下一件让你烦恼的事…" maxlength="60">
+    <input type="text" class="mood-input" id="mpSad2" placeholder="还有吗？再写一件…" maxlength="60">
+  </div>
+  <div class="mood-card" style="margin-top:14px">
+    <h3>🏷️ 今天的心情标签</h3>
+    <div class="tag-row" id="mpTags"></div>
+  </div>
+</div>
+<div class="page-nav">
+  <button class="btn-nav btn-prev" onclick="goPage('calendar')">← 心绪日历</button>
+  <button class="btn-nav btn-next" onclick="goPage('evening')">晚间梳理 →</button>
+</div>
+</div>
+
+<!-- ===== 心绪日历页面（纯日历） ===== -->
+<div class="page" id="page-calendar">
+<div class="wrap">
+  <div class="main-col">
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">🍃</div>
+        <div><b>心绪日历</b></div>
+      </div>
+      <div class="topbar-right">
+        <div class="date-pill" id="datePillCal"></div>
+        <button class="btn-reset" id="btnResetCal">重置</button>
+      </div>
+    </div>
+    <div class="big-date" id="bigDateCal"></div>
+    <div class="hello-sub" id="helloSubCal">慢慢来，一件一件</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat done"><div class="n" id="stDoneCal">0</div><div class="t">已完成</div></div>
+    <div class="stat todo"><div class="n" id="stTodoCal">0</div><div class="t">未完成</div></div>
+    <div class="stat"><div class="n" id="stTotalCal">0</div><div class="t">今日事项</div></div>
+  </div>
+
+  <div class="add-box">
+    <input type="text" id="inpTextCal" placeholder="添加事项…" maxlength="80">
+    <input type="time" id="inpTimeCal">
+    <button class="btn-add" id="btnAddCal">添加</button>
+  </div>
+
+  <div class="list-head">
+    <span class="lbl">今日事项</span>
+    <span class="cnt" id="listCntCal"></span>
+  </div>
+  <div class="items" id="itemListCal"></div>
+  <div class="empty" id="emptyStateCal">
+    <span class="emoji">🌤️</span>
+    <p>今天还没有安排，先给自己泡杯茶吧</p>
+  </div>
+  </div>
+</div>
+<div class="page-nav">
+  <button class="btn-nav btn-prev" onclick="goPage('playlist')">← 歌单</button>
+  <button class="btn-nav btn-next" onclick="goPage('mood')">记录心情 →</button>
+</div>
+</div>
+
+<!-- ===== 晚间梳理页面（只读事项 + 发泄 + 梳理） ===== -->
+<div class="page" id="page-evening">
+<div class="wrap">
+  <div class="main-col">
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">🌙</div>
+        <div><b>晚间梳理</b></div>
+      </div>
+      <div class="topbar-right">
+        <div class="date-pill" id="datePillEve"></div>
+        <button class="btn-reset" id="btnResetEve">重置</button>
+      </div>
+    </div>
+    <div class="big-date" id="bigDateEve"></div>
+    <div class="hello-sub" id="helloSubEve">今天辛苦了</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat done"><div class="n" id="stDoneEve">0</div><div class="t">已完成</div></div>
+    <div class="stat todo"><div class="n" id="stTodoEve">0</div><div class="t">未完成</div></div>
+    <div class="stat"><div class="n" id="stTotalEve">0</div><div class="t">今日事项</div></div>
+  </div>
+
+  <div class="list-head">
+    <span class="lbl">今日事项</span>
+    <span class="cnt" id="listCntEve"></span>
+  </div>
+  <div class="items" id="itemListEve"></div>
+  <div class="empty" id="emptyStateEve">
+    <span class="emoji">🌙</span>
+    <p>今天都完成了，一切都很好</p>
+  </div>
+  </div>
+</div>
+
+<div class="dock" id="dockEve">
+  <button class="btn-big" style="background:var(--card);color:var(--ink-mid);border:1px solid var(--line)" onclick="goPage('mood')">← 记录心情</button>
+  <button class="btn-big btn-vent" id="btnVent">🌙 睡前发泄</button>
+  <button class="btn-big btn-reflect" id="btnReflect">今日梳理</button>
+</div>
+</div>
+
+<!-- 梳理引导模态 -->
+<div class="modal-bg" id="modalReflect">
+  <div class="modal">
+    <div class="step-bar" id="stepBar"></div>
+    <h2 id="guideTitle">今天辛苦了</h2>
+    <div class="sub" id="guideSub"></div>
+    <div id="guideBody"></div>
+    <div class="modal-foot" id="guideFoot"></div>
+  </div>
+</div>
+
+<div class="fx-layer" id="fxLayer"></div>
+<div class="crater" id="crater"></div>
+<div class="impact-flash" id="impactFlash"></div>
+<div class="dust-ring" id="dustRing"></div>
+<div class="mini-stage" id="miniStage">
+  <svg class="mini-man" id="miniMan" viewBox="0 0 140 220">
+    <defs>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F2D5D3"/><stop offset="1" stop-color="#B53C4A"/>
+      </linearGradient>
+    </defs>
+    <ellipse class="shadow" cx="70" cy="214" rx="26" ry="5" fill="rgba(74,46,59,.12)"/>
+    <line class="leg leg-l" x1="70" y1="150" x2="58" y2="205" stroke="#B53C4A" stroke-width="9" stroke-linecap="round"/>
+    <line class="leg leg-r" x1="70" y1="150" x2="82" y2="205" stroke="#B53C4A" stroke-width="9" stroke-linecap="round"/>
+    <path class="torso" d="M70 150 L70 92 Q70 86 64 86 L46 92 L50 150 Z" fill="url(#bodyG)"/>
+    <path class="torso2" d="M70 150 L70 92 Q70 86 76 86 L94 92 L90 150 Z" fill="url(#bodyG)"/>
+    <g class="arm arm-l" style="transform-origin:64px 92px">
+      <line x1="64" y1="92" x2="44" y2="120" stroke="#F2D5D3" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="44" cy="120" r="6.5" fill="#FFD4A8"/>
+    </g>
+    <g class="arm arm-r" style="transform-origin:76px 92px">
+      <line x1="76" y1="92" x2="96" y2="120" stroke="#F2D5D3" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="96" cy="120" r="6.5" fill="#FFD4A8"/>
+    </g>
+    <circle class="head" cx="70" cy="70" r="20" fill="#FFD4A8" stroke="#E8B88A" stroke-width="1.2"/>
+    <ellipse class="eye eye-l" cx="63" cy="67" rx="1.8" ry="2.6" fill="#4A2E3B"/>
+    <ellipse class="eye eye-r" cx="77" cy="67" rx="1.8" ry="2.6" fill="#4A2E3B"/>
+    <path class="mouth" d="M63 75 Q70 80 77 75" stroke="#B53C4A" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+  <div class="paper-stack" id="paperStack" style="width:44px;height:58px;background:linear-gradient(180deg,#fff 0%,#F2D5D3 100%);border-radius:4px;box-shadow:0 2px 8px rgba(74,46,59,.12)">
+    <div style="position:absolute;inset:3px;border:1px solid #F2D5D3;border-radius:2px"></div>
+  </div>
+  <div class="paper-ball" id="paperBall" style="width:54px;height:54px;background:linear-gradient(135deg,#fff 0%,#F2D5D3 100%);border-radius:50%;box-shadow:0 4px 14px rgba(74,46,59,.18)"></div>
+</div>
+
+<div class="cheer-pop" id="cheerPop"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ 工具函数 ============ */
+function $(id){return document.getElementById(id);}
+
+/* ============ 数据层 ============ */
+const STORE_KEY='xinshu_calendar_v2';
+let state={items:[],tomorrow:[],vented:false};
+function load(){
+  try{const r=localStorage.getItem(STORE_KEY);if(r)state=JSON.parse(r);}catch(e){}
+  if(!state.items)state.items=[];
+  if(!state.tomorrow)state.tomorrow=[];
+  if(typeof state.vented!=='boolean')state.vented=false;
+  if(!state.mood||!state.mood.happy)state.mood={happy:['',''],sad:['',''],tags:[]};
+}
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(state));}
+
+/* 日期 */
+function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function fmtDate(){
+  const d=new Date();const w=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];
+  return `${d.getMonth()+1}月${d.getDate()}日 ${w}`;
+}
+function fmtBigDate(){
+  const d=new Date();
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+}
+function hourGreet(){
+  const h=new Date().getHours();
+  if(h<6)return'夜深了，记得照顾自己';
+  if(h<11)return'早上好，新的一天，慢慢来';
+  if(h<14)return'上午忙完了，记得歇口气';
+  if(h<18)return'下午好，累了就停一停';
+  if(h<22)return'晚上好，今天做得够多了';
+  return'夜深了，把没做完的交给明天吧';
+}
+function timeLabel(t){
+  if(!t)return'全天';
+  const [h,m]=t.split(':');
+  const hh=parseInt(h);
+  const ap=hh<12?'上午':'下午';
+  const hp=hh<=12?hh:hh-12;
+  return `${ap} ${hp}:${m}`;
+}
+function timeShort(t){
+  if(!t)return'全天';
+  const [h,m]=t.split(':');
+  return `${parseInt(h)}:${m}`;
+}
+
+/* ============ 页面路由 ============ */
+let currentPage='home';
+function goPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg)pg.classList.add('active');
+  currentPage=name;
+  window.location.hash=name;
+  // 导航栏
+  const nav=document.getElementById('navBar');
+  if(name==='home'){nav.style.display='none';}else{nav.style.display='flex';}
+  // 高亮
+  nav.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const link=nav.querySelector(`a[href="#${name}"]`);
+  if(link)link.classList.add('active');
+  // 页面特定渲染
+  if(name==='calendar')renderCalendar();
+  if(name==='evening')renderEvening();
+  if(name==='mood')setupMoodPage();
+}
+
+// "开始今天"：按顺序引导
+function startToday(){
+  showStartGuide();
+}
+
+function showStartGuide(){
+  $('stepBar').innerHTML='';
+  $('guideTitle').textContent='开始今天 🌙';
+  $('guideSub').textContent='每页底部有翻页按钮，按顺序一步步走完今天';
+  $('guideBody').innerHTML=`
+    <div class="closing">
+      <div class="big">🌙</div>
+      <h3>准备好了吗？</h3>
+      <p>1. 🎵 心情歌单生成<br>2. 📅 心绪日历<br>3. 💭 记录心情<br>4. 🌙 晚间梳理</p>
+    </div>`;
+  $('guideFoot').innerHTML=`
+    <button class="btn btn-ghost" id="sgCancel" style="flex:1">下次吧</button>
+    <button class="btn-primary btn" id="sgGo" style="flex:1">开始 →</button>`;
+  $('sgCancel').onclick=()=>hideModal('modalReflect');
+  $('sgGo').onclick=()=>{
+    hideModal('modalReflect');
+    setTimeout(()=>goPage('playlist'),300);
+  };
+  showModal('modalReflect');
+}
+
+/* ============ 心情歌单页面 ============ */
+// 留空
+
+/* ============ 记录心情页面 ============ */
+const MOOD_TAGS=['😊 开心','😌 平静','😰 焦虑','😫 疲惫','😠 愤怒','😢 低落','🙏 感恩','😶 迷茫'];
+const SAD_SUGGESTIONS=[
+  '学习压力有点大','和朋友闹了点不愉快','家里的事让我烦恼',
+  '最近情绪起伏很大','对自己有点不确定','对未来有点迷茫',
+  '有些话不知道怎么说','今天太累了','感觉没人理解我',
+  '被人批评了','担心考试/成绩','和同学相处不愉快',
+  '觉得自己不够好','有件事一直放不下','说不清楚为什么不开心'
+];
+
+function setupMoodPage(){
+  const m=state.mood;
+  $('mpHappy1').value=m.happy[0]||'';$('mpHappy2').value=m.happy[1]||'';
+  $('mpSad1').value=m.sad[0]||'';$('mpSad2').value=m.sad[1]||'';
+  [['mpHappy1','happy',0],['mpHappy2','happy',1],['mpSad1','sad',0],['mpSad2','sad',1]].forEach(([id,key,idx])=>{
+    const el=$(id);if(!el)return;
+    el.oninput=e=>{state.mood[key][idx]=e.target.value;save();};
+  });
+  // 烦心事建议
+  const tw=$('suggestTags');tw.innerHTML='';
+  const usedSads=[m.sad[0]||'',m.sad[1]||''].filter(s=>s.trim());
+  SAD_SUGGESTIONS.forEach(s=>{
+    const b=document.createElement('button');
+    b.className='suggest-tag'+(usedSads.some(u=>u===s)?' used':'');
+    b.textContent=s;
+    if(!usedSads.some(u=>u===s)){
+      b.onclick=()=>{
+        if(!m.sad[0].trim()){m.sad[0]=s;$('mpSad1').value=s;}
+        else if(!m.sad[1].trim()){m.sad[1]=s;$('mpSad2').value=s;}
+        else{toast('两件烦恼已经写满啦','var(--ink)');return;}
+        save();setupMoodPage();
+        toast('已填入：'+s,'var(--orange)');
+      };
+    }
+    tw.appendChild(b);
+  });
+  // 心情标签
+  const tp=$('mpTags');tp.innerHTML='';
+  MOOD_TAGS.forEach(t=>{
+    const b=document.createElement('button');
+    b.className='mood-tag'+(m.tags.includes(t)?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{
+      if(m.tags.includes(t))m.tags=m.tags.filter(x=>x!==t);
+      else m.tags.push(t);
+      save();b.classList.toggle('active');
+    };
+    tp.appendChild(b);
+  });
+}
+
+/* ============ 心绪日历页面 ============ */
+function renderCalendar(){
+  $('datePillCal').textContent=fmtDate();
+  $('bigDateCal').innerHTML=fmtBigDate();
+  $('helloSubCal').textContent=hourGreet();
+  const list=$('itemListCal'),empty=$('emptyStateCal');
+  list.innerHTML='';
+  const items=state.items;
+  $('stTotalCal').textContent=items.length;
+  $('stDoneCal').textContent=items.filter(i=>i.done).length;
+  $('stTodoCal').textContent=items.filter(i=>!i.done).length;
+  $('listCntCal').textContent=items.length?`${items.length} 项`:'';
+  if(!items.length){empty.style.display='block';return;}
+  empty.style.display='none';
+  const sorted=[...items].sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'));
+  sorted.forEach(it=>{
+    const el=makeItemEl(it,'Cal');
+    el.querySelector('.check').onclick=(e)=>{e.stopPropagation();toggleDoneCal(it.id,el);};
+    list.appendChild(el);
+  });
+}
+
+$('btnAddCal').onclick=()=>addItem('Cal');
+const inpTextCal=$('inpTextCal');
+inpTextCal&&inpTextCal.addEventListener('keydown',e=>{if(e.key==='Enter')addItem('Cal');});
+
+function addItem(suffix){
+  const txt=inpTextCal.value.trim();
+  if(!txt){shake(inpTextCal);return;}
+  const time=inpTimeCal.value||'';
+  state.items.push({id:rid(),text:txt,time,done:false});
+  save();renderCalendar();
+  inpTextCal.value='';inpTimeCal.value='';
+  inpTextCal.focus();
+  toast('已添加','var(--ink)');
+}
+
+/* ============ 日历页勾选完成 + 礼花 ============ */
+function toggleDoneCal(id,el){
+  const it=state.items.find(i=>i.id===id);
+  if(!it)return;
+  if(!it.done){
+    const rect=el.getBoundingClientRect();
+    burstConfetti(rect.left+rect.width/2,rect.top+rect.height/2);
+    it.done=true;save();
+    setTimeout(()=>{renderCalendar();},80);
+    const left=state.items.filter(i=>!i.done).length;
+    cheerPop(el, left?`剩 ${left} 件`:'全部完成！🎉');
+  }else{
+    it.done=false;save();renderCalendar();
+  }
+}
+
+/* ============ 晚间梳理页面（只读事项，仅可勾选） ============ */
+function renderEvening(){
+  $('datePillEve').textContent=fmtDate();
+  $('bigDateEve').innerHTML=fmtBigDate();
+  $('helloSubEve').textContent=hourGreet();
+  const list=$('itemListEve'),empty=$('emptyStateEve');
+  list.innerHTML='';
+  const items=state.items;
+  $('stTotalEve').textContent=items.length;
+  $('stDoneEve').textContent=items.filter(i=>i.done).length;
+  $('stTodoEve').textContent=items.filter(i=>!i.done).length;
+  $('listCntEve').textContent=items.length?`${items.length} 项`:'';
+  if(!items.length){empty.style.display='block';updateVentBtn();return;}
+  empty.style.display='none';
+  const sorted=[...items].sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'));
+  sorted.forEach(it=>{
+    const el=makeItemEl(it,'Eve');
+    el.querySelector('.check').onclick=(e)=>{e.stopPropagation();toggleDoneEve(it.id,el);};
+    list.appendChild(el);
+  });
+  updateVentBtn();
+}
+
+function makeItemEl(it,suffix){
+  const el=document.createElement('div');
+  el.className='item'+(it.done?' done':'');
+  el.dataset.id=it.id;
+  el.innerHTML=`
+    <div class="time-col"><div class="tm">${timeShort(it.time)}</div><div class="sub">${it.time?(parseInt(it.time.split(':')[0])<12?'上午':'下午'):'全天'}</div></div>
+    <div class="dot-col"><span class="dot" style="background:${it.done?'var(--line)':'var(--accent)'}"></span></div>
+    <div class="body-col"><div class="txt">${escapeHtml(it.text)}</div></div>
+    <div class="check" title="${it.done?'取消完成':'标记完成'}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>`;
+  return el;
+}
+
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+/* ============ 完成：礼花 ============ */
+function toggleDoneEve(id,el){
+  const it=state.items.find(i=>i.id===id);
+  if(!it)return;
+  if(!it.done){
+    const rect=el.getBoundingClientRect();
+    burstConfetti(rect.left+rect.width/2,rect.top+rect.height/2);
+    it.done=true;save();
+    setTimeout(()=>{renderEvening();},80);
+    const left=state.items.filter(i=>!i.done).length;
+    cheerPop(el, left?`剩 ${left} 件`:'全部完成！🎉');
+  }else{
+    it.done=false;save();renderEvening();
+  }
+}
+
+function burstConfetti(x,y){
+  const colors=['var(--accent)','var(--orange)','var(--ink)','var(--ink-soft)','var(--green)','#F2D5D3','#4A2E3B'];
+  const layer=$('fxLayer');
+  const n=26;
+  for(let i=0;i<n;i++){
+    const p=document.createElement('div');
+    const sz=5+Math.random()*8;
+    const isStrip=Math.random()>.5;
+    p.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:${sz}px;height:${isStrip?sz*0.4:sz}px;background:${colors[i%colors.length]};z-index:150;pointer-events:none;border-radius:${isStrip?'2px':'50%'};`;
+    layer.appendChild(p);
+    const ang=Math.random()*Math.PI*2,dist=70+Math.random()*110;
+    const dx=Math.cos(ang)*dist,dy=Math.sin(ang)*dist-40;
+    requestAnimationFrame(()=>{
+      p.style.transition='transform 1s cubic-bezier(.15,.7,.3,1),opacity 1s ease';
+      p.style.transform=`translate(${dx}px,${dy+60}px) rotate(${Math.random()*720-360}deg)`;
+      p.style.opacity='0';
+    });
+    setTimeout(()=>p.remove(),1050);
+  }
+}
+function cheerPop(el,msg){
+  const c=$('cheerPop');
+  c.textContent=msg;
+  c.classList.remove('show');
+  c.offsetHeight;
+  const rect=el.getBoundingClientRect();
+  c.style.left=(rect.right-90)+'px';
+  c.style.top=(rect.top-32)+'px';
+  c.classList.add('show');
+  clearTimeout(cheerPop._t);
+  cheerPop._t=setTimeout(()=>c.classList.remove('show'),1400);
+}
+
+function rid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function shake(el){el.style.animation='none';el.offsetHeight;el.style.animation='shake .4s';}
+const sk=document.createElement('style');sk.textContent='@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}';document.head.appendChild(sk);
+
+/* ============ Toast ============ */
+let toastTimer;
+function toast(msg,color){
+  const t=$('toast');t.textContent=msg;
+  t.style.background=color||'var(--ink)';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+/* ============ 发泄一下：小人揉纸团动画 ============ */
+$('btnVent').onclick=startVent;
+function startVent(){
+  if(state.vented){
+    toast('今天已经发泄过了，明天睡前再来吧 🌙','var(--ink)');
+    return;
+  }
+  const allDone=state.items.length>0 && state.items.every(i=>i.done);
+  $('miniStage').classList.add('on');
+  playMiniTimeline(allDone);
+}
+function updateVentBtn(){
+  const btn=$('btnVent');
+  if(state.vented){
+    btn.textContent='✓ 已发泄';
+    btn.style.opacity='0.55';
+    btn.style.cursor='default';
+  }else{
+    btn.textContent='🌙 睡前发泄';
+    btn.style.opacity='';
+    btn.style.cursor='';
+  }
+}
+
+const gather={x:0,y:0};
+function playMiniTimeline(allDone){
+  const man=$('miniMan'),stack=$('paperStack'),ball=$('paperBall'),stage=$('miniStage');
+  const crater=$('crater'),flash=$('impactFlash'),dust=$('dustRing');
+  gather.x=window.innerWidth/2; gather.y=window.innerHeight-185;
+  [man,stack,ball].forEach(el=>{el.style.transition='none';el.style.opacity='0';el.style.transform='';el.style.filter='';});
+  [crater,flash,dust].forEach(el=>{el.style.animation='none';el.style.opacity='0';el.style.transform='';});
+  man.style.transform='translateX(50vw)'; man.style.opacity='0';
+  ball.style.opacity='0'; stack.style.opacity='0';
+  setArms(man,0,0); resetBody(man); setMouth(man,'smile');
+
+  const T=ms=>new Promise(r=>setTimeout(r,ms));
+  const raf=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+
+  (async()=>{
+    // 1) 如果全部完成，先把事项揉成纸团收拢
+    if(allDone){
+      const doneEls=[...document.querySelectorAll('#itemListEve .item.done')];
+      await Promise.all(doneEls.map((el,i)=>rollItemIntoBall(el,i*90)));
+      ball.style.transition='opacity .35s';
+      ball.style.opacity='1';
+      ball.style.transform='translateX(-50%) scale(.6) rotate(20deg)';
+      await T(260);
+    }
+
+    // 2) 小人走进来
+    man.style.transition='opacity .35s, transform .7s cubic-bezier(.22,.61,.36,1)';
+    man.style.opacity='1';
+    await raf();
+    man.style.transform='translateX(-50%)';
+    await T(700);
+
+    // 3) 弯腰捡纸 / 揉纸团
+    if(!allDone){
+      stack.style.transition='opacity .28s'; stack.style.opacity='1';
+    }
+    bendBody(man);
+    setArms(man,30,-30,280);
+    await T(allDone?300:380);
+
+    // 4) 疯狂揉搓纸团
+    if(!allDone){
+      stack.style.transition='transform 1.6s cubic-bezier(.4,.1,.5,1), width 1.6s, height 1.6s, opacity .25s .3s';
+      stack.style.transform='translateX(-50%) scale(.35) rotate(55deg)';
+      stack.style.width='28px';stack.style.height='28px';
+      for(let i=0;i<3;i++){setArms(man,55,-12,180);await T(170);setArms(man,8,-55,180);await T(170);}
+      stack.style.opacity='0';
+      ball.style.transition='opacity .2s';
+      ball.style.opacity='1';
+      ball.style.transform='translateX(-50%) scale(.58) rotate(30deg)';
+      setArms(man,20,-20,250);await T(300);
+    }else{
+      for(let i=0;i<3;i++){
+        ball.style.transition='transform .2s cubic-bezier(.3,.7,.4,1)';
+        ball.style.transform=`translateX(-50%) scale(.6) rotate(${i%2?42:-22}deg)`;
+        setArms(man,i%2?46:10,-8,180);await T(180);
+      }
+    }
+
+    // 5) 后仰蓄力 - 拉满弓
+    ball.style.transition='transform .6s cubic-bezier(.15,.9,.25,1.1)';
+    ball.style.transform='translateX(-50%) scale(.7) translateY(-110px) rotate(-25deg)';
+    ball.style.filter='none';
+    standBody(man);
+    setArms(man,-65,-65,380);
+    setMouth(man,'shout');
+    await T(420);
+
+    // 6) 重砸！—— 球直直朝地面砸下去
+    man.style.transition='transform .08s cubic-bezier(.15,.9,.25,1)';
+    man.style.transform='translateX(-44%) translateY(-10px) scale(1.08) rotate(14deg)';
+    setArms(man,92,85,70);
+    
+    // 球猛砸向下，到页面底部偏中
+    const impactX=window.innerWidth*.5 + (Math.random()-.5)*120;
+    const impactY=window.innerHeight-80;
+    ball.style.transition='transform .22s cubic-bezier(.05,.95,.2,1), opacity .22s, filter .1s';
+    ball.style.filter='brightness(.6) blur(1px)';
+    ball.style.transform=`translateX(calc(-50% + ${impactX-window.innerWidth/2}px)) translateY(${impactY-120}px) scale(.8) rotate(720deg)`;
+    ball.style.opacity='1';
+    
+    // 冲击闪白
+    flash.style.left=impactX+'px';flash.style.top=impactY+'px';
+    flash.style.animation='impactFlash .5s ease-out forwards';
+    flash.style.opacity='.85';
+
+    // 陨石坑
+    crater.style.left=impactX+'px';crater.style.top=impactY+'px';
+    crater.style.animation='craterAppear .55s cubic-bezier(.2,.8,.3,1) forwards';
+    crater.style.opacity='0';
+    
+    // 灰尘环
+    dust.style.left=impactX+'px';dust.style.top=impactY+'px';
+    dust.style.animation='dustExpand 1.2s ease-out forwards';
+    dust.style.opacity='.85';
+
+    // 震屏強烈
+    screenShakeHard();
+    await T(100);
+
+    // 7) 碎片飞溅
+    spawnDebris(impactX,impactY,22);
+
+    // 球消失进坑
+    ball.style.transition='transform .6s cubic-bezier(.35,.8,.3,1), opacity .35s ease .4s, filter .5s';
+    ball.style.transform=`translateX(calc(-50% + ${impactX-window.innerWidth/2}px)) translateY(${impactY}px) scale(.15) rotate(1260deg)`;
+    ball.style.filter='blur(3px) brightness(.3)';
+    ball.style.opacity='0';
+    
+    // 小人被冲击波震退
+    man.style.transition='transform .25s cubic-bezier(.2,.7,.3,1)';
+    man.style.transform='translateX(-55%) translateY(4px) scale(.92) rotate(-8deg)';
+    setArms(man,28,-28,200);
+    await T(200);
+    
+    // 小人站稳，喘气
+    man.style.transition='transform .4s cubic-bezier(.2,.7,.3,1)';
+    man.style.transform='translateX(-50%) translateY(0) scale(1) rotate(0deg)';
+    setArms(man,10,-10,220);
+    await T(150);
+    setArms(man,-15,-15,180);await T(185);
+    setArms(man,8,8,180);await T(185);
+    setArms(man,-15,-15,180);await T(185);
+    setArms(man,6,6,180);await T(250);
+
+    // 8) 小人转身离开，坑留在那里
+    setArms(man,0,0,280);
+    setMouth(man,'smile');
+    man.style.transition='opacity .4s, transform .8s cubic-bezier(.22,.61,.36,1)';
+    man.style.transform='translateX(50vw) translateY(0)';
+    man.style.opacity='0';
+    await T(750);
+
+    // 9) 坑淡出后清理
+    crater.style.transition='opacity .6s ease';
+    crater.style.opacity='0';
+    dust.style.transition='opacity .5s ease';
+    dust.style.opacity='0';
+    flash.style.opacity='0';
+    // 彻底移除所有碎片和坑的痕迹
+    setTimeout(()=>{
+      crater.style.display='none';crater.style.opacity='';crater.style.animation='';
+      flash.style.display='none';flash.style.opacity='';flash.style.animation='';
+      dust.style.display='none';dust.style.opacity='';dust.style.animation='';
+      document.querySelectorAll('.debris').forEach(d=>d.remove());
+    },700);
+
+    stage.classList.remove('on');
+    afterVent(allDone);
+  })();
+}
+
+function screenShakeHard(){
+  document.body.style.animation='none';document.body.offsetHeight;
+  document.body.style.animation='scrShakeHard .5s cubic-bezier(.36,.07,.19,.97)';
+  setTimeout(()=>{document.body.style.animation='';},530);
+}
+
+function spawnDebris(x,y,n){
+  const layer=$('fxLayer');
+  const colors=['#555','#444','#666','#3A3A3C','#888','#555','#333','#777'];
+  for(let i=0;i<n;i++){
+    const d=document.createElement('div');
+    d.className='debris';
+    const w=4+Math.random()*18,h=2+Math.random()*8;
+    const ang=Math.random()*Math.PI*2,speed=60+Math.random()*200;
+    d.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${colors[i%colors.length]};border-radius:${Math.random()>.5?'3px':'50%'};`;
+    layer.appendChild(d);
+    requestAnimationFrame(()=>{
+      const dx=Math.cos(ang)*speed,dy=Math.sin(ang)*speed-40-Math.random()*80;
+      d.style.transition=`all ${.4+Math.random()*.6}s cubic-bezier(${.1+Math.random()*.3},.5,.3,1)`;
+      d.style.opacity='1';
+      d.style.transform=`translate(${dx}px,${dy}px) rotate(${Math.random()*720-360}deg)`;
+      setTimeout(()=>{d.style.opacity='0';setTimeout(()=>d.remove(),400);},350+Math.random()*300);
+    });
+  }
+}
+
+function rollItemIntoBall(el,delay){
+  return new Promise(res=>{
+    const rect=el.getBoundingClientRect();
+    const clone=el.cloneNode(true);
+    clone.style.cssText=`position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;margin:0;z-index:175;pointer-events:none;transition:none;transform-origin:bottom center;overflow:hidden;box-shadow:var(--shadow-soft);`;
+    $('fxLayer').appendChild(clone);
+    el.style.transition='opacity .3s'; el.style.opacity='0';
+    setTimeout(()=>{
+      const chk=clone.querySelector('.check'); if(chk)chk.style.opacity='0';
+      clone.style.transition='transform .6s cubic-bezier(.5,.1,.6,1), border-radius .6s, background .4s';
+      clone.style.transform='scaleY(.07) scaleX(.5) rotate(12deg)';
+      clone.style.borderRadius='60%';
+      clone.style.background='#fff';
+      setTimeout(()=>{
+        const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+        const dx=gather.x-cx, dy=gather.y-cy;
+        clone.style.transition='transform .75s cubic-bezier(.35,.05,.4,1), opacity .75s ease .45s';
+        clone.style.transform=`translate(${dx}px, ${dy}px) scale(.1) rotate(${360+Math.random()*360}deg)`;
+        clone.style.opacity='0';
+      },620);
+      setTimeout(()=>{clone.remove();res();},1450);
+    },delay);
+  });
+}
+
+function screenShake(){
+  document.body.style.animation='none';document.body.offsetHeight;
+  document.body.style.animation='scrShake .38s cubic-bezier(.36,.07,.19,.97)';
+  setTimeout(()=>{document.body.style.animation='';},420);
+}
+function spawnTrail(ball){
+  const r=ball.getBoundingClientRect();
+  const x=r.left+r.width/2, y=r.top+r.height/2;
+  for(let i=0;i<5;i++){
+    const s=document.createElement('div');
+    s.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:90px;height:6px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85));border-radius:4px;z-index:168;pointer-events:none;opacity:.9;transform:translateX(0) scale(.4)`;
+    $('fxLayer').appendChild(s);
+    setTimeout(()=>{
+      s.style.transition='transform .5s cubic-bezier(.2,.7,.3,1), opacity .5s ease';
+      s.style.transform=`translateX(${-60-i*45}px) scale(1)`;
+      s.style.opacity='0';
+    },i*60);
+    setTimeout(()=>s.remove(),720+i*60);
+  }
+}
+
+function bendBody(man){animateP(man,'.torso, .torso2','translateY(7px)',320);}
+function standBody(man){animateP(man,'.torso, .torso2','translateY(0)',340);}
+function resetBody(man){man.querySelectorAll('.torso,.torso2').forEach(e=>{e.style.transition='none';e.style.transform='';});}
+function setMouth(man,type){
+  const m=man.querySelector('.mouth');
+  if(type==='shout'){m.setAttribute('d','M62 66 Q70 60 78 66 Q70 75 62 66 Z');m.setAttribute('fill','#B53C4A');m.setAttribute('stroke','none');}
+  else if(type==='focus'){m.setAttribute('d','M64 69 L76 69');m.setAttribute('stroke','#B53C4A');m.setAttribute('stroke-width','2');m.setAttribute('fill','none');}
+  else{m.setAttribute('d','M63 68 Q70 73 77 68');m.setAttribute('stroke','#B53C4A');m.setAttribute('stroke-width','2');m.setAttribute('fill','none');}
+}
+function animateP(root,sel,trans,dur){
+  root.querySelectorAll(sel).forEach(el=>{el.style.transition=`transform ${dur}ms cubic-bezier(.3,.7,.4,1)`;el.style.transform=trans;});
+}
+function setArms(man,rotL,rotR,dur){
+  const al=man.querySelector('.arm-l'),ar=man.querySelector('.arm-r');
+  const t=dur?`transform ${dur}ms cubic-bezier(.3,.7,.4,1)`:'transform .2s cubic-bezier(.3,.7,.4,1)';
+  al.style.transition=t;ar.style.transition=t;
+  al.style.transform=`rotate(${rotL}deg)`;ar.style.transform=`rotate(${rotR}deg)`;
+}
+
+function afterVent(allDone){
+  state.vented=true;save();
+  updateVentBtn();
+  if(allDone){
+    state.items=state.items.filter(i=>!i.done);
+    save();renderEvening();
+    const e=$('emptyStateEve');
+    if(e){e.querySelector('.emoji').textContent='🌙';e.querySelector('p').textContent='今天的事都揉成纸团扔掉了，干干净净';}
+    toast('今天的事都撕碎扔掉了，干得漂亮！🎉','var(--accent)');
+  }else{
+    const msgs=['烦恼揉成一团，扔得远远的 🌀','你看，没什么过不去的。','把它们丢掉，轻松了不少吧？','那些累，已经没那么重了。'];
+    toast(msgs[Math.floor(Math.random()*msgs.length)],'var(--accent)');
+  }
+  setTimeout(()=>showVentGuide(allDone),800);
+}
+
+function showVentGuide(allDone){
+  $('stepBar').innerHTML='';
+  $('guideTitle').textContent=allDone?'发泄完了，今天圆满了':'发泄完了，舒服些了吗？';
+  $('guideSub').style.whiteSpace='pre-line';
+  $('guideSub').textContent=allDone
+    ?'所有事项都揉成纸团扔掉了，你今天真的很棒。\n接下来，花几分钟梳理一下今天吧。'
+    :'把烦心事揉成纸团扔掉，是一种对自己的温柔。\n接下来，花几分钟梳理一下今天吧。';
+  $('guideBody').innerHTML=`<div class="closing"><div class="big">🌙</div><h3>睡前还有一步</h3><p>发泄完了，心轻了一些<br>现在，让我们一起回顾今天<br>给这一天画上温柔的句号</p></div>`;
+  $('guideFoot').innerHTML=`
+    <button class="btn btn-ghost" id="vSkip" style="flex:1">不了，想直接睡</button>
+    <button class="btn-primary btn" id="vGoReflect" style="flex:1">去今日梳理 →</button>`;
+  $('vSkip').onclick=()=>hideModal('modalReflect');
+  $('vGoReflect').onclick=()=>{
+    hideModal('modalReflect');
+    setTimeout(()=>openReflect(),300);
+  };
+  showModal('modalReflect');
+}
+
+/* ============ 今日梳理（匿名日记本风格开场） ============ */
+const strategies=[
+  {key:'tomorrow',label:'📅 放到明天',tag:'tomorrow'},
+  {key:'split',label:'✂️ 拆成小步',tag:'split'},
+  {key:'delegate',label:'🤝 委托他人',tag:'delegate'},
+  {key:'later',label:'⏳ 延后几天',tag:'later'},
+  {key:'drop',label:'🕊️ 放下它',tag:'drop'},
+];
+const moodStrategies=[
+  {key:'acknowledge',label:'💭 看见它',tag:'acknowledge'},
+  {key:'talk',label:'🗣️ 找人聊聊',tag:'talk'},
+  {key:'reframe',label:'🔄 换个角度',tag:'reframe'},
+  {key:'release',label:'🕊️ 放下它',tag:'release'},
+  {key:'selfcare',label:'❤️ 抱抱自己',tag:'selfcare'},
+];
+const moodNotePh={
+  acknowledge:'写下你此刻的感受，不用组织语言…',
+  talk:'想跟谁聊聊？想说什么…',
+  reframe:'换个角度看，这件事也许…',
+  release:'放下它，因为…',
+  selfcare:'现在，你最想给自己什么？',
+};
+const moodDecisionLabel={acknowledge:'看见',talk:'聊聊',reframe:'换角度',release:'放下',selfcare:'抱抱'};
+
+let guideState=null;
+$('btnReflect').onclick=openReflect;
+
+function generateComfort(sads,happies){
+  if(!sads.length && !happies.length) return null;
+  const comforts=[];
+  const allSad=sads.map(s=>s.text).join(' ');
+  const themes=[];
+  if(/考|试|成绩|分数|作业|论文|ddl|deadline|due|交|复习|备考|IA|EE|TOK|quiz|test|exam|答辩|报告/i.test(allSad)) themes.push('study');
+  if(/累|疲惫|撑不住|崩溃|心力交瘁|精疲力竭|没力气|好累|累死|熬|困/i.test(allSad)) themes.push('tired');
+  if(/朋友|人际|关系|吵架|冷战|孤立|排挤|社交|室友|同学|闹翻/i.test(allSad)) themes.push('relation');
+  if(/不够好|没用|废物|差劲|否定|怀疑自己|没出息|比不上|太差|没能力|做不好/i.test(allSad)) themes.push('selfdoubt');
+  if(/焦虑|担心|害怕|恐惧|不安|紧张|慌|压力|压得|喘不过/i.test(allSad)) themes.push('anxiety');
+  if(/孤独|一个人|没人|寂寞|孤单|被冷落|没人理/i.test(allSad)) themes.push('lonely');
+  if(/失去|告别|分开|结束|走了|离开|分手|离别/i.test(allSad)) themes.push('loss');
+  if(/失败|做错|搞砸|没做到|没完成|输了|翻车|出错|弄砸/i.test(allSad)) themes.push('fail');
+  if(/病|难受|疼|不舒服|身体|发烧|头痛|胃/i.test(allSad)) themes.push('sick');
+  if(/家|爸妈|父母|妈|爸|家里|家里事/i.test(allSad)) themes.push('family');
+  if(!themes.length) themes.push('general');
+  const comfortMap={
+    study:['学业上的压力，你已经扛了很久了。能把它写下来，说明你还在想办法，没有放弃。','与其逼自己一次做完，不如允许自己一步一步慢慢来。'],
+    tired:['听出来你真的很累了。累不是软弱，是身体在提醒你该停一停了。','今天做得够多了，剩下的，可以交给明天的自己。'],
+    relation:['人和人之间的事，最消耗心力。你已经尽力了，这就够了。','不是所有的关系都需要你立刻去修复。先照顾好自己的感受。'],
+    selfdoubt:['你对自己太严格了。此刻的否定，并不是真实的你。','你已经做得比你以为的要好了。'],
+    anxiety:['你担心的事，大多不会发生。而此刻的你，是安全的。','焦虑会过去的。你不必现在就解决所有问题。'],
+    lonely:['一个人，不代表被遗忘。此刻也许有人正在想着你。','孤独的时候，更要对自己温柔一点。'],
+    loss:['失去总会疼。允许自己难过一会儿，没关系的。','告别不是终结，是带着回忆继续往前走。'],
+    fail:['没做到，不等于你不行。它只是这一次的结果。','搞砸了也没关系，它不会定义你。'],
+    sick:['身体不舒服的时候，什么都可以放一放。','先把身体照顾好，其他的事，不急。'],
+    family:['家里的事，常常最牵动你。能感到为难，是因为你在乎。','有些事你改变不了，但可以先安顿好自己。'],
+    general:['你愿意把它们写下来，就已经在照顾自己了。','今天辛苦了。这些事，不用一个人扛着。'],
+  };
+  themes.slice(0,2).forEach(t=>{
+    const pool=comfortMap[t];
+    comforts.push(pool[Math.floor(Math.random()*pool.length)]);
+  });
+  if(happies.length && comforts.length<2){
+    comforts.push('而且今天还有让你开心的事——那说明再难的一天，也有光照进来。');
+  }
+  return comforts;
+}
+
+/* 匿名日记本风格开场 —— 根据用户困扰动态生成 */
+function diaryStory(sads){
+  const allSad=sads.join(' ');
+  const themes=detectThemes(allSad);
+  return buildDynamicStory(themes,allSad,sads);
+}
+
+function detectThemes(text){
+  const found=[];
+  if(/考|试|成绩|分数|作业|论文|ddl|deadline|due|交|复习|备考|IA|EE|TOK|quiz|test|exam|答辩|报告|上课|听课|笔记|知识点|题目|刷题/i.test(text)) found.push('study');
+  if(/累|疲惫|撑不住|崩溃|心力交瘁|精疲力竭|没力气|好累|累死|熬|困|睡不够|失眠|没精神/i.test(text)) found.push('tired');
+  if(/朋友|人际|关系|吵架|冷战|孤立|排挤|社交|室友|同学|闹翻|误会|不理解|被说|被议论|背后/i.test(text)) found.push('relation');
+  if(/不够好|没用|废物|差劲|否定|怀疑自己|没出息|比不上|太差|没能力|做不好|不如|自卑|配不上/i.test(text)) found.push('selfdoubt');
+  if(/焦虑|担心|害怕|恐惧|不安|紧张|慌|压力|压得|喘不过|心慌|发愁|烦躁/i.test(text)) found.push('anxiety');
+  if(/孤独|一个人|没人|寂寞|孤单|被冷落|没人理|不关心|忽视|透明/i.test(text)) found.push('lonely');
+  if(/失去|告别|分开|结束|走了|离开|分手|离别|想念|怀念|不在了/i.test(text)) found.push('loss');
+  if(/失败|做错|搞砸|没做到|没完成|输了|翻车|出错|弄砸|搞不定|放弃|坚持不了/i.test(text)) found.push('fail');
+  if(/病|难受|疼|不舒服|身体|发烧|头痛|胃|感冒|生病/i.test(text)) found.push('sick');
+  if(/家|爸妈|父母|妈|爸|家里|家里事|家庭|亲人|亲戚/i.test(text)) found.push('family');
+  if(/未来|前途|出路|方向|迷茫|不知道.*怎么办|选择|决定|规划|梦想|目标/i.test(text)) found.push('future');
+  if(/无聊|没意思|没劲|空虚|麻木|什么都.*不想|提不起/i.test(text)) found.push('empty');
+  if(!found.length) found.push('general');
+  return found.slice(0,3);
+}
+
+function buildDynamicStory(themes,rawText,sadInputs){
+  const name=pickName(rawText||'xinshu');
+  const kws=extractKeywords(rawText||'');
+  const studyObj=kws.find(k=>/数学|英语|物理|化学|生物|经济|历史|地理|语文|心理|艺术|TOK|EE|IA|CAS|考试|quiz|test|exam|ddl|deadline|due|论文|作业|报告|复习|备考|科目|课程|知识点|题目|刷题/i.test(k))||'那份未完成的作业';
+  const person=kws.find(k=>/爸爸|妈妈|父亲|母亲|爸妈|老妈|老爸|室友|同桌|同学|朋友|老师|班主任|教练|前任|老板|同事|那个人/i.test(k))||'那个人';
+  const bodyPart=kws.find(k=>/头|胃|肚子|喉咙|胸|背|腰|腿|发烧|感冒|生病|身体/i.test(k))||'身体';
+  const examType=kws.find(k=>/IA|EE|TOK|quiz|test|exam|期中|期末|一模|二模|大考|月考|IB|AP|SAT|雅思|托福|考研|高考|考试/i.test(k))||'考试';
+  const futureNoun=kws.find(k=>/未来|前途|出路|方向|大学|专业|学校|志愿|工作|职业|梦想|目标|选择|决定/i.test(k))||'未来';
+
+  const fragments={
+    study:[
+      {open:`{name}把${studyObj}的文档打开又关上，光标在空白处闪了快十分钟。`,mid:`手机屏幕亮了一下，是同学发来的消息——“你${examType}准备得怎么样了？” {name}看了一眼，把手机翻过去。不是因为不想回，是不知道怎么回答。`,close:`后来{name}合上书，走到窗边站了一会儿。远处的楼亮着零零散散的灯光，每一盏后面大概都有一个和{name}差不多的人。{name}对自己说：今晚不逼自己了，先把这股气顺过来。`},
+      {open:`成绩出来的时候，{name}把页面关了又开，开了又关。`,mid:`其实不是最差的分数，但也不是{name}想要的。旁边的人在讨论${examType}后的安排，{name}假装在看别的东西。不是在嫉妒，是不知道自己该往哪里走。`,close:`回家的路上，{name}走得很慢。路过一家便利店，买了一瓶从小喝到大的饮料。喝第一口的时候，忽然觉得——${examType}只是人生很小的一个刻度，{name}还有很长的路要走。`},
+    ],
+    tired:[
+      {open:`{name}今天按下闹钟的时候，觉得全身像灌了铅一样。`,mid:`不是因为没睡好——是那种从骨头里透出来的累。刷牙的时候看着镜子里的人，{name}觉得有点陌生。但还是换好衣服出门了。`,close:`晚上回到家，{name}什么也没做，只是躺在床上，盯着天花板上那盏吸顶灯发呆。{name}想起有人说过：有时候什么都不做，就是对今天最好的交代。`},
+      {open:`最后一节课结束的时候，{name}趴在桌上，同桌以为{name}在睡觉。其实没有。`,mid:`{name}只是觉得如果不趴一会儿，整个人就会散掉。脑子里跑着各种声音——明天要交的、下周要考的、还有那些说不清楚从哪来的焦虑。`,close:`后来{name}去操场走了一圈又一圈。路灯亮起来的时候，忽然觉得——至少今天，撑过来了。累归累，{name}没有逃。`},
+    ],
+    relation:[
+      {open:`{name}和${person}已经三天没说话了。起因小到不好意思说出口。`,mid:`对话框打开又关上，写了几行字又删掉。其实{name}知道自己也有不对的地方，但就是不知道该怎么先开口。那种想说又说不出来的感觉，比吵架本身还要难受。`,close:`也许明天吧。明天早上起来，发一个表情包，装作什么都没发生。{name}想：有些关系，不用解释也能回来；如果回不来了，那也不是{name}一个人的错。`},
+      {open:`食堂里，那几个人坐在一起有说有笑。{name}端着餐盘，在另一边找了个空位。`,mid:`不是因为被排挤——只是不知道怎么融入。有时候{name}觉得自己像一个站在玻璃窗外的人，看得见里面的热闹，但碰不到。`,close:`吃完饭回教室的路上，有人拍了拍{name}的肩膀。“刚才怎么不过来坐？” {name}愣了一下，然后笑了笑。可能有些距离，是自己想象出来的。`},
+    ],
+    selfdoubt:[
+      {open:`{name}今天一整天都在想同一件事。“我是不是不太行？”`,mid:`这个问题像背景音乐一样，从早响到晚。即使做完了所有该做的事，{name}也总觉得哪里不对。别人夸{name}的时候，{name}的第一反应是“他们只是客气”。`,close:`晚上写日记的时候，{name}试着用安慰朋友的语气给自己写了一段话。写着写着，眼眶就热了。原来{name}对别人那么温柔，对自己却这么苛刻。`},
+      {open:`{name}站在队伍的最后面，看着前面的人一个个走上去。快要轮到{name}的时候，手指在口袋里攥成了拳头。`,mid:`不是没准备——是准备了也觉得自己不够。明明花了很多时间，但临到关头，{name}脑子里全是“万一搞砸了怎么办”。`,close:`结束之后，没有人说差。甚至有人说“你做得挺好的”。{name}走出门的时候，忽然有点想哭——不是因为难过，是因为终于松了一口气。{name}比自己以为的要好。`},
+    ],
+    anxiety:[
+      {open:`{name}的心跳快得不正常。其实什么都没发生，但身体比脑子先紧张。`,mid:`手掌心在出汗，呼吸也变得又浅又快。{name}试着告诉自己“没事的，没事的”，但那种悬在半空的感觉，像有一只无形的手掐着胸口。`,close:`后来{name}闭上眼睛，数了十次呼吸。一、二、三——那些声音还在，但好像远了一点。{name}知道它们不会立刻消失，但至少{name}重新拿回了呼吸的节奏。`},
+    ],
+    lonely:[
+      {open:`放学的时候，所有人都三三两两地走了。{name}故意收拾得很慢。`,mid:`不是因为还有事——是觉得走出去也不知道跟谁一起。手机里的消息列表翻了一圈，{name}没找到想说话的人。`,close:`路过楼下的便利店，收银员阿姨笑着说“今天这么晚”。就这一句话，让{name}觉得——今天好像也没那么孤单。{name}决定买一盒热饮带回家，给自己一点暖意。`},
+    ],
+    loss:[
+      {open:`{name}路过那个地方的时候，脚步不由自主地慢了。`,mid:`明明已经不是第一次从这里经过了，但每次还是会有那么一瞬间的恍惚。有些东西走了就走了，但它的影子还留在这里。`,close:`{name}没有停下来。只是走过去的时候，在心里轻轻地说了一句“我挺好的”。也许说多了，就真的好了。{name}允许自己想念，也允许自己继续走。`},
+    ],
+    fail:[
+      {open:`结果出来的时候，{name}的第一反应不是难过，是——“果然。”`,mid:`不是因为不在乎，是因为已经习惯了失望。每次都是这样，没有惊喜，只有“差一点”和“又这样”。`,close:`但那天晚上，{name}还是打开了笔记本，重新写了一个标题。搞砸了没关系，它只是这一次。{name}告诉自己：明天还是一张白纸，而{name}还有笔。`},
+    ],
+    sick:[
+      {open:`{name}今天的${bodyPart}一直不舒服，但还是要撑着。`,mid:`有人问“你怎么了”，{name}说了句“没事”。不是逞强——是说了也没用，还是要靠自己。`,close:`后来{name}去接了一杯热水，坐在走廊的椅子上，什么都不想。{name}忽然意识到：身体不舒服的时候，什么都不做，就是对自己最好的照顾。`},
+    ],
+    family:[
+      {open:`电话那头的声音让{name}一下子说不出话来。`,mid:`有些事，是家里的事。外面的人不会懂，{name}自己也解释不清。{name}能感到为难，是因为在乎。`,close:`挂了电话，{name}在窗前站了很久。有些事改变不了，但可以先安顿好自己。{name}想：只有自己稳了，才能照顾想照顾的人。`},
+    ],
+    future:[
+      {open:`每个人都在问{name}“以后想做什么”，好像所有人都已经有了答案。`,mid:`{name}不是没有想过。是想了很多，但每一个都不确定。有时候{name}羡慕那些目标明确的人，但更多时候，{name}只想先走好眼前这一步。`,close:`后来{name}告诉自己：不知道${futureNoun}也没关系。路是走出来的，不是想出来的。{name}今天迈出的这一小步，就已经在路上了。`},
+    ],
+    empty:[
+      {open:`{name}今天什么都没做。不是懒——是做什么都提不起劲。`,mid:`窗外是灰蒙蒙的天。手机里的内容刷了一遍又一遍，但没有一条能让{name}停留超过三秒。那种感觉不是难过，也不是快乐——是“没有感觉”。`,close:`下午四点，{name}泡了一杯热茶。热气升起来的时候，忽然觉得有一点点暖意。{name}想：也许什么都没有的一天，也是一种被允许的存在。`},
+    ],
+    general:[
+      {open:`说不出为什么，但{name}今天就是不太对。`,mid:`没有什么大事发生，但心里的某个角落总觉得闷闷的。像阴天，没有雨，但也没有阳光。`,close:`也许什么都不用做。{name}坐下来，喝口水，等着这片云飘过去。它总会过去的。{name}已经做得很好了。`},
+    ],
+  };
+  const tipsMap={
+    study:['与其逼自己一次做完，不如允许自己一步一步来','你正在做的事，不管进度多慢，都在往前','休息也是学习的一部分——累了就去睡'],
+    tired:['累了不是软弱，是身体在说需要停一停。听它的','今天做得够多了。剩下的，可以交给明天','什么都不做的晚上，也是一种了不起的自我照顾'],
+    relation:['人和人之间的事，最耗心力。你尽力了，这就够了','冷静下来再沟通，比在气头上说任何话都有效','给自己一点时间，也给对方一点时间'],
+    selfdoubt:['你对自己太严格了。你比你以为的好得多','试着像安慰朋友一样安慰自己——你值得同样的温柔','完美不是前提。足够好，就已经足够'],
+    anxiety:['你担心的事，大多不会发生。而此刻，你是安全的','数一数呼吸。一、二、三——焦虑会过去的','不需要现在就解决所有问题。先解决“现在”'],
+    lonely:['一个人不代表被遗忘。此刻也许有人正在想着你','孤独的时候更要对自己温柔。你是自己最好的朋友','有时候一个陌生人的点头微笑，就够暖一天'],
+    loss:['失去总会疼。允许自己难过一会儿，没关系的','告别不是终结，是带着回忆继续往前走','时间不会让你忘记，但会让你习惯带着它生活'],
+    fail:['没做到不等于你不行。它只是这一次的结果','搞砸了也没关系，它不会定义你','明天还是一张白纸。一张你可以重新画的白纸'],
+    sick:['身体不舒服的时候，什么都可以放一放','先把身体照顾好。其他的事，不急','喝杯热水，深呼吸。你值得被照顾'],
+    family:['有些事你改变不了。但可以先安顿好自己','能感到为难，是因为你在乎。这本身就了不起','照顾好自己，才能更好地照顾想照顾的人'],
+    future:['不知道也没关系。路是走出来的，不是想出来的','迷茫是长大的一部分。每个人都在自己的雾里走','先做好眼前的事。未来的自己，会感谢现在的每一步'],
+    empty:['没有感觉也是一种感觉，它值得被尊重','什么都不做的日子，也是一种被允许的存在','泡一杯热茶吧。有时候一丁点的暖意就够了'],
+    general:['说不出为什么的闷闷的，也是需要被看见的情绪','什么都不用做。等这片云飘过去——它总会过去的','你愿意把这些写下来，就已经在照顾自己了'],
+  };
+
+  const parts=[];
+  themes.forEach((theme,idx)=>{
+    const pool=fragments[theme]||fragments.general;
+    const pick=pool[idx%pool.length];
+    if(idx===0) parts.push(pick.open);
+    if(idx>0) parts.push(pick.mid);
+    if(idx===themes.length-1) parts.push(pick.close);
+    else if(idx>0) parts.push(pick.mid);
+  });
+  if(themes.length===1){
+    const pool=fragments[themes[0]]||fragments.general;
+    const pick=pool[0];
+    if(parts.length===1) parts.push(pick.mid,pick.close);
+  }
+
+  let story=parts.join('');
+  story=story.replace(/{name}/g,name);
+  story=story.replace(/{studyObj}/g,studyObj);
+  story=story.replace(/{person}/g,person);
+  story=story.replace(/{bodyPart}/g,bodyPart);
+  story=story.replace(/{examType}/g,examType);
+  story=story.replace(/{futureNoun}/g,futureNoun);
+
+  const tips=[];
+  themes.forEach(t=>{
+    const pool=tipsMap[t]||tipsMap.general;
+    tips.push(pool[Math.floor(Math.random()*pool.length)]);
+    if(pool.length>2 && tips.length<3){
+      let second=pool[Math.floor(Math.random()*pool.length)];
+      while(second===tips[tips.length-1] && pool.length>1) second=pool[Math.floor(Math.random()*pool.length)];
+      if(second!==tips[tips.length-1]) tips.push(second);
+    }
+  });
+  while(tips.length<3){
+    const pool=tipsMap.general;
+    tips.push(pool[tips.length%pool.length]);
+  }
+
+  return {story,tips:tips.slice(0,4)};
+}
+
+function extractKeywords(text){
+  const matches=[];
+  const patterns=[
+    /IB\s*([A-Za-z]+)/i,/(?:数学|英语|物理|化学|生物|经济|历史|地理|语文|心理|艺术|TOK|EE|IA|CAS|quiz|test|exam|ddl|deadline|due)/i,
+    /([0-9]+[:点分])/,
+    /(爸爸|妈妈|父亲|母亲|爸妈|老妈|老爸|室友|同桌|同学|朋友|老师|班主任|教练|前任|老板|同事|那个人)/,
+    /(手机|电脑|游戏|小说|剧|综艺|篮球|足球|跑步|画画|弹琴|吉他|钢琴|舞蹈|游泳|IA|EE|TOK|考试|论文|作业|报告|复习|ddl|deadline|due)/,
+  ];
+  patterns.forEach(re=>{
+    const m=text.match(re);
+    if(m && m[0] && !matches.includes(m[0])) matches.push(m[0]);
+  });
+  const phrases=text.match(/[一-龥]{2,6}(?:考试|测试|作业|论文|报告|比赛|面试|聚会|约会|谈话|消息|电话|ddl|deadline|due|IA|EE|TOK|成绩|分数|排名|申请|志愿|专业|学校|科目|课程|社团|活动|项目|任务|计划|目标|梦想|选择|决定|关系|矛盾|误会|冲突|冷战|吵架|分手|离别|离开|生病|发烧|头痛|胃|身体|家里|家庭|父母|爸妈|妈妈|爸爸|未来|前途|方向|迷茫|孤独|孤单|寂寞|一个人|焦虑|紧张|害怕|担心|压力|疲惫|累|崩溃|怀疑|否定|自卑|不如|不够好|空虚|麻木|无聊|没意思|失败|搞砸|放弃|出错|做错|没做到|完成不了|输了|翻车|被说|被议论|背后|排挤|孤立|冷落|透明|忽视|没人理|不支持|不理解)/g);
+  if(phrases){
+    phrases.slice(0,5).forEach(p=>{
+      if(!matches.includes(p)) matches.push(p);
+    });
+  }
+  return matches.slice(0,8);
+}
+
+function pickName(seedText){
+  const names=['小北','阿言','林夕','周予','陈默','苏禾','程一','赵然','许诺','叶知','沈让','江原','方也','陆时','何夏','顾南','梁浅','陶然','夏白','谢予','宋寻','林栖','叶深','白澈'];
+  let h=0;
+  for(let i=0;i<seedText.length;i++) h=(h*31+seedText.charCodeAt(i))%names.length;
+  return names[(h+new Date().getDate())%names.length];
+}
+
+function renderDiaryIntro(){
+  $('stepBar').innerHTML='';
+  $('guideTitle').textContent='匿名日记本';
+  $('guideSub').textContent='像读别人的故事一样，重新看见自己的处境。';
+  const sads=(state.mood.sad||[]).filter(s=>s&&s.trim());
+  const story=sads.length?diaryStory(sads):diaryStory([]);
+  $('guideBody').innerHTML=`
+    <div class="diary-card">
+      <div class="dheader">📖 某位匿名用户的日记片段</div>
+      <div class="dstory">${escapeHtml(story.story)}</div>
+      <div class="dtips">
+        <h4>💡 这也许对你有帮助</h4>
+        <ul>${story.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+  $('guideFoot').innerHTML=`<button class="btn-primary btn" id="dCont" style="width:100%">嗯，我继续梳理</button>`;
+  $('dCont').onclick=()=>{renderGuideStep();};
+}
+
+function openReflect(){
+  const todos=state.items.filter(i=>!i.done);
+  const sads=(state.mood.sad||[]).filter(s=>s&&s.trim());
+  const happies=(state.mood.happy||[]).filter(h=>h&&h.trim());
+  if(!todos.length && !sads.length && !happies.length){
+    showClosing('今天都做完啦','所有事项都完成了 ✨\n你今天已经很努力了，好好休息吧。');
+    return;
+  }
+  guideState={
+    todos:todos.map(t=>({id:t.id,text:t.text,time:t.time,decision:null,note:''})),
+    sads:sads.map(s=>({text:s,decision:null,note:''})),
+    idx:0,
+    plan:[],
+    comfort:generateComfort(sads,happies)
+  };
+  // 匿名日记本风格开场
+  renderDiaryIntro();
+  showModal('modalReflect');
+}
+
+function renderGuideStep(){
+  const gs=guideState;
+  const todoCount=gs.todos.length;
+  const sadCount=gs.sads.length;
+  const total=todoCount+sadCount;
+  const i=gs.idx;
+  const bar=$('stepBar');bar.innerHTML='';
+  for(let k=0;k<total;k++){const s=document.createElement('i');if(k<=i)s.classList.add('on');if(k>=todoCount)s.classList.add('mood-step');bar.appendChild(s);}
+  if(i<todoCount){
+    const it=gs.todos[i];
+    $('guideTitle').textContent=`还有 ${todoCount-i} 件没完成`;
+    $('guideSub').textContent='不用全部做完。我们一起来决定，它们该怎么安放。';
+    const body=$('guideBody');body.innerHTML='';
+    const card=document.createElement('div');
+    card.className='guide-item';
+    card.innerHTML=`
+      <div class="gi-head"><span class="gi-time">${it.time?timeLabel(it.time):'全天'}</span><span class="gi-txt">${escapeHtml(it.text)}</span></div>
+      <div class="guide-q">这件事，你打算怎么处理？</div>
+      <div class="strategies"></div>`;
+    const sw=card.querySelector('.strategies');
+    strategies.forEach(st=>{
+      const b=document.createElement('button');
+      b.className='strat'+(it.decision===st.key?' active':'');
+      b.textContent=st.label;
+      b.onclick=()=>{
+        it.decision=st.key;it.note='';
+        sw.querySelectorAll('.strat').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        const ex=sw.querySelector('.strat-note');if(ex)ex.remove();
+        const note=document.createElement('textarea');
+        note.className='strat-note';
+        const ph={tomorrow:'想明天几点做？或写句话给自己…',split:'拆成哪几小步？',delegate:'交给谁？怎么交待？',later:'延后到什么时候？',drop:'写下放下的理由，或对自己说句话…'}[st.key];
+        note.placeholder=ph;note.value=it.note;note.oninput=e=>it.note=e.target.value;
+        sw.appendChild(note);note.focus();
+      };
+      sw.appendChild(b);
+    });
+    body.appendChild(card);
+    const isLast=(i===total-1);
+    $('guideFoot').innerHTML=`
+      ${i>0?'<button class="btn btn-ghost" id="gPrev" style="flex:0 0 auto">上一件</button>':''}
+      <button class="btn btn-ghost" id="gSkip" style="flex:1">先跳过</button>
+      <button class="btn-primary btn" id="gNext" style="flex:1">${isLast?'生成小结':'下一件'}</button>`;
+    $('gNext').onclick=()=>{if(!it.decision)it.decision='tomorrow';advanceGuide();};
+    $('gSkip').onclick=()=>{it.decision=it.decision||'tomorrow';advanceGuide();};
+    if($('gPrev'))$('gPrev').onclick=()=>{gs.idx--;renderGuideStep();};
+  }else if(i<total){
+    const si=i-todoCount;
+    const it=gs.sads[si];
+    $('guideTitle').textContent='今天有些不开心的事';
+    $('guideSub').textContent='不用硬扛。我们一起温柔地安放这些情绪。';
+    const body=$('guideBody');body.innerHTML='';
+    const card=document.createElement('div');
+    card.className='guide-item';
+    card.style.borderLeftColor='var(--orange)';
+    card.innerHTML=`
+      <div class="gi-head"><span class="gi-time">烦恼 ${si+1}</span><span class="gi-txt">${escapeHtml(it.text)}</span></div>
+      <div class="guide-q">这件事，你想怎么对待？</div>
+      <div class="strategies"></div>`;
+    const sw=card.querySelector('.strategies');
+    moodStrategies.forEach(st=>{
+      const b=document.createElement('button');
+      b.className='strat'+(it.decision===st.key?' active':'');
+      b.textContent=st.label;
+      b.onclick=()=>{
+        it.decision=st.key;it.note='';
+        sw.querySelectorAll('.strat').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        const ex=sw.querySelector('.strat-note');if(ex)ex.remove();
+        const note=document.createElement('textarea');
+        note.className='strat-note';
+        note.placeholder=moodNotePh[st.key];note.value=it.note;note.oninput=e=>it.note=e.target.value;
+        sw.appendChild(note);note.focus();
+      };
+      sw.appendChild(b);
+    });
+    body.appendChild(card);
+    const isLast=(i===total-1);
+    $('guideFoot').innerHTML=`
+      ${i>0?'<button class="btn btn-ghost" id="gPrev" style="flex:0 0 auto">上一件</button>':''}
+      <button class="btn btn-ghost" id="gSkip" style="flex:1">先跳过</button>
+      <button class="btn-primary btn" id="gNext" style="flex:1">${isLast?'生成小结':'下一件'}</button>`;
+    $('gNext').onclick=()=>{if(!it.decision)it.decision='acknowledge';advanceGuide();};
+    $('gSkip').onclick=()=>{it.decision=it.decision||'acknowledge';advanceGuide();};
+    if($('gPrev'))$('gPrev').onclick=()=>{gs.idx--;renderGuideStep();};
+  }else{
+    renderGuideSummary();
+  }
+}
+function advanceGuide(){guideState.idx++;renderGuideStep();}
+function renderGuideSummary(){
+  const gs=guideState;
+  const hasTodos=gs.todos.length>0;
+  const hasSadGuided=gs.sads.length>0;
+  const happies=(state.mood.happy||[]).filter(h=>h&&h.trim());
+  if(hasTodos){
+    $('guideTitle').textContent='今天的梳理，到这里';
+    $('guideSub').textContent='未完成的事有了去处，心里的情绪也被看见了。';
+  }else if(hasSadGuided){
+    $('guideTitle').textContent='今天的情绪，被看见了';
+    $('guideSub').textContent='那些不开心，都被温柔地接住了。';
+  }else{
+    $('guideTitle').textContent='今天的小确幸';
+    $('guideSub').textContent='开心的事，值得被记住。';
+  }
+  const body=$('guideBody');body.innerHTML='';
+  if(hasTodos){
+    const list=document.createElement('div');list.className='tomorrow-list';
+    const groups={tomorrow:[],split:[],delegate:[],later:[],drop:[]};
+    gs.todos.forEach(t=>{if(groups[t.decision])groups[t.decision].push(t);});
+    const order=['tomorrow','split','delegate','later','drop'];
+    const titles={tomorrow:'📅 放到明天',split:'✂️ 拆成小步',delegate:'🤝 委托他人',later:'⏳ 延后',drop:'🕊️ 放下'};
+    const tagLabel={tomorrow:'明天',split:'拆解',delegate:'委托',later:'延后',drop:'放下'};
+    order.forEach(k=>{
+      if(!groups[k].length)return;
+      const head=document.createElement('div');
+      head.style.cssText='padding:10px 14px 4px;font-size:12px;color:var(--ink-soft);font-weight:600';
+      head.textContent=titles[k];
+      list.appendChild(head);
+      groups[k].forEach(t=>{
+        const row=document.createElement('div');row.className='ti';
+        const tag=document.createElement('span');tag.className='tag '+strategies.find(s=>s.key===k).tag;
+        tag.textContent=tagLabel[k];
+        const txt=document.createElement('span');txt.style.flex='1';txt.textContent=t.text;
+        row.appendChild(tag);row.appendChild(txt);
+        if(t.note){const n=document.createElement('span');n.style.cssText='font-size:12px;color:var(--ink-soft);flex-basis:100%;padding-left:0';n.textContent='📝 '+t.note;row.appendChild(n);}
+        list.appendChild(row);
+      });
+    });
+    body.appendChild(list);
+    gs.plan=gs.todos.filter(t=>t.decision!=='drop').map(t=>({text:t.text,time:t.time,decision:t.decision,note:t.note}));
+  }else{gs.plan=[];}
+  if(happies.length){
+    const card=document.createElement('div');
+    card.className='mood-summary-card happy';
+    const head=document.createElement('div');head.className='ms-head';head.textContent='😊 今天的小确幸';
+    card.appendChild(head);
+    happies.forEach(h=>{
+      const r=document.createElement('div');r.className='ms-item';
+      r.innerHTML=`<span style="flex:1">${escapeHtml(h)}</span>`;
+      card.appendChild(r);
+    });
+    body.appendChild(card);
+  }
+  if(hasSadGuided){
+    const card=document.createElement('div');
+    card.className='mood-summary-card sad';
+    const head=document.createElement('div');head.className='ms-head';head.textContent='💙 情绪的安放';
+    card.appendChild(head);
+    gs.sads.forEach(s=>{
+      const r=document.createElement('div');r.className='ms-item';
+      const tag=document.createElement('span');tag.className='tag '+(moodStrategies.find(m=>m.key===s.decision)?.tag||'acknowledge');
+      tag.textContent=moodDecisionLabel[s.decision]||'看见';
+      const txt=document.createElement('span');txt.style.flex='1';txt.textContent=s.text;
+      r.appendChild(tag);r.appendChild(txt);
+      if(s.note){const n=document.createElement('span');n.style.cssText='font-size:12px;color:var(--ink-soft);flex-basis:100%;padding-left:0';n.textContent='📝 '+s.note;r.appendChild(n);}
+      card.appendChild(r);
+    });
+    body.appendChild(card);
+  }
+  if(state.mood.tags&&state.mood.tags.length){
+    const tags=document.createElement('div');
+    tags.style.cssText='text-align:center;padding:8px 14px;font-size:13px;color:var(--ink-soft)';
+    tags.innerHTML='今天的心情：'+state.mood.tags.map(t=>`<span style="background:var(--line-soft);padding:3px 8px;border-radius:6px;margin:0 2px">${t}</span>`).join('');
+    body.appendChild(tags);
+  }
+  $('guideFoot').innerHTML=`
+    <button class="btn btn-ghost" id="gBack" style="flex:1">回去改改</button>
+    <button class="btn-primary btn" id="gDone" style="flex:1">保存并结束今天</button>`;
+  $('gBack').onclick=()=>{gs.idx=0;renderGuideStep();};
+  $('gDone').onclick=finishReflect;
+}
+function finishReflect(){
+  state.tomorrow=guideState.plan.map(p=>({id:rid(),text:p.text,time:p.time,done:false,fromYesterday:true,decision:p.decision,note:p.note}));
+  state.mood.sadGuided=guideState.sads.map(s=>({text:s.text,decision:s.decision,note:s.note}));
+  save();
+  hideModal('modalReflect');
+  const dropped=guideState.todos.filter(t=>t.decision==='drop').length;
+  const plan=guideState.plan.length;
+  const sadN=guideState.sads.length;
+  let msg=`你放下了 ${dropped} 件事，给明天安排了 ${plan} 件事。`;
+  if(sadN)msg+=`\n${sadN} 件烦心事，也都被温柔接住了。`;
+  msg+='\n没做完不是失败，是生活本来的样子。\n现在，合上这本日历，去休息吧。🌙';
+  showClosing('今天的梳理，完成了',msg);
+}
+
+/* ============ 通用模态 ============ */
+function showModal(id){const m=$(id);m.classList.add('show');document.body.style.overflow='hidden';}
+function hideModal(id){const m=$(id);m.classList.remove('show');document.body.style.overflow='';}
+document.querySelectorAll('.modal-bg').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m){m.classList.remove('show');document.body.style.overflow='';}});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-bg.show').forEach(m=>m.classList.remove('show'));document.body.style.overflow='';}});
+
+function showClosing(title,sub){
+  $('stepBar').innerHTML='';
+  $('guideTitle').textContent=title;
+  $('guideSub').style.whiteSpace='pre-line';
+  $('guideSub').textContent=sub;
+  $('guideBody').innerHTML=`<div class="closing"><div class="big">🌙</div><h3>今天到此为止</h3><p>你已经做了你能做的<br>剩下的，交给明天，交给时间</p></div>`;
+  $('guideFoot').innerHTML=`<button class="btn-primary btn" id="cClose" style="width:100%">好的</button>`;
+  $('cClose').onclick=()=>hideModal('modalReflect');
+  showModal('modalReflect');
+}
+
+/* ============ 重置 ============ */
+$('btnResetCal').onclick=resetAll;
+$('btnResetEve').onclick=resetAll;
+function resetAll(){
+  $('stepBar').innerHTML='';
+  $('guideTitle').textContent='重置全部数据？';
+  $('guideSub').style.whiteSpace='pre-line';
+  $('guideSub').textContent='这会清空所有事项、心情记录和发泄状态，恢复到全新状态。\n此操作不可撤销。';
+  $('guideBody').innerHTML=`<div class="closing"><div class="big">⚠️</div><h3>确定要重置吗？</h3><p>所有数据将被清除，无法恢复</p></div>`;
+  $('guideFoot').innerHTML=`
+    <button class="btn btn-ghost" id="rCancel" style="flex:1">取消</button>
+    <button class="btn-primary btn" id="rConfirm" style="flex:1;background:var(--accent)">确认重置</button>`;
+  $('rCancel').onclick=()=>hideModal('modalReflect');
+  $('rConfirm').onclick=()=>{
+    localStorage.removeItem(STORE_KEY);
+    state={items:[],tomorrow:[],vented:false,mood:{happy:['',''],sad:['',''],tags:[]}};
+    save();
+    hideModal('modalReflect');
+    goPage('home');
+  };
+  showModal('modalReflect');
+}
+
+/* ============ 初始化 ============ */
+function init(){
+  load();
+  const tk=todayKey();
+  if(state.tomorrow&&state.tomorrow.length&&!state._importedFor){
+    const cnt=state.tomorrow.length;
+    state._importedFor=tk;
+    state.tomorrow.forEach(t=>{t.id=rid();t.done=false;t.fromYesterday=true;});
+    state.items=state.tomorrow.concat(state.items);
+    state.tomorrow=[];
+    save();
+    setTimeout(()=>toast(`已带入 ${cnt} 件昨日安排`,'var(--ink)'),400);
+  }
+  if(state._ventedDate!==tk){state.vented=false;state._ventedDate=tk;save();}
+  if(state._moodDate!==tk){state.mood={happy:['',''],sad:['',''],tags:[]};state._moodDate=tk;save();}
+
+  // 路由初始化
+  const hash=window.location.hash.replace('#','');
+  if(hash && ['home','playlist','mood','calendar','evening'].includes(hash)){
+    goPage(hash);
+  }else{
+    goPage('home');
+  }
+}
+window.addEventListener('hashchange',()=>{
+  const hash=window.location.hash.replace('#','');
+  if(hash && ['home','playlist','mood','calendar','evening'].includes(hash)){
+    goPage(hash);
+  }
+});
+
+
+/* ===== MoodArc 心绪日历同步 ===== */
+(function(){
+  const MOODARC_BASE = "https://mood-arc.vercel.app/embed";
+  const TAG_MAP = {
+    "😊 开心": "开心",
+    "😌 平静": "平静",
+    "😰 焦虑": "焦虑",
+    "😫 疲惫": "疲惫",
+    "😠 愤怒": "愤怒",
+    "😢 低落": "失落",
+    "🙏 感恩": "满足",
+    "😶 迷茫": "孤独"
+  };
+
+  function moodFromState() {
+    const m = state.mood || {};
+    for (const tag of m.tags || []) {
+      if (TAG_MAP[tag]) return TAG_MAP[tag];
+    }
+    return null;
+  }
+
+  function causesFromState() {
+    const text = []
+      .concat(state.mood?.sad || [])
+      .concat(state.mood?.happy || [])
+      .filter(Boolean)
+      .join(" ");
+    if (!text) return "";
+    const rules = [
+      [/感情|恋爱|分手|对象|喜欢|前任/, "感情"],
+      [/工作|上班|加班|老板|同事|项目/, "工作"],
+      [/学业|考试|作业|论文|学习|学校/, "学业"],
+      [/朋友|人际|社交|关系|沟通/, "人际"],
+      [/家庭|父母|家人|家里/, "家庭"],
+      [/身体|健康|生病|睡眠|累/, "健康"],
+      [/钱|经济|消费|账单/, "经济"]
+    ];
+    const found = [];
+    for (const [re, cause] of rules) {
+      if (re.test(text)) found.push(cause);
+    }
+    return (found.length ? found : ["说不清"]).join(",");
+  }
+
+  function syncMoodArcFrame() {
+    const frame = document.getElementById("moodarcFrame");
+    if (!frame) return;
+    const params = new URLSearchParams({ embed: "1" });
+    const mood = moodFromState();
+    if (mood) params.set("mood", mood);
+    const causes = causesFromState();
+    if (causes) params.set("causes", causes);
+    frame.src = MOODARC_BASE + "?" + params.toString();
+  }
+
+  const _goPage = window.goPage;
+  window.goPage = function(name) {
+    if (name === "playlist") syncMoodArcFrame();
+    return _goPage(name);
+  };
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (location.hash === "#playlist") syncMoodArcFrame();
+  });
+})();
+
+init();
+</script>
+</body>
+</html>

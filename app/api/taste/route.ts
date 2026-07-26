@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { isMockMode } from "@/lib/config";
+import { isEmbedRequest } from "@/lib/embed-mode";
 import { getMockTaste } from "@/lib/mock-data";
 
 /** Demo artists for UI; YouTube login only needed when generating playlists. */
-export async function GET() {
-  if (isMockMode()) {
+export async function GET(req: NextRequest) {
+  if (isMockMode() || isEmbedRequest(req)) {
     return NextResponse.json(getMockTaste());
   }
 

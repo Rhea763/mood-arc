@@ -34,6 +34,7 @@ import {
   causesFromCalendarPayload,
   moodFromCalendarPayload,
 } from "@/lib/calendar-bridge";
+import { EMBED_FETCH_HEADERS } from "@/lib/embed-mode";
 import { MOODS } from "@/lib/context-catalog";
 
 const VALID_MOODS = new Set<string>(MOODS);
@@ -95,13 +96,19 @@ function MoodArcHome() {
     });
   };
 
-  const inApp = mockMode ? demoActive : status === "authenticated";
+  const inApp = mockMode
+    ? demoActive
+    : isEmbed
+      ? true
+      : status === "authenticated";
 
   const loadTaste = useCallback(async () => {
     setTasteLoading(true);
     setTasteError(null);
     try {
-      const res = await fetch("/api/taste");
+      const res = await fetch("/api/taste", {
+        headers: isEmbed ? EMBED_FETCH_HEADERS : undefined,
+      });
       const data = await res.json();
       if (!res.ok) {
         setTasteError(data.error || "加载失败");
@@ -127,7 +134,7 @@ function MoodArcHome() {
     } finally {
       setTasteLoading(false);
     }
-  }, []);
+  }, [isEmbed]);
 
   useEffect(() => {
     queueMicrotask(() => setIsLocalDev(isLocalDevHost()));
@@ -279,7 +286,10 @@ function MoodArcHome() {
     try {
       const res = await fetch("/api/generate", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(isEmbed ? EMBED_FETCH_HEADERS : {}),
+        },
         body: JSON.stringify({
           mood,
           scenario: scenario ?? undefined,
@@ -288,6 +298,7 @@ function MoodArcHome() {
           playlistLength,
           selectedChannelIds: selected.map((c) => c.id),
           selectedChannelNames: selected.map((c) => c.name),
+          embed: isEmbed || undefined,
         }),
       });
       const data = await res.json();
@@ -303,7 +314,7 @@ function MoodArcHome() {
     }
   };
 
-  if (mockMode === null || (!mockMode && status === "loading")) {
+  if (mockMode === null || (!mockMode && !isEmbed && status === "loading")) {
     return (
       <main className={`flex flex-1 items-center justify-center p-6 ${isEmbed ? "embed-calendar" : ""}`}>
         <p className={isEmbed ? "text-[#9C6B7A]" : "text-stone-500"}>加载中…</p>
@@ -396,17 +407,23 @@ function MoodArcHome() {
               你好，{taste.user.name}
             </p>
           )}
-          {mockMode && (
-            <p className="mt-2 text-xs text-amber-700">演示模式 · 模拟数据</p>
+          {(mockMode || isEmbed) && (
+            <p className="mt-2 text-xs text-amber-700">
+              {isEmbed && !mockMode
+                ? "心绪日历 · 弧线打分演示（无需 YouTube 登录）"
+                : "演示模式 · 模拟数据"}
+            </p>
           )}
         </div>
-        <button
-          type="button"
-          onClick={() => (mockMode ? exitDemo() : signOut())}
-          className="text-sm text-stone-500 underline-offset-2 hover:underline"
-        >
-          退出
-        </button>
+        {!isEmbed && (
+          <button
+            type="button"
+            onClick={() => (mockMode ? exitDemo() : signOut())}
+            className="text-sm text-stone-500 underline-offset-2 hover:underline"
+          >
+            退出
+          </button>
+        )}
       </header>
 
       {tasteLoading && (

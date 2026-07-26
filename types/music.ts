@@ -33,6 +33,8 @@ export interface GenerateRequest {
   playlistLength: PlaylistLength;
   selectedChannelIds: string[];
   selectedChannelNames: string[];
+  /** Calendar iframe: arc demo without YouTube token */
+  embed?: boolean;
 }
 
 export interface GenerateVideo {

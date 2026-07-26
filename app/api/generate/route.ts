@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAccessToken } from "@/lib/auth";
 import { isMockMode } from "@/lib/config";
+import { isEmbedRequest } from "@/lib/embed-mode";
 import { getMockGenerate } from "@/lib/mock-data";
 import {
   isValidMood,
@@ -65,7 +66,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "请至少选择一个频道" }, { status: 400 });
   }
 
-  if (isMockMode()) {
+  const embedDemo = body.embed === true || isEmbedRequest(req);
+
+  if (isMockMode() || embedDemo) {
     await new Promise((r) => setTimeout(r, 600));
     return NextResponse.json(
       getMockGenerate(
