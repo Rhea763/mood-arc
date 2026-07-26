@@ -25,10 +25,20 @@ npm run dev
 
 | 变量 | Mock 模式 |
 |------|-----------|
-| `MOODARC_MOCK=true` | 服务端用模拟数据 |
-| `NEXT_PUBLIC_MOODARC_MOCK=true` | 首页显示「进入演示」 |
+| `MOODARC_MOCK=true` | 服务端用模拟数据（未配 Google OAuth 时也会自动启用） |
+| `NEXT_PUBLIC_MOODARC_MOCK=true` | 可选；未设置时会从 `MOODARC_MOCK` 同步到前端 |
 
 关闭 Mock、接 YouTube：设 `MOODARC_MOCK=false`，配置 `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` / `NEXTAUTH_SECRET`。
+
+## 部署到 Vercel（公开演示链接）
+
+在 Vercel 项目 **Environment Variables** 中设置：
+
+- `MOODARC_MOCK=true`（或同时设 `NEXT_PUBLIC_MOODARC_MOCK=true`）
+
+重新部署后，访客打开 `https://mood-arc.vercel.app/` 会**自动进入演示**，无需 Google 登录。若仍看到登录按钮，说明构建时未启用 Mock，请检查变量后 **Redeploy**。
+
+分享链接给他人即可体验；「生成歌单」需先选**心情**和**调节目标**（按钮下方有提示）。
 
 ## 打不开？
 

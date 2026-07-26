@@ -25,14 +25,20 @@ import {
   DEFAULT_PLAYLIST_LENGTH,
 } from "@/lib/regulation-goals";
 import { NeteasePlayer } from "@/components/netease-player";
-
-const DEMO_KEY = "moodarc_demo";
-
-const isMockDemo = process.env.NEXT_PUBLIC_MOODARC_MOCK === "true";
+import {
+  DEMO_KEY,
+  isBuildTimeMockDemo,
+  isLocalDevHost,
+} from "@/lib/demo-mode";
 
 export default function Home() {
   const { status } = useSession();
+  const buildTimeMock = isBuildTimeMockDemo();
+  const [mockMode, setMockMode] = useState<boolean | null>(
+    buildTimeMock ? true : null
+  );
   const [demoActive, setDemoActive] = useState(false);
+  const [isLocalDev, setIsLocalDev] = useState(false);
   const [taste, setTaste] = useState<TasteResponse | null>(null);
   const [tasteLoading, setTasteLoading] = useState(false);
   const [tasteError, setTasteError] = useState<string | null>(null);
@@ -64,9 +70,7 @@ export default function Home() {
     }
   }, [mood, regulationGoal]);
 
-  const inApp = isMockDemo
-    ? demoActive
-    : status === "authenticated";
+  const inApp = mockMode ? demoActive : status === "authenticated";
 
   const loadTaste = useCallback(async () => {
     setTasteLoading(true);
@@ -101,10 +105,31 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (isMockDemo && localStorage.getItem(DEMO_KEY) === "1") {
-      setDemoActive(true);
-    }
+    setIsLocalDev(isLocalDevHost());
   }, []);
+
+  useEffect(() => {
+    if (buildTimeMock) {
+      setMockMode(true);
+      return;
+    }
+    fetch("/api/config")
+      .then((res) => res.json())
+      .then((data: { mock?: boolean }) => setMockMode(Boolean(data.mock)))
+      .catch(() => setMockMode(false));
+  }, [buildTimeMock]);
+
+  useEffect(() => {
+    if (!mockMode) return;
+    const stored = localStorage.getItem(DEMO_KEY);
+    const onPublicHost = !isLocalDevHost();
+    if (stored === "1" || (onPublicHost && stored === null)) {
+      setDemoActive(true);
+      if (onPublicHost) {
+        localStorage.setItem(DEMO_KEY, "1");
+      }
+    }
+  }, [mockMode]);
 
   useEffect(() => {
     if (inApp) {
@@ -191,7 +216,7 @@ export default function Home() {
     }
   };
 
-  if (!isMockDemo && status === "loading") {
+  if (mockMode === null || (!mockMode && status === "loading")) {
     return (
       <main className="flex flex-1 items-center justify-center p-6">
         <p className="text-stone-500">加载中…</p>
@@ -207,14 +232,20 @@ export default function Home() {
           <p className="text-stone-600">
             说清楚心情和处境，按你的口味生成一份此刻真正需要的歌单。
           </p>
-          {isMockDemo && (
+          {mockMode && (
             <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-              演示模式：无需登录，数据为模拟。请用
-              <strong> localhost</strong> 打开（与终端端口一致）。
+              {isLocalDev ? (
+                <>
+                  演示模式：无需登录，数据为模拟。本地开发请用
+                  <strong> localhost</strong> 打开（与终端端口一致）。
+                </>
+              ) : (
+                <>演示模式：无需登录，数据为模拟，可直接体验。</>
+              )}
             </p>
           )}
         </div>
-        {isMockDemo ? (
+        {mockMode ? (
           <button
             type="button"
             onClick={enterDemo}
@@ -249,13 +280,13 @@ export default function Home() {
               你好，{taste.user.name}
             </p>
           )}
-          {isMockDemo && (
+          {mockMode && (
             <p className="mt-2 text-xs text-amber-700">演示模式 · 模拟数据</p>
           )}
         </div>
         <button
           type="button"
-          onClick={() => (isMockDemo ? exitDemo() : signOut())}
+          onClick={() => (mockMode ? exitDemo() : signOut())}
           className="text-sm text-stone-500 underline-offset-2 hover:underline"
         >
           退出
@@ -492,6 +523,16 @@ export default function Home() {
             >
               {generating ? "正在生成…" : "生成歌单"}
             </button>
+            {!generating &&
+              (!mood || !regulationGoal || selectedChannelIds.size === 0) && (
+                <p className="mt-2 text-center text-xs text-stone-500">
+                  {!mood
+                    ? "请先选择心情，再选调节目标后即可生成"
+                    : !regulationGoal
+                      ? "请选择调节目标后即可生成"
+                      : "请至少选择一位艺人"}
+                </p>
+              )}
           </div>
 
           {generateError && (
@@ -552,7 +593,7 @@ export default function Home() {
                   </h3>
                   {result.mock && (
                     <p className="mb-2 text-xs text-stone-500">
-                      每首下方为网易云外链播放器，可直接试听；也可点曲名打开单曲页。
+                      每首下方可点播放试听；若无法播放可点曲名在网易云打开。
                     </p>
                   )}
                   {result.arcSlots && result.arcSlots.length > 0 ? (
