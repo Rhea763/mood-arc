@@ -24,21 +24,21 @@ export function NeteasePlayer({
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<APlayerInstance | null>(null);
   const [fallbackSrc, setFallbackSrc] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const resolvedId =
     songId ??
     (embedUrl ? parseNeteaseSongIdFromEmbedUrl(embedUrl) : undefined);
 
   useEffect(() => {
-    if (!resolvedId) {
-      setLoading(false);
-      return;
-    }
+    if (!resolvedId) return;
 
     let cancelled = false;
-    setLoading(true);
-    setFallbackSrc(null);
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setLoading(true);
+      setFallbackSrc(null);
+    });
 
     const iframeFallback = embedUrl ?? neteaseTrackEmbedUrl(resolvedId, autoPlay);
 

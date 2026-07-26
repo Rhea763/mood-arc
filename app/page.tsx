@@ -16,7 +16,6 @@ import {
   POSITIVE_MOODS,
   CAUSES,
   getGoalsForMood,
-  getMoodValence,
   getRegulationGoalLabel,
   getScenarioLabel,
 } from "@/lib/context-catalog";
@@ -62,13 +61,15 @@ export default function Home() {
 
   const availableGoals = mood ? getGoalsForMood(mood) : [];
 
-  useEffect(() => {
-    if (!mood || !regulationGoal) return;
-    const goals = getGoalsForMood(mood);
-    if (!goals.some((g) => g.id === regulationGoal)) {
-      setRegulationGoal(null);
-    }
-  }, [mood, regulationGoal]);
+  const selectMood = (m: string) => {
+    setMood(m);
+    setResult(null);
+    setRegulationGoal((goal) => {
+      if (!goal) return null;
+      const goals = getGoalsForMood(m);
+      return goals.some((g) => g.id === goal) ? goal : null;
+    });
+  };
 
   const inApp = mockMode ? demoActive : status === "authenticated";
 
@@ -105,14 +106,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setIsLocalDev(isLocalDevHost());
+    queueMicrotask(() => setIsLocalDev(isLocalDevHost()));
   }, []);
 
   useEffect(() => {
-    if (buildTimeMock) {
-      setMockMode(true);
-      return;
-    }
+    if (buildTimeMock) return;
     fetch("/api/config")
       .then((res) => res.json())
       .then((data: { mock?: boolean }) => setMockMode(Boolean(data.mock)))
@@ -121,20 +119,21 @@ export default function Home() {
 
   useEffect(() => {
     if (!mockMode) return;
-    const stored = localStorage.getItem(DEMO_KEY);
-    const onPublicHost = !isLocalDevHost();
-    if (stored === "1" || (onPublicHost && stored === null)) {
-      setDemoActive(true);
-      if (onPublicHost) {
-        localStorage.setItem(DEMO_KEY, "1");
+    queueMicrotask(() => {
+      const stored = localStorage.getItem(DEMO_KEY);
+      const onPublicHost = !isLocalDevHost();
+      if (stored === "1" || (onPublicHost && stored === null)) {
+        setDemoActive(true);
+        if (onPublicHost) {
+          localStorage.setItem(DEMO_KEY, "1");
+        }
       }
-    }
+    });
   }, [mockMode]);
 
   useEffect(() => {
-    if (inApp) {
-      loadTaste();
-    }
+    if (!inApp) return;
+    queueMicrotask(() => loadTaste());
   }, [inApp, loadTaste]);
 
   const enterDemo = () => {
@@ -382,10 +381,7 @@ export default function Home() {
                 <button
                   key={m}
                   type="button"
-                  onClick={() => {
-                    setMood(m);
-                    setResult(null);
-                  }}
+                  onClick={() => selectMood(m)}
                   className={`rounded-lg border py-2.5 text-sm font-medium transition ${
                     mood === m
                       ? "border-stone-900 bg-stone-900 text-white"
@@ -402,10 +398,7 @@ export default function Home() {
                 <button
                   key={m}
                   type="button"
-                  onClick={() => {
-                    setMood(m);
-                    setResult(null);
-                  }}
+                  onClick={() => selectMood(m)}
                   className={`rounded-lg border py-2.5 text-sm font-medium transition ${
                     mood === m
                       ? "border-stone-900 bg-stone-900 text-white"
