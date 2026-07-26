@@ -1,6 +1,28 @@
 import { NextResponse } from "next/server";
-import { isMockMode } from "@/lib/config";
+import {
+  getPublicAuthUrl,
+  hasAuthSecret,
+  hasGoogleOAuth,
+  isMockMode,
+} from "@/lib/config";
 
 export async function GET() {
-  return NextResponse.json({ mock: isMockMode() });
+  const authUrl = getPublicAuthUrl();
+  let authUrlOk = false;
+  if (authUrl) {
+    try {
+      const { pathname } = new URL(authUrl);
+      // Must be site root. Paths like /api/auth/callback/google break Auth.js.
+      authUrlOk = pathname === "/" || pathname === "";
+    } catch {
+      authUrlOk = false;
+    }
+  }
+
+  return NextResponse.json({
+    mock: isMockMode(),
+    googleConfigured: hasGoogleOAuth(),
+    hasAuthSecret: hasAuthSecret(),
+    authUrlOk,
+  });
 }

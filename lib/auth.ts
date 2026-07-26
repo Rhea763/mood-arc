@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import type { Provider } from "next-auth/providers";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import { getAuthSecret, isMockMode, MOCK_ACCESS_TOKEN } from "@/lib/config";
+import { getAuthSecret, isMockMode, MOCK_ACCESS_TOKEN, readEnv } from "@/lib/config";
 
 function buildProviders(): Provider[] {
   if (isMockMode()) {
@@ -20,8 +20,8 @@ function buildProviders(): Provider[] {
     ];
   }
 
-  const clientId = process.env.GOOGLE_CLIENT_ID?.trim();
-  const clientSecret = process.env.GOOGLE_CLIENT_SECRET?.trim();
+  const clientId = readEnv("GOOGLE_CLIENT_ID");
+  const clientSecret = readEnv("GOOGLE_CLIENT_SECRET");
   if (!clientId || !clientSecret) {
     console.warn(
       "[auth] Google OAuth not configured; using mock provider so deploy can succeed."

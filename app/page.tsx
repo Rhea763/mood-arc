@@ -34,6 +34,8 @@ export default function Home() {
   const { status } = useSession();
   const buildTimeMock = isBuildTimeMockDemo();
   const [mockMode, setMockMode] = useState<boolean | null>(null);
+  const [googleConfigured, setGoogleConfigured] = useState(true);
+  const [authReady, setAuthReady] = useState(true);
   const [demoActive, setDemoActive] = useState(false);
   const [isLocalDev, setIsLocalDev] = useState(false);
   const [taste, setTaste] = useState<TasteResponse | null>(null);
@@ -110,7 +112,22 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/config")
       .then((res) => res.json())
-      .then((data: { mock?: boolean }) => setMockMode(Boolean(data.mock)))
+      .then(
+        (data: {
+          mock?: boolean;
+          googleConfigured?: boolean;
+          hasAuthSecret?: boolean;
+          authUrlOk?: boolean;
+        }) => {
+          setMockMode(Boolean(data.mock));
+          setGoogleConfigured(Boolean(data.googleConfigured));
+          setAuthReady(
+            Boolean(data.googleConfigured) &&
+              Boolean(data.hasAuthSecret) &&
+              data.authUrlOk !== false
+          );
+        }
+      )
       .catch(() => setMockMode(buildTimeMock));
   }, [buildTimeMock]);
 
@@ -250,13 +267,28 @@ export default function Home() {
             进入演示
           </button>
         ) : (
-          <button
-            type="button"
-            onClick={() => signIn("google")}
-            className="rounded-full bg-[#FF0000] px-8 py-3 text-base font-medium text-white transition hover:bg-[#cc0000]"
-          >
-            使用 Google 登录（YouTube）
-          </button>
+          <div className="space-y-3">
+            {!authReady && (
+              <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-left">
+                登录配置不完整。请打开{" "}
+                <a className="underline" href="/api/config">
+                  /api/config
+                </a>{" "}
+                检查：googleConfigured、hasAuthSecret 应为 true，authUrlOk 应为
+                true。AUTH_URL / NEXTAUTH_URL 只能填{" "}
+                <code className="text-xs">https://mood-arc.vercel.app</code>
+                ，不要填 callback 地址。
+              </p>
+            )}
+            <button
+              type="button"
+              onClick={() => signIn("google")}
+              disabled={!authReady}
+              className="rounded-full bg-[#FF0000] px-8 py-3 text-base font-medium text-white transition enabled:hover:bg-[#cc0000] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              使用 Google 登录（YouTube）
+            </button>
+          </div>
         )}
       </main>
     );
