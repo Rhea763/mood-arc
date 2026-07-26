@@ -542,7 +542,7 @@ function MoodArcHome() {
       <main className={`flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center ${isEmbed ? "embed-calendar" : ""}`}>
         <div className="max-w-md space-y-3">
           <h1 className={`text-4xl font-semibold tracking-tight ${isEmbed ? "text-[#4A2E3B]" : ""}`}>
-            {isEmbed ? "心绪歌单" : "MoodArc"}
+            {isEmbed ? "心绪歌单" : "心绪日历"}
           </h1>
           <p className={isEmbed ? "text-[#9C6B7A]" : "text-stone-600"}>
             {isEmbed
@@ -615,7 +615,7 @@ function MoodArcHome() {
       <header className="mb-8 flex items-start justify-between gap-4">
         <div>
           <h1 className={`text-2xl font-semibold tracking-tight ${isEmbed ? "text-[#4A2E3B]" : ""}`}>
-            {isEmbed ? "心绪歌单" : "MoodArc"}
+            {isEmbed ? "心绪歌单" : "心绪日历"}
           </h1>
           {taste && (
             <p className="mt-1 text-sm text-stone-500">

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MoodArc",
+  title: "心绪日历",
   description: "Pick a mood. We build a YouTube playlist from your taste.",
 };
 
