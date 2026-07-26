@@ -33,9 +33,7 @@ import {
 export default function Home() {
   const { status } = useSession();
   const buildTimeMock = isBuildTimeMockDemo();
-  const [mockMode, setMockMode] = useState<boolean | null>(
-    buildTimeMock ? true : null
-  );
+  const [mockMode, setMockMode] = useState<boolean | null>(null);
   const [demoActive, setDemoActive] = useState(false);
   const [isLocalDev, setIsLocalDev] = useState(false);
   const [taste, setTaste] = useState<TasteResponse | null>(null);
@@ -110,11 +108,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (buildTimeMock) return;
     fetch("/api/config")
       .then((res) => res.json())
       .then((data: { mock?: boolean }) => setMockMode(Boolean(data.mock)))
-      .catch(() => setMockMode(false));
+      .catch(() => setMockMode(buildTimeMock));
   }, [buildTimeMock]);
 
   useEffect(() => {
