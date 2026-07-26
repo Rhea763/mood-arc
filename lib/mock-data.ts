@@ -4,18 +4,13 @@ import type {
   TasteResponse,
 } from "@/types/music";
 import type { RegulationGoalId, ScenarioId } from "@/lib/context-catalog";
-import {
-  getRegulationGoalLabel,
-  getScenarioLabel,
-} from "@/lib/context-catalog";
-import { interpretContext } from "@/lib/context-interpretation";
-import { sequencePlaylist } from "@/lib/playlist-sequencer";
 import { getNeteaseSongId } from "@/lib/netease-ids";
 import {
   neteaseTrackEmbedUrl,
   neteaseTrackPlayUrl,
   neteasePlaylistSearchUrl,
 } from "@/lib/play-links";
+import { buildSequencedPlaylist } from "@/lib/generate-playlist";
 
 export const MOCK_CHANNELS = [
   { id: "ch1", name: "Taylor Swift", url: "#", source: "subscribed" as const },
@@ -42,25 +37,15 @@ export function getMockGenerate(
   playlistLength: PlaylistLength,
   scenario?: ScenarioId
 ): GenerateResponse {
-  const date = new Date().toISOString().slice(0, 10);
-  const interpretation = interpretContext(
-    mood,
-    scenario,
-    causes,
-    regulationGoal
-  );
-  const { plan, tracks } = sequencePlaylist(
-    interpretation,
-    regulationGoal,
-    selectedChannelNames,
-    playlistLength,
-    mood
-  );
-
-  const causeText = causes?.length ? causes.join("、") : "无";
-  const channelText = selectedChannelNames.slice(0, 5).join("、") || "默认口味";
-  const goalLabel = getRegulationGoalLabel(regulationGoal, mood);
-  const scenarioLabel = scenario ? getScenarioLabel(scenario) : null;
+  const { interpretation, plan, tracks, playlistName, summary } =
+    buildSequencedPlaylist(
+      mood,
+      causes,
+      selectedChannelNames,
+      regulationGoal,
+      playlistLength,
+      scenario
+    );
 
   const videos = tracks.map((track) => {
     const songId = getNeteaseSongId(track.artist, track.title);
@@ -83,31 +68,17 @@ export function getMockGenerate(
   };
   });
 
-  const nameParts = ["MoodArc", mood];
-  if (scenarioLabel) nameParts.push(scenarioLabel);
-  nameParts.push(goalLabel, date);
-
-  const summaryParts = [
-    "演示模式",
-    `心情：${mood}`,
-    scenarioLabel ? `情境：${scenarioLabel}` : null,
-    `目标：${goalLabel}`,
-    `${playlistLength} 首 · 三段弧线`,
-    `原因：${causeText}`,
-    `艺人：${channelText}`,
-  ].filter(Boolean);
-
   return {
     playlistId: "mock-demo-playlist",
-    playlistName: nameParts.join(" · "),
-    playlistUrl: neteasePlaylistSearchUrl(nameParts.join(" ")),
+    playlistName,
+    playlistUrl: neteasePlaylistSearchUrl(playlistName),
     videos,
     mock: true,
     scenario,
     regulationGoal,
     playlistLength,
     interpretation: interpretation.narrative,
-    summary: summaryParts.join(" · "),
+    summary,
     arcSlots: plan.slots.map((s) => ({
       id: s.id,
       label: s.label,

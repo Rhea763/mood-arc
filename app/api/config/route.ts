@@ -24,5 +24,6 @@ export async function GET() {
     googleConfigured: hasGoogleOAuth(),
     hasAuthSecret: hasAuthSecret(),
     authUrlOk,
+    demoArtists: !isMockMode(),
   });
 }

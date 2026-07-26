@@ -34,7 +34,6 @@ export default function Home() {
   const { status } = useSession();
   const buildTimeMock = isBuildTimeMockDemo();
   const [mockMode, setMockMode] = useState<boolean | null>(null);
-  const [googleConfigured, setGoogleConfigured] = useState(true);
   const [authReady, setAuthReady] = useState(true);
   const [demoActive, setDemoActive] = useState(false);
   const [isLocalDev, setIsLocalDev] = useState(false);
@@ -120,7 +119,6 @@ export default function Home() {
           authUrlOk?: boolean;
         }) => {
           setMockMode(Boolean(data.mock));
-          setGoogleConfigured(Boolean(data.googleConfigured));
           setAuthReady(
             Boolean(data.googleConfigured) &&
               Boolean(data.hasAuthSecret) &&
@@ -613,6 +611,11 @@ export default function Home() {
                   <h3 className="mb-2 text-sm font-medium text-stone-700">
                     可播放曲目（{result.videos.length} 首 · 有弧线）
                   </h3>
+                  {!result.mock && (
+                    <p className="mb-2 text-xs text-stone-500">
+                      曲目按弧线打分排序；点击曲名可在 YouTube 打开。
+                    </p>
+                  )}
                   {result.mock && (
                     <p className="mb-2 text-xs text-stone-500">
                       每首下方可点播放试听；若无法播放可点曲名在网易云打开。
@@ -649,9 +652,11 @@ export default function Home() {
                                         rel="noopener noreferrer"
                                         className="text-stone-800 underline-offset-2 hover:underline"
                                         title={
-                                          v.neteaseSongId
-                                            ? "在网易云打开单曲页"
-                                            : "在网易云搜索该曲"
+                                          result.mock
+                                            ? v.neteaseSongId
+                                              ? "在网易云打开单曲页"
+                                              : "在网易云搜索该曲"
+                                            : "在 YouTube 打开"
                                         }
                                       >
                                         {v.name}
