@@ -13,6 +13,8 @@ import {
   qqTrackSearchUrl,
 } from "@/lib/play-links";
 import { buildSequencedPlaylist } from "@/lib/generate-playlist";
+import { enrichVideoWithEmotionContext } from "@/lib/enrich-videos";
+import type { EmotionId, IntentionId } from "@/types/emotion";
 
 export const MOCK_CHANNELS = [
   { id: "ch1", name: "Taylor Swift", url: "#", source: "subscribed" as const },
@@ -37,8 +39,17 @@ export function getMockGenerate(
   selectedChannelNames: string[],
   regulationGoal: RegulationGoalId,
   playlistLength: PlaylistLength,
-  scenario?: ScenarioId
+  scenario?: ScenarioId,
+  opts?: {
+    intensity?: number;
+    emotion?: EmotionId;
+    intention?: IntentionId;
+  }
 ): GenerateResponse {
+  const intensity = opts?.intensity ?? 5;
+  const emotion = opts?.emotion;
+  const intention = opts?.intention;
+
   const { interpretation, plan, tracks, playlistName, summary } =
     buildSequencedPlaylist(
       mood,
@@ -46,29 +57,41 @@ export function getMockGenerate(
       selectedChannelNames,
       regulationGoal,
       playlistLength,
-      scenario
+      scenario,
+      intensity
     );
 
   const videos = tracks.map((track) => {
     const songId = getNeteaseSongId(track.artist, track.title);
+    const enrich =
+      emotion && intention
+        ? enrichVideoWithEmotionContext(
+            track,
+            emotion,
+            intensity,
+            intention,
+            regulationGoal
+          )
+        : {};
     return {
-    name: track.title,
-    channel: track.artist,
-    url: neteaseTrackPlayUrl(track.artist, track.title),
-    neteaseSongId: songId ?? undefined,
-    neteaseEmbedUrl: songId ? neteaseTrackEmbedUrl(songId) : undefined,
-    qqUrl: qqTrackSearchUrl(track.artist, track.title),
-    phase: track.phase,
-    phaseLabel: track.phaseLabel,
-    energy: track.energy,
-    valence: track.valence,
-    lyricFocus: track.lyricFocus,
-    lyricFocusLabel: track.lyricFocusLabel,
-    lyricDirectness: track.lyricDirectness,
-    vocalTimbre: track.vocalTimbre,
-    vocalTimbreLabel: track.vocalTimbreLabel,
-    note: track.note,
-  };
+      name: track.title,
+      channel: track.artist,
+      url: neteaseTrackPlayUrl(track.artist, track.title),
+      neteaseSongId: songId ?? undefined,
+      neteaseEmbedUrl: songId ? neteaseTrackEmbedUrl(songId) : undefined,
+      qqUrl: qqTrackSearchUrl(track.artist, track.title),
+      phase: track.phase,
+      phaseLabel: track.phaseLabel,
+      energy: track.energy,
+      valence: track.valence,
+      lyricFocus: track.lyricFocus,
+      lyricFocusLabel: track.lyricFocusLabel,
+      lyricDirectness: track.lyricDirectness,
+      vocalTimbre: track.vocalTimbre,
+      vocalTimbreLabel: track.vocalTimbreLabel,
+      note: track.note,
+      ...enrich,
+    };
   });
 
   return {

@@ -2,6 +2,7 @@ import {
   buildSequencedPlaylist,
   sequencedTracksToVideos,
 } from "@/lib/generate-playlist";
+import { enrichVideoWithEmotionContext } from "@/lib/enrich-videos";
 import { resolveSequencedTracksToYouTube } from "@/lib/resolve-youtube-tracks";
 import {
   addVideoToPlaylist,
@@ -14,6 +15,7 @@ import type {
   RegulationGoalId,
   ScenarioId,
 } from "@/types/music";
+import type { EmotionId, IntentionId } from "@/types/emotion";
 
 export class YouTubePlaylistEmptyError extends Error {
   constructor() {
@@ -31,6 +33,9 @@ export async function generateYouTubePlaylist(
     regulationGoal: RegulationGoalId;
     playlistLength: PlaylistLength;
     scenario?: ScenarioId;
+    intensity?: number;
+    emotion?: EmotionId;
+    intention?: IntentionId;
   }
 ): Promise<GenerateResponse> {
   const {
@@ -40,6 +45,9 @@ export async function generateYouTubePlaylist(
     regulationGoal,
     playlistLength,
     scenario,
+    intensity = 5,
+    emotion,
+    intention,
   } = params;
 
   const {
@@ -55,7 +63,8 @@ export async function generateYouTubePlaylist(
     selectedChannelNames,
     regulationGoal,
     playlistLength,
-    scenario
+    scenario,
+    intensity
   );
 
   const resolved = await resolveSequencedTracksToYouTube(accessToken, tracks);
@@ -89,7 +98,18 @@ export async function generateYouTubePlaylist(
       label: s.label,
       hint: s.hint,
     })),
-    videos: sequencedTracksToVideos(resolved),
+    videos: sequencedTracksToVideos(resolved).map((video, i) => {
+      const track = tracks[i];
+      if (!track || !emotion || !intention) return video;
+      const enrich = enrichVideoWithEmotionContext(
+        track,
+        emotion,
+        intensity,
+        intention,
+        regulationGoal
+      );
+      return { ...video, ...enrich };
+    }),
   };
 }
 

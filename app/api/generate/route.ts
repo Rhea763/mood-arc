@@ -20,6 +20,8 @@ import type {
   RegulationGoalId,
   ScenarioId,
 } from "@/types/music";
+import type { EmotionId, IntentionId } from "@/types/emotion";
+import { isValidEmotion, isValidIntention } from "@/lib/emotion-catalog";
 import moodMap from "@/lib/mood-map.json";
 
 type MoodMap = Record<string, { queries: string[] }>;
@@ -32,7 +34,18 @@ type GenerateParams = {
   regulationGoal: RegulationGoalId;
   playlistLength: PlaylistLength;
   scenario?: ScenarioId;
+  intensity?: number;
+  emotion?: EmotionId;
+  intention?: IntentionId;
 };
+
+function mockOpts(params: GenerateParams) {
+  return {
+    intensity: params.intensity,
+    emotion: params.emotion,
+    intention: params.intention,
+  };
+}
 
 function neteaseFallback(
   params: GenerateParams,
@@ -45,7 +58,8 @@ function neteaseFallback(
       params.selectedChannelNames,
       params.regulationGoal,
       params.playlistLength,
-      params.scenario
+      params.scenario,
+      mockOpts(params)
     ),
     fallbackReason: reason,
   };
@@ -106,6 +120,9 @@ export async function POST(req: NextRequest) {
     playlistLength,
     selectedChannelIds,
     selectedChannelNames,
+    intensity,
+    emotion,
+    intention,
   } = body;
 
   if (!mood || !isValidMood(mood) || !MOODS[mood]) {
@@ -131,6 +148,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "请至少选择一个频道" }, { status: 400 });
   }
 
+  if (emotion && !isValidEmotion(emotion)) {
+    return NextResponse.json({ error: "情绪选项无效" }, { status: 400 });
+  }
+
+  if (intention && !isValidIntention(intention)) {
+    return NextResponse.json({ error: "需求选项无效" }, { status: 400 });
+  }
+
+  const normalizedIntensity =
+    intensity == null
+      ? 5
+      : Math.max(1, Math.min(10, Math.round(Number(intensity))));
+
   const embedMode = body.embed === true || isEmbedRequest(req);
   const params: GenerateParams = {
     mood,
@@ -139,6 +169,10 @@ export async function POST(req: NextRequest) {
     regulationGoal,
     playlistLength,
     scenario,
+    intensity: normalizedIntensity,
+    emotion: emotion && isValidEmotion(emotion) ? emotion : undefined,
+    intention:
+      intention && isValidIntention(intention) ? intention : undefined,
   };
 
   if (isMockMode()) {
@@ -150,7 +184,8 @@ export async function POST(req: NextRequest) {
         selectedChannelNames,
         regulationGoal,
         playlistLength,
-        scenario
+        scenario,
+        mockOpts(params)
       )
     );
   }

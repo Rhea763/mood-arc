@@ -77,7 +77,8 @@ export function interpretContext(
   mood: string,
   scenario: ScenarioId | undefined,
   causes: string[] | undefined,
-  regulationGoal: RegulationGoalId
+  regulationGoal: RegulationGoalId,
+  intensity = 5
 ): ContextInterpretation {
   const valence = getMoodValence(mood);
   const scenarioEnergy = scenario ? SCENARIO_ENERGY[scenario] : undefined;
@@ -180,8 +181,14 @@ export function interpretContext(
     causes,
     regulationGoal,
     energyContrast,
-    romanceThread
+    romanceThread,
+    intensity
   );
+
+  const intensityScale = 0.85 + intensity / 20;
+  for (const key of Object.keys(themeWeights)) {
+    themeWeights[key] *= intensityScale;
+  }
 
   return {
     narrative,
@@ -197,7 +204,8 @@ function buildNarrative(
   causes: string[] | undefined,
   goal: RegulationGoalId,
   energyContrast: boolean,
-  romanceThread: boolean
+  romanceThread: boolean,
+  intensity: number
 ): string {
   const parts: string[] = [];
 
@@ -246,6 +254,12 @@ function buildNarrative(
     settle: "歌单会轻柔收尾，帮你慢慢沉静",
   };
   parts.push(goalHint[goal]);
+
+  if (intensity >= 8) {
+    parts.push("情绪强度较高，会优先匹配更直白的共情与承载");
+  } else if (intensity <= 3) {
+    parts.push("情绪强度较轻，会保留更多留白与柔和过渡");
+  }
 
   if (causes?.length) {
     parts.push(`原因线索：${causes.join("、")}`);

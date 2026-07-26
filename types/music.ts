@@ -35,6 +35,12 @@ export interface GenerateRequest {
   selectedChannelNames: string[];
   /** Calendar iframe: prefer YouTube, fallback Netease on failure */
   embed?: boolean;
+  /** 1–10 emotional intensity */
+  intensity?: number;
+  /** Product emotion id (sad, anxious, …) */
+  emotion?: string;
+  /** User intention (process, comfort, …) */
+  intention?: string;
 }
 
 export interface GenerateVideo {
@@ -54,6 +60,15 @@ export interface GenerateVideo {
   neteaseEmbedUrl?: string;
   qqUrl?: string;
   note?: string;
+  /** Why this song fits the user's mood + intention */
+  reason?: string;
+  emotionMatch?: {
+    sadness: number;
+    comfort: number;
+    energy: number;
+    validation: number;
+    processing: number;
+  };
 }
 
 export interface PlaylistArcSlot {

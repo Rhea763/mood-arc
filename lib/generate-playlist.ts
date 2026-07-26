@@ -14,13 +14,15 @@ export function buildSequencedPlaylist(
   selectedChannelNames: string[],
   regulationGoal: RegulationGoalId,
   playlistLength: PlaylistLength,
-  scenario?: ScenarioId
+  scenario?: ScenarioId,
+  intensity = 5
 ) {
   const interpretation = interpretContext(
     mood,
     scenario,
     causes,
-    regulationGoal
+    regulationGoal,
+    intensity
   );
   const { plan, tracks } = sequencePlaylist(
     interpretation,
